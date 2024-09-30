@@ -1,4 +1,4 @@
-package org.foodwaste.model.repositories;
+package org.foodwaste.repository;
 
 public interface RecipeRepository {
   // TODO

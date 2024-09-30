@@ -1,4 +1,4 @@
-package org.foodwaste.model.repositories;
+package org.foodwaste.repository;
 
 import java.util.List;
 import org.foodwaste.model.Grocery;

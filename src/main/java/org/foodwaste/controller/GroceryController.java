@@ -1,37 +1,31 @@
 package org.foodwaste.controller;
 
-import java.util.List;
-import org.foodwaste.model.*;
-import org.foodwaste.model.repositories.StorageRepository;
+import org.foodwaste.model.Grocery;
+import org.foodwaste.repository.StorageRepository;
+import org.foodwaste.view.StorageView;
 
 public class GroceryController {
-  private final StorageRepository groceryRepository;
+  private final StorageRepository storageRepository;
+  private final StorageView view;
 
-  public GroceryController(StorageRepository storageRepo) {
-    this.groceryRepository = storageRepo;
+  public GroceryController(StorageRepository storageRepo, StorageView view) {
+    this.storageRepository = storageRepo;
+    this.view = view;
   }
 
   public void addGrocery(Grocery grocery) {
-    groceryRepository.addGrocery(grocery);
+    storageRepository.addGrocery(grocery);
   }
 
   public Grocery getGrocery(String name) {
-    return groceryRepository.getGrocery(name);
+    return storageRepository.getGrocery(name);
   }
 
   public void removeGrocery(String name, float amount) {
-    groceryRepository.removeGrocery(name, amount);
+    storageRepository.removeGrocery(name, amount);
   }
 
-  public List<Grocery> listAllGroceries() {
-    return groceryRepository.listAllGroceries();
-  }
+  public void listAllGroceries() {
 
-  public List<Grocery> listExpiredGroceries() {
-    return groceryRepository.listExpiredGroceries();
-  }
-
-  public float calculateTotalValue() {
-    return groceryRepository.calculateTotalValue();
   }
 }
