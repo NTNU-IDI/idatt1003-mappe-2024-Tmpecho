@@ -14,10 +14,12 @@ public class InMemoryStorageRepository implements StorageRepository {
 
   @Override
   public Grocery getGrocery(String name) {
-    return groceries.stream()
-        .filter(grocery -> grocery.getName().equals(name))
-        .findFirst()
-        .orElse(null);
+    for (Grocery grocery : groceries) {
+      if (grocery.getName().equals(name)) {
+        return grocery;
+      }
+    }
+    return null;
   }
 
   @Override
@@ -40,18 +42,24 @@ public class InMemoryStorageRepository implements StorageRepository {
 
   @Override
   public List<Grocery> listExpiredGroceries() {
-    return groceries.stream()
-        .filter(
-            grocery ->
-                grocery.getExpirationDate() != null
-                    && grocery.getExpirationDate().isBefore(java.time.LocalDate.now()))
-        .toList();
+    List<Grocery> expiredGroceries = new ArrayList<>();
+    for (Grocery grocery : groceries) {
+      if (grocery.getExpirationDate() != null
+          && grocery.getExpirationDate().isBefore(java.time.LocalDate.now())) {
+        expiredGroceries.add(grocery);
+      }
+    }
+    return expiredGroceries;
   }
 
   @Override
   public float calculateTotalValue() {
-    return groceries.stream()
-        .map(grocery -> grocery.getPrice() != null ? grocery.getPrice() * grocery.getAmount() : 0f)
-        .reduce(0f, Float::sum);
+    float totalValue = 0f;
+    for (Grocery grocery : groceries) {
+      if (grocery.getPrice() != null) {
+        totalValue += grocery.getPrice() * grocery.getAmount();
+      }
+    }
+    return totalValue;
   }
 }
