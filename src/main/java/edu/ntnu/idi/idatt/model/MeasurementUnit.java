@@ -1,9 +1,9 @@
-package org.foodwaste.model;
+package edu.ntnu.idi.idatt.model;
 
 public enum MeasurementUnit {
-  Liter,
-  Kilogram,
-  Count // stk
+  LITER,
+  KILOGRAM,
+  PCS // stk
 
   // Be able to get liters and kilos from other representations like kg, L, ml, g, gram, ts, ss, etc
 }

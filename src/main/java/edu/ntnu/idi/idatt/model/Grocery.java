@@ -1,4 +1,4 @@
-package org.foodwaste.model;
+package edu.ntnu.idi.idatt.model;
 
 import java.time.LocalDate;
 
@@ -10,11 +10,11 @@ import java.time.LocalDate;
  */
 public class Grocery {
   String name;
-  Float amount;
+  Double amount;
   MeasurementUnit measurementUnit;
   LocalDate expirationDate;
-  Float price; // Price per unit in non-specified currency
-  Float prefferedStorageTemperature;
+  Double price; // Price per unit in non-specified currency
+  Double prefferedStorageTemperature;
 
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
@@ -39,11 +39,11 @@ public class Grocery {
     this.name = name;
   }
 
-  public Float getAmount() {
+  public Double getAmount() {
     return amount;
   }
 
-  public void setAmount(Float amount) {
+  public void setAmount(Double amount) {
     this.amount = amount;
   }
 
@@ -63,19 +63,19 @@ public class Grocery {
     this.expirationDate = expirationDate;
   }
 
-  public Float getPrice() {
+  public Double getPrice() {
     return price;
   }
 
-  public void setPrice(Float price) {
+  public void setPrice(Double price) {
     this.price = price;
   }
 
-  public Float getPrefferedStorageTemperature() {
+  public Double getPrefferedStorageTemperature() {
     return prefferedStorageTemperature;
   }
 
-  public void setPrefferedStorageTemperature(Float prefferedStorageTemperature) {
+  public void setPrefferedStorageTemperature(Double prefferedStorageTemperature) {
     this.prefferedStorageTemperature = prefferedStorageTemperature;
   }
 
@@ -101,11 +101,11 @@ public class Grocery {
   /** Builder class for the Grocery class. */
   public static class Builder {
     protected String name;
-    protected Float amount;
+    protected Double amount;
     protected MeasurementUnit measurementUnit;
     protected LocalDate expirationDate = null;
-    protected Float price = 0f;
-    protected Float prefferedStorageTemperature = null;
+    protected Double price = 0.;
+    protected Double prefferedStorageTemperature = null;
 
     /**
      * Constructor for the builder class. This constructor only takes the required fields for the
@@ -115,7 +115,7 @@ public class Grocery {
      * @param amount The amount of the grocery item.
      * @param measurementUnit The measurement unit of the grocery item.
      */
-    public Builder(String name, Float amount, MeasurementUnit measurementUnit) {
+    public Builder(String name, Double amount, MeasurementUnit measurementUnit) {
       this.name = name;
       this.amount = amount;
       this.measurementUnit = measurementUnit;
@@ -126,12 +126,12 @@ public class Grocery {
       return this;
     }
 
-    public Builder price(Float price) {
+    public Builder price(Double price) {
       this.price = price;
       return this;
     }
 
-    public Builder prefferedStorageTemperature(Float prefferedStorageTemperature) {
+    public Builder prefferedStorageTemperature(Double prefferedStorageTemperature) {
       this.prefferedStorageTemperature = prefferedStorageTemperature;
       return this;
     }

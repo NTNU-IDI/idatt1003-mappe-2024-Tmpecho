@@ -1,11 +1,9 @@
-package org.foodwaste;
+package edu.ntnu.idi.idatt;
 
-import org.foodwaste.ui.CliInterface;
-import org.foodwaste.ui.UserInterface;
+import edu.ntnu.idi.idatt.ui.CliInterface;
+import edu.ntnu.idi.idatt.ui.UserInterface;
 
-/**
- * Main class that starts the application.
- */
+/** Main class that starts the application. */
 public class Main {
   /**
    * Main entry point for the application that starts the user interface.

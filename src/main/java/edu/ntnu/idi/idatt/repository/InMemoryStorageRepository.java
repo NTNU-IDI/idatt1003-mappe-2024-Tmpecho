@@ -1,15 +1,22 @@
-package org.foodwaste.repository;
+package edu.ntnu.idi.idatt.repository;
 
+import edu.ntnu.idi.idatt.model.Grocery;
+import edu.ntnu.idi.idatt.model.Storage;
 import java.util.ArrayList;
 import java.util.List;
-import org.foodwaste.model.Grocery;
 
 public class InMemoryStorageRepository implements StorageRepository {
+  private final Storage storage;
   private final List<Grocery> groceries = new ArrayList<>();
+
+  public InMemoryStorageRepository(Storage storage) {
+    this.storage = storage;
+  }
 
   @Override
   public void addGrocery(Grocery grocery) {
     groceries.add(grocery);
+    storage.addGrocery(grocery);
   }
 
   @Override
@@ -23,15 +30,20 @@ public class InMemoryStorageRepository implements StorageRepository {
   }
 
   @Override
-  public void removeGrocery(String name, float amount) {
+  public void removeGrocery(String name) {
     Grocery grocery = getGrocery(name);
     if (grocery != null) {
-      float newAmount = grocery.getAmount() - amount;
-      if (newAmount <= 0) {
-        groceries.remove(grocery);
-      } else {
-        grocery.setAmount(newAmount);
-      }
+      storage.removeGrocery(grocery, grocery.getAmount());
+      groceries.remove(grocery);
+    }
+  }
+
+  @Override
+  public void removeGrocery(String name, double amount) {
+    Grocery grocery = getGrocery(name);
+    if (grocery != null) {
+      storage.removeGrocery(grocery, amount);
+        grocery.setAmount(grocery.getAmount() - amount);
     }
   }
 
@@ -53,8 +65,8 @@ public class InMemoryStorageRepository implements StorageRepository {
   }
 
   @Override
-  public float calculateTotalValue() {
-    float totalValue = 0f;
+  public double calculateTotalValue() {
+    double totalValue = 0.0;
     for (Grocery grocery : groceries) {
       if (grocery.getPrice() != null) {
         totalValue += grocery.getPrice() * grocery.getAmount();
@@ -62,4 +74,6 @@ public class InMemoryStorageRepository implements StorageRepository {
     }
     return totalValue;
   }
+
+
 }

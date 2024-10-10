@@ -1,6 +1,6 @@
-package org.foodwaste.view;
+package edu.ntnu.idi.idatt.view;
 
-import org.foodwaste.model.Grocery;
+import edu.ntnu.idi.idatt.model.Grocery;
 
 public class GroceryView {
   public void displayGrocery(Grocery grocery) {

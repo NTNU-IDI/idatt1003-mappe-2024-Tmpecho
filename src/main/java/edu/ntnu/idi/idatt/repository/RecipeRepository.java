@@ -1,4 +1,4 @@
-package org.foodwaste.repository;
+package edu.ntnu.idi.idatt.repository;
 
 public interface RecipeRepository {
   // TODO

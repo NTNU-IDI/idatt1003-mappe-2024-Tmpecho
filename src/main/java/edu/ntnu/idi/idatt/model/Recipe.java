@@ -1,4 +1,4 @@
-package org.foodwaste.model;
+package edu.ntnu.idi.idatt.model;
 
 import java.util.List;
 import java.util.Map;
