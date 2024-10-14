@@ -1,6 +1,5 @@
 package edu.ntnu.idi.idatt.ui;
 
-
 /** CLI implementation of the UserInterface. */
 public class CliInterface extends UserInterface {
   public void start() {
@@ -11,7 +10,7 @@ public class CliInterface extends UserInterface {
     groceryController.addGrocery("Milk", 3, "Liter");
     groceryController.displayGrocery("Milk");
 
-    groceryController.removeGrocery("Milk", 1);
+    groceryController.removeGrocery("Milk", 3);
     groceryController.displayGrocery("Milk");
 
     groceryController.removeGrocery("Milk");

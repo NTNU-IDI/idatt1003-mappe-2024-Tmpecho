@@ -40,11 +40,22 @@ public class InMemoryStorageRepository implements StorageRepository {
 
   @Override
   public void removeGrocery(String name, double amount) {
-    Grocery grocery = getGrocery(name);
-    if (grocery != null) {
-      storage.removeGrocery(grocery, amount);
-        grocery.setAmount(grocery.getAmount() - amount);
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
     }
+    Grocery grocery = getGrocery(name);
+
+    if (grocery.getAmount() - amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
+    }
+
+    if (grocery.getAmount() - amount == 0) {
+      removeGrocery(name);
+      return;
+    }
+
+    storage.removeGrocery(grocery, amount);
+    grocery.setAmount(grocery.getAmount() - amount);
   }
 
   @Override
@@ -74,6 +85,4 @@ public class InMemoryStorageRepository implements StorageRepository {
     }
     return totalValue;
   }
-
-
 }
