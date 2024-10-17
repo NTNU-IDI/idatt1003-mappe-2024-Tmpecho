@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idatt;
 
-import edu.ntnu.idi.idatt.ui.CliInterface;
-import edu.ntnu.idi.idatt.ui.UserInterface;
+import edu.ntnu.idi.idatt.ui.*;
 
 /** Main class that starts the application. */
 public class Main {
@@ -11,7 +10,7 @@ public class Main {
    * @param args Command line arguments
    */
   public static void main(String[] args) {
-    UserInterface userInterface = new CliInterface(); // eller 'new TextMenuInterface();' f.eks.
+    UserInterface userInterface = new TextMenuInterface();
     userInterface.init();
     userInterface.start();
   }

@@ -14,7 +14,7 @@ public class Grocery {
   MeasurementUnit measurementUnit;
   LocalDate expirationDate;
   Double price; // Price per unit in non-specified currency
-  Double prefferedStorageTemperature;
+  Double preferredStorageTemperature;
 
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
@@ -28,7 +28,7 @@ public class Grocery {
     this.measurementUnit = builder.measurementUnit;
     this.expirationDate = builder.expirationDate;
     this.price = builder.price;
-    this.prefferedStorageTemperature = builder.prefferedStorageTemperature;
+    this.preferredStorageTemperature = builder.preferredStorageTemperature;
   }
 
   public String getName() {
@@ -71,12 +71,12 @@ public class Grocery {
     this.price = price;
   }
 
-  public Double getPrefferedStorageTemperature() {
-    return prefferedStorageTemperature;
+  public Double getPreferredStorageTemperature() {
+    return preferredStorageTemperature;
   }
 
-  public void setPrefferedStorageTemperature(Double prefferedStorageTemperature) {
-    this.prefferedStorageTemperature = prefferedStorageTemperature;
+  public void setPreferredStorageTemperature(Double preferredStorageTemperature) {
+    this.preferredStorageTemperature = preferredStorageTemperature;
   }
 
   @Override
@@ -94,7 +94,7 @@ public class Grocery {
         + ", price="
         + price
         + ", prefferedStorageTemperature="
-        + prefferedStorageTemperature
+        + preferredStorageTemperature
         + '}';
   }
 
@@ -105,7 +105,7 @@ public class Grocery {
     protected MeasurementUnit measurementUnit;
     protected LocalDate expirationDate = null;
     protected Double price = 0.;
-    protected Double prefferedStorageTemperature = null;
+    protected Double preferredStorageTemperature = null;
 
     /**
      * Constructor for the builder class. This constructor only takes the required fields for the
@@ -131,8 +131,8 @@ public class Grocery {
       return this;
     }
 
-    public Builder prefferedStorageTemperature(Double prefferedStorageTemperature) {
-      this.prefferedStorageTemperature = prefferedStorageTemperature;
+    public Builder preferredStorageTemperature(Double preferredStorageTemperature) {
+      this.preferredStorageTemperature = preferredStorageTemperature;
       return this;
     }
 

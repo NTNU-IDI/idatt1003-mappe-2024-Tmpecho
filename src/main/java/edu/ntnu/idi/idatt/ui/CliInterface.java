@@ -4,16 +4,5 @@ package edu.ntnu.idi.idatt.ui;
 public class CliInterface extends UserInterface {
   public void start() {
     super.start();
-
-    System.out.println("CLI spesicifc start...");
-
-    groceryController.addGrocery("Milk", 3, "Liter");
-    groceryController.displayGrocery("Milk");
-
-    groceryController.removeGrocery("Milk", 3);
-    groceryController.displayGrocery("Milk");
-
-    groceryController.removeGrocery("Milk");
-    groceryController.displayGrocery("Milk");
   }
 }

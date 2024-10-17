@@ -15,14 +15,14 @@ class GroceryTest {
         new Grocery.Builder("Milk", 1., MeasurementUnit.valueOf("LITER"))
             .expirationDate(LocalDate.of(2024, 10, 1))
             .price(1.5)
-            .prefferedStorageTemperature(4.0)
+            .preferredStorageTemperature(4.0)
             .build();
 
     bread =
         new Grocery.Builder("Bread", 1., MeasurementUnit.valueOf("PCS"))
             .expirationDate(LocalDate.of(2024, 10, 1))
             .price(1.5)
-            .prefferedStorageTemperature(4.0)
+            .preferredStorageTemperature(4.0)
             .build();
 
     soysauce = new Grocery.Builder("Soysauce", 1., MeasurementUnit.valueOf("LITER")).build();
@@ -139,24 +139,24 @@ class GroceryTest {
 
   @org.junit.jupiter.api.Test
   void getPrefferedStorageTemperature() {
-    assertEquals(4.0, milk.getPrefferedStorageTemperature());
-    assertEquals(4.0, bread.getPrefferedStorageTemperature());
-    assertNull(soysauce.getPrefferedStorageTemperature());
+    assertEquals(4.0, milk.getPreferredStorageTemperature());
+    assertEquals(4.0, bread.getPreferredStorageTemperature());
+    assertNull(soysauce.getPreferredStorageTemperature());
 
-    assertNotEquals(5.0, milk.getPrefferedStorageTemperature());
-    assertNotEquals(5.0, bread.getPrefferedStorageTemperature());
-    assertNotEquals(0.0, soysauce.getPrefferedStorageTemperature());
+    assertNotEquals(5.0, milk.getPreferredStorageTemperature());
+    assertNotEquals(5.0, bread.getPreferredStorageTemperature());
+    assertNotEquals(0.0, soysauce.getPreferredStorageTemperature());
   }
 
   @org.junit.jupiter.api.Test
   void setPrefferedStorageTemperature() {
-    milk.setPrefferedStorageTemperature(5.0);
-    bread.setPrefferedStorageTemperature(5.0);
+    milk.setPreferredStorageTemperature(5.0);
+    bread.setPreferredStorageTemperature(5.0);
 
-    assertEquals(5.0, milk.getPrefferedStorageTemperature());
-    assertEquals(5.0, bread.getPrefferedStorageTemperature());
+    assertEquals(5.0, milk.getPreferredStorageTemperature());
+    assertEquals(5.0, bread.getPreferredStorageTemperature());
 
-    assertNotEquals(4.0, milk.getPrefferedStorageTemperature());
-    assertNotEquals(4.0, bread.getPrefferedStorageTemperature());
+    assertNotEquals(4.0, milk.getPreferredStorageTemperature());
+    assertNotEquals(4.0, bread.getPreferredStorageTemperature());
   }
 }
