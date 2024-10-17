@@ -29,7 +29,5 @@ public abstract class UserInterface {
   }
 
   /** Starts base UI loop. */
-  public void start() { // Maybe this should be abstract?
-    System.out.println("Starting UI... (non-specific implementation)");
-  }
+  public abstract void start();
 }

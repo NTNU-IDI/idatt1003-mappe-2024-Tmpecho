@@ -8,8 +8,6 @@ public class TextMenuInterface extends UserInterface {
 
   /** Starts the text based menu interface. */
   public void start() {
-    super.start();
-
     int choice = -1;
     while (choice != 0) {
       printMenu();
