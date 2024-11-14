@@ -9,7 +9,7 @@ public class Storage {
   public double maxTemperature;
 
   /**
-   * Constructor for Storage
+   * Constructor for Storage.
    *
    * @param name name of storage
    * @param capacity capacity of storage
@@ -23,9 +23,9 @@ public class Storage {
   }
 
   /**
-   * Add grocery to storage
+   * Add grocery to storage.
    *
-   * @param grocery
+   * @param grocery grocery to add
    */
   public void addGrocery(Grocery grocery) {
     if (currentCapacity + grocery.getAmount() > capacity) {
@@ -34,6 +34,12 @@ public class Storage {
     currentCapacity += grocery.getAmount();
   }
 
+  /**
+   * Remove grocery from storage.
+   *
+   * @param grocery grocery to remove
+   * @param amount amount to remove
+   */
   public void removeGrocery(Grocery grocery, double amount) {
     double remainingAmount = grocery.getAmount() - amount;
     if (remainingAmount < 0) {
@@ -42,18 +48,38 @@ public class Storage {
     currentCapacity -= amount;
   }
 
+  /**
+   * Get the capacity of the storage.
+   *
+   * @return capacity of the storage
+   */
   public double getCapacity() {
     return capacity;
   }
 
+  /**
+   * Get the current capacity of the storage.
+   *
+   * @return current capacity of the storage
+   */
   public double getCurrentCapacity() {
     return currentCapacity;
   }
 
+  /**
+   * Get the name of the storage.
+   *
+   * @return name of the storage
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Get string representation of storage.
+   *
+   * @return string representation of storage
+   */
   @Override
   public String toString() {
     return "Storage{"
