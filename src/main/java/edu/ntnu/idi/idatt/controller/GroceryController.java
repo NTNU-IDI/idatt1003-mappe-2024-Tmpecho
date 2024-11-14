@@ -2,31 +2,53 @@ package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
-import edu.ntnu.idi.idatt.repository.StorageRepository;
 import edu.ntnu.idi.idatt.view.GroceryView;
+import java.time.LocalDate;
 
+/** Controller class for the grocery model. */
 public class GroceryController {
   private final GroceryView groceryView = new GroceryView();
-  private final StorageRepository storageRepository;
 
-  public GroceryController(StorageRepository storageRepository) {
-    this.storageRepository = storageRepository;
+  public GroceryController() {}
+
+  /**
+   * Add a grocery to the model.
+   *
+   * @param name the name of the grocery
+   * @param amount the amount of the grocery
+   * @param unit the unit of the grocery
+   * @param expirationDate the expiration date of the grocery
+   * @param price the price of the grocery
+   * @return the grocery that was added
+   */
+  public Grocery addGrocery(
+      String name, double amount, String unit, LocalDate expirationDate, Double price) {
+    return new Grocery.Builder(
+            name.toUpperCase(), amount, MeasurementUnit.valueOf(unit.toUpperCase()))
+        .expirationDate(expirationDate)
+        .price(price)
+        .build();
   }
 
-  public void addGrocery(String name, double amount, String unit) {
-    MeasurementUnit measurementUnit = MeasurementUnit.valueOf(unit.toUpperCase());
-    storageRepository.addGrocery(new Grocery.Builder(name, amount, measurementUnit).build());
-  }
+  /**
+   * Remove a grocery from the model.
+   *
+   * @param name the name of the grocery
+   */
+  public void removeGrocery(String name) {}
 
-  public void removeGrocery(String name) {
-    storageRepository.removeGrocery(name);
-  }
+  /**
+   * Remove a grocery from the model.
+   *
+   * @param name the name of the grocery
+   * @param amount the amount of the grocery
+   */
+  public void removeGrocery(String name, double amount) {}
 
-  public void removeGrocery(String name, double amount) {
-    storageRepository.removeGrocery(name, amount);
-  }
-
-  public void displayGrocery(String name) {
-    groceryView.displayGrocery(storageRepository.getGrocery(name));
-  }
+  /**
+   * Display a grocery from the model.
+   *
+   * @param name the name of the grocery
+   */
+  public void displayGrocery(String name) {}
 }

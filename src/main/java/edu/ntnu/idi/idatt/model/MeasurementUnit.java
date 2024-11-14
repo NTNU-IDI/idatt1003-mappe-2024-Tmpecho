@@ -1,5 +1,8 @@
 package edu.ntnu.idi.idatt.model;
 
+/**
+* Enum for the different measurement units that can be used for groceries.
+*/
 public enum MeasurementUnit {
   LITER,
   KILOGRAM,
