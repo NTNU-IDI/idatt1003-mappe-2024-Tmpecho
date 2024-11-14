@@ -2,19 +2,21 @@ package edu.ntnu.idi.idatt.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
-
+/** Test class for the Storage class. */
 class StorageTest {
   Storage storage;
 
+  /** Sets up a new storage object before each test. */
   @BeforeEach
   void setUp() {
     storage = new Storage("Storage", 100, -10, 10);
   }
 
+  /** Tests the addGrocery method. */
   @Test
   void addGrocery() {
     Grocery milk =
