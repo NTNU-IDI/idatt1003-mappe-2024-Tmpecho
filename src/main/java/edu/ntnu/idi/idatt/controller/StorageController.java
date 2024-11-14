@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 /** Controller class for the storage model. */
 public class StorageController {
-  private GroceryController groceryController;
-  private StorageRepository storageRepository;
+  private final GroceryController groceryController;
+  private final StorageRepository storageRepository;
 
   /**
    * Constructor for the StorageController class.
@@ -40,6 +40,10 @@ public class StorageController {
 *
 */
   public void listAllGroceries() {
+    if (storageRepository.listAllGroceries().isEmpty()) {
+      System.out.println("No groceries in storage.");
+      return;
+    }
     for (Grocery grocery : storageRepository.listAllGroceries()) {
       System.out.println(grocery);
     }
