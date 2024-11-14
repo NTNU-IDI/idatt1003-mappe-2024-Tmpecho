@@ -2,31 +2,26 @@ package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
-import edu.ntnu.idi.idatt.repository.StorageRepository;
 import edu.ntnu.idi.idatt.view.GroceryView;
+
+import java.time.LocalDate;
 
 public class GroceryController {
   private final GroceryView groceryView = new GroceryView();
-  private final StorageRepository storageRepository;
 
-  public GroceryController(StorageRepository storageRepository) {
-    this.storageRepository = storageRepository;
+  public GroceryController() {}
+
+  public Grocery addGrocery(
+      String name, double amount, String unit, LocalDate expirationDate, Double price) {
+    return new Grocery.Builder(name.toUpperCase(), amount, MeasurementUnit.valueOf(unit.toUpperCase()))
+        .expirationDate(expirationDate)
+        .price(price)
+        .build();
   }
 
-  public void addGrocery(String name, double amount, String unit) {
-    MeasurementUnit measurementUnit = MeasurementUnit.valueOf(unit.toUpperCase());
-    storageRepository.addGrocery(new Grocery.Builder(name, amount, measurementUnit).build());
-  }
+  public void removeGrocery(String name) {}
 
-  public void removeGrocery(String name) {
-    storageRepository.removeGrocery(name);
-  }
+  public void removeGrocery(String name, double amount) {}
 
-  public void removeGrocery(String name, double amount) {
-    storageRepository.removeGrocery(name, amount);
-  }
-
-  public void displayGrocery(String name) {
-    groceryView.displayGrocery(storageRepository.getGrocery(name));
-  }
+  public void displayGrocery(String name) {}
 }

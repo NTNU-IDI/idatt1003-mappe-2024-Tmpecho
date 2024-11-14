@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.ui;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /** Text based menu interface for the user. */
@@ -39,7 +40,7 @@ public class TextMenuInterface extends UserInterface {
 
   /** Prints the menu of choices for the user to perform. */
   public void printMenu() {
-    System.out.println("Menu:");
+    System.out.println("\nMenu:");
     System.out.println("1. Add grocery");
     System.out.println("2. List groceries");
     System.out.println("3. List storages");
@@ -58,7 +59,7 @@ public class TextMenuInterface extends UserInterface {
     while (!scanner.hasNextInt()) {
       System.out.println("Invalid input. Please enter a number.");
       System.out.print("Enter choice: ");
-      scanner.next();
+      scanner.nextLine();
     }
     return scanner.nextInt();
   }
@@ -72,12 +73,25 @@ public class TextMenuInterface extends UserInterface {
     double amount = scanner.nextDouble();
     System.out.print("Enter unit: ");
     String unit = scanner.next();
-    groceryController.addGrocery(name, amount, unit);
+    System.out.println("Enter expiration date: ");
+    System.out.print("Year: ");
+    int year = scanner.nextInt();
+    System.out.print("Month: ");
+    int month = scanner.nextInt();
+    System.out.print("Day: ");
+    int day = scanner.nextInt();
+    System.out.println("Enter price (NOK): ");
+    System.out.print("Price: ");
+    double price = scanner.nextDouble();
+    System.out.println();
+    storageController.addGrocery(name, amount, unit, LocalDate.of(year, month, day), price);
   }
 
   /** Lists groceries in storage. */
   private void listGroceries() {
     System.out.println("Listing groceries...");
+
+    storageController.listAllGroceries();
   }
 
   /** Lists storages. */

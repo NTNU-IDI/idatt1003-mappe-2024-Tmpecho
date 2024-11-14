@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * <p>Each grocery item has a name, amount, measurement unit, expiration date, price, and preferred
  * storage temperature. Only the name amount, and measurmentUnit are required.
  */
-public class Grocery {
+public class Grocery implements Comparable<Grocery> {
   String name;
   Double amount;
   MeasurementUnit measurementUnit;
@@ -139,5 +139,10 @@ public class Grocery {
     public Grocery build() {
       return new Grocery(this);
     }
+  }
+
+  @Override
+  public int compareTo(Grocery grocery) {
+    return this.name.compareTo(grocery.getName());
   }
 }

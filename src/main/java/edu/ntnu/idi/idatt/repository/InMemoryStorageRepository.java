@@ -3,6 +3,7 @@ package edu.ntnu.idi.idatt.repository;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Storage;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class InMemoryStorageRepository implements StorageRepository {
@@ -60,7 +61,9 @@ public class InMemoryStorageRepository implements StorageRepository {
 
   @Override
   public List<Grocery> listAllGroceries() {
-    return new ArrayList<>(groceries); // Return a copy to prevent external modification
+    List<Grocery> sortedGroceries = new ArrayList<>(groceries);
+    sortedGroceries.sort(Comparator.comparing(Grocery::getName));
+    return sortedGroceries;
   }
 
   @Override

@@ -1,5 +1,6 @@
 package edu.ntnu.idi.idatt.model;
 
+/** Class representing a storage unit for groceries. */
 public class Storage {
   String name;
   double capacity;
@@ -7,6 +8,12 @@ public class Storage {
   public double minTemperature;
   public double maxTemperature;
 
+  /**
+   * Constructor for Storage
+   *
+   * @param name name of storage
+   * @param capacity capacity of storage
+   */
   public Storage(String name, double capacity, double minTemperature, double maxTemperature) {
     this.name = name;
     this.capacity = capacity;
@@ -15,6 +22,11 @@ public class Storage {
     this.currentCapacity = 0;
   }
 
+  /**
+   * Add grocery to storage
+   *
+   * @param grocery
+   */
   public void addGrocery(Grocery grocery) {
     if (currentCapacity + grocery.getAmount() > capacity) {
       throw new IllegalArgumentException("Not enough capacity in storage");
