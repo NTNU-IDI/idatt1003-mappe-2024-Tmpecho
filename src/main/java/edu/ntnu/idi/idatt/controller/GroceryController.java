@@ -23,7 +23,7 @@ public class GroceryController {
    */
   public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {
-    return new Grocery(name, amount, MeasurementUnit.valueOf(unit), expirationDate, price);
+    return new Grocery(name, amount, MeasurementUnit.fromString(unit), expirationDate, price);
   }
 
   /**
