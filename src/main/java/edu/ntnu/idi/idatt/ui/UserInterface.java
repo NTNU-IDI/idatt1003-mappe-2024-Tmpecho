@@ -22,12 +22,11 @@ public abstract class UserInterface {
 
     fridgeStorageRepository = new InMemoryStorageRepository(fridge);
 
-
     recipeController = new RecipeController();
     groceryController = new GroceryController();
     storageController = new StorageController(groceryController, fridgeStorageRepository);
   }
 
-  /** Starts base UI loop. */
+  /** Main program loop. Must be implemented by subclasses. */
   public abstract void start();
 }
