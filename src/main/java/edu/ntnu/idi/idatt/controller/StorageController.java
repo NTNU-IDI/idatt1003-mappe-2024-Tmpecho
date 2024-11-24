@@ -52,4 +52,13 @@ public class StorageController {
     }
     storageRepository.getAllGroceries().forEach(groceryController::displayGrocery);
   }
+
+  /** List all expired groceries in the storage model. */
+  public void listExpiredGroceries() {
+    if (storageRepository.listExpiredGroceries().isEmpty()) {
+      System.out.println("No expired groceries in storage.");
+      return;
+    }
+    storageRepository.listExpiredGroceries().forEach(groceryController::displayGrocery);
+  }
 }

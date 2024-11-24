@@ -17,6 +17,7 @@ public class TextMenuInterface extends UserInterface {
 		    case 1 -> addGrocery();
             case 2 -> removeGrocery();
 		    case 3 -> listGroceries();
+            case 4 -> listExpiredGroceries();
 		    case 0 -> System.out.println("Exiting...");
 		    default -> System.out.println("Invalid choice");
 	    }
@@ -29,6 +30,7 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("1. Add grocery");
     System.out.println("2. Remove grocery");
     System.out.println("3. List groceries");
+    System.out.println("4. List expired groceries");
     System.out.println("0. Exit");
   }
 
@@ -83,5 +85,10 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("Listing groceries...");
 
     storageController.listAllGroceries();
+  }
+
+  private void listExpiredGroceries() {
+    System.out.println("Listing expired groceries...");
+    storageController.listExpiredGroceries();
   }
 }
