@@ -125,11 +125,11 @@ class StorageTest {
     assertEquals("Amount to remove cannot be negative or zero", exception.getMessage());
   }
 
-    /** Tests removing a grocery from storage */
-    @Test
-    void removeGrocery() {
-        storage.addGrocery(milk);
-        storage.removeGrocery(milk);
-        assertEquals(0.0, storage.getCurrentCapacity());
-    }
+  /** Tests removing a grocery from storage */
+  @Test
+  void removeGrocery() {
+    storage.addGrocery(milk);
+    storage.removeGrocery(milk);
+    assertEquals(0.0, storage.getCurrentCapacity());
+  }
 }

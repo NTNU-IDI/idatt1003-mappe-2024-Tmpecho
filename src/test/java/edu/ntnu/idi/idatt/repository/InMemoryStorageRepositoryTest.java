@@ -12,16 +12,13 @@ import org.junit.jupiter.api.Test;
 
 /** Test class for the InMemoryStorageRepository class. */
 class InMemoryStorageRepositoryTest {
-
   private InMemoryStorageRepository repository;
   private Storage storage;
   private Grocery milk;
   private Grocery bread;
   private Grocery expiredMilk;
 
-/**
-* Sets up a new storage object and groceries before each test.
-*/
+  /** Sets up a new storage object and groceries before each test. */
   @BeforeEach
   void setUp() {
     storage = new Storage("Pantry", 100, -10, 30);
