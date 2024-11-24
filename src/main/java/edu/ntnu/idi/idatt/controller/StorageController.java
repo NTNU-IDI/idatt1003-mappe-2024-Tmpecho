@@ -26,13 +26,13 @@ public class StorageController {
    * @param name the name of the grocery
    * @param amount the amount of the grocery
    * @param unit the unit of the grocery
-   * @param expiration_date the expiration date of the grocery
+   * @param expirationDate the expiration date of the grocery
    * @param price the price of the grocery
    */
   public void addGrocery(
-      String name, double amount, String unit, LocalDate expiration_date, double price) {
+      String name, double amount, String unit, LocalDate expirationDate, double price) {
     storageRepository.addGrocery(
-        groceryController.createGrocery(name, amount, unit, expiration_date, price));
+        groceryController.createGrocery(name, amount, unit, expirationDate, price));
   }
 
   /**
