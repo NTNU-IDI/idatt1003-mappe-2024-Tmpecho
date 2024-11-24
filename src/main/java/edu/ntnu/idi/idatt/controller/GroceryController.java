@@ -12,7 +12,7 @@ public class GroceryController {
   public GroceryController() {}
 
   /**
-   * Add a grocery to the model.
+   * Create a grocery object.
    *
    * @param name the name of the grocery
    * @param amount the amount of the grocery
@@ -23,11 +23,7 @@ public class GroceryController {
    */
   public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {
-    return new Grocery.Builder(
-            name.toUpperCase(), amount, MeasurementUnit.valueOf(unit.toUpperCase()))
-        .expirationDate(expirationDate)
-        .price(price)
-        .build();
+    return new Grocery(name, amount, MeasurementUnit.valueOf(unit), expirationDate, price);
   }
 
   /**

@@ -20,11 +20,7 @@ class StorageTest {
   @Test
   void addGrocery() {
     Grocery milk =
-        new Grocery.Builder("Milk", 1., MeasurementUnit.valueOf("LITER"))
-            .expirationDate(LocalDate.of(2024, 10, 1))
-            .price(1.5)
-            .preferredStorageTemperature(4.0)
-            .build();
+        new Grocery("Milk", 1.0, MeasurementUnit.valueOf("LITER"), LocalDate.of(2024, 10, 1), 1.5);
 
     storage.addGrocery(milk);
     assertEquals(1, storage.getCurrentCapacity());

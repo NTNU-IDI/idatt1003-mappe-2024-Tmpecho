@@ -2,11 +2,11 @@ package edu.ntnu.idi.idatt.model;
 
 /** Class representing a storage unit for groceries. */
 public class Storage {
+  public double minTemperature;
+  public double maxTemperature;
   String name;
   double capacity;
   double currentCapacity;
-  public double minTemperature;
-  public double maxTemperature;
 
   /**
    * Constructor for Storage.

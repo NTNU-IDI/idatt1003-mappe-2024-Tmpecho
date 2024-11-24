@@ -9,6 +9,6 @@ public class Fridge extends Storage {
    * @param capacity capacity of the fridge
    */
   public Fridge(String name, double capacity) {
-    super(name, capacity, 0, 0);  // Ignore temperature
+    super(name, capacity, 0, 0); // Ignore temperature
   }
 }

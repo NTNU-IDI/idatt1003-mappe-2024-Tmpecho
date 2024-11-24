@@ -21,12 +21,12 @@ public class Grocery implements Comparable<Grocery> {
    *
    * @param builder The builder object that contains the values for the Grocery object
    */
-  public Grocery(Builder builder) {
-    this.name = builder.name;
-    this.amount = builder.amount;
-    this.measurementUnit = builder.measurementUnit;
-    this.expirationDate = builder.expirationDate;
-    this.price = builder.price;
+  public Grocery(String name, Double amount, MeasurementUnit measurementUnit, LocalDate expirationDate, Double price) {
+    this.name = name;
+    this.amount = amount;
+    this.measurementUnit = measurementUnit;
+    this.expirationDate = expirationDate;
+    this.price = price;
   }
 
   /**
@@ -140,60 +140,6 @@ public class Grocery implements Comparable<Grocery> {
         + ", price="
         + price
         + '}';
-  }
-
-  /** Builder class for the Grocery class. */
-  public static class Builder {
-    protected String name;
-    protected Double amount;
-    protected MeasurementUnit measurementUnit;
-    protected LocalDate expirationDate = null;
-    protected Double price = 0.;
-
-    /**
-     * Constructor for the builder class. This constructor only takes the required fields for the
-     * Grocery class.
-     *
-     * @param name The name of the grocery item
-     * @param amount The amount of the grocery item
-     * @param measurementUnit The measurement unit of the grocery item
-     */
-    public Builder(String name, Double amount, MeasurementUnit measurementUnit) {
-      this.name = name;
-      this.amount = amount;
-      this.measurementUnit = measurementUnit;
-    }
-
-    /**
-     * Set the expiration date of the grocery item.
-     *
-     * @param expirationDate The expiration date of the grocery item
-     * @return The builder object
-     */
-    public Builder expirationDate(LocalDate expirationDate) {
-      this.expirationDate = expirationDate;
-      return this;
-    }
-
-    /**
-     * The price of the grocery item.
-     *
-     * @param price The price of the grocery item
-     * @return The builder object
-     */
-    public Builder price(Double price) {
-      this.price = price;
-      return this;
-    }
-
-    /**
-     * Build the Grocery object.
-     *
-     * @return The Grocery object
-     */
-    public Grocery build() {
-      return new Grocery(this);
-    }
   }
 
   /**

@@ -13,21 +13,11 @@ class GroceryTest {
   /** Sets up new grocery objects before each test. */
   @org.junit.jupiter.api.BeforeEach
   void setUp() {
-    milk =
-        new Grocery.Builder("Milk", 1., MeasurementUnit.valueOf("LITER"))
-            .expirationDate(LocalDate.of(2024, 10, 1))
-            .price(1.5)
-            .preferredStorageTemperature(4.0)
-            .build();
+    milk = new Grocery("Milk", 1.0, MeasurementUnit.valueOf("LITER"), LocalDate.of(2024, 10, 1), 1.5);
 
-    bread =
-        new Grocery.Builder("Bread", 1., MeasurementUnit.valueOf("PCS"))
-            .expirationDate(LocalDate.of(2024, 10, 1))
-            .price(1.5)
-            .preferredStorageTemperature(4.0)
-            .build();
+    bread = new Grocery("Bread", 1.0, MeasurementUnit.valueOf("PCS"), LocalDate.of(2024, 10, 1), 1.5);
 
-    soysauce = new Grocery.Builder("Soysauce", 1., MeasurementUnit.valueOf("LITER")).build();
+    soysauce = new Grocery("Soy Sauce", 1.0, MeasurementUnit.valueOf("LITER"), null, 0.0);
   }
 
   /** Tests the getName method. */
