@@ -48,7 +48,9 @@ public class GroceryController {
   /**
    * Display a grocery from the model.
    *
-   * @param name the name of the grocery
+   * @param grocery the grocery to display
    */
-  public void displayGrocery(String name) {}
+  public void displayGrocery(Grocery grocery) {
+    groceryView.displayGrocery(grocery);
+  }
 }

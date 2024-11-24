@@ -90,7 +90,7 @@ public class InMemoryStorageRepository implements StorageRepository {
    * @return a list of all groceries in the repository
    */
   @Override
-  public List<Grocery> listAllGroceries() {
+  public List<Grocery> getAllGroceries() {
     List<Grocery> sortedGroceries = new ArrayList<>(groceries);
     sortedGroceries.sort(Comparator.comparing(Grocery::getName));
     return sortedGroceries;

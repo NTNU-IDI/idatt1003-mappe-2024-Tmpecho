@@ -1,13 +1,11 @@
 package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.repository.StorageRepository;
-import edu.ntnu.idi.idatt.view.GroceryView;
 import java.time.LocalDate;
 
 /** Controller class for the storage model. */
 public class StorageController {
   private final GroceryController groceryController;
-  private final GroceryView groceryView = new GroceryView();
   private final StorageRepository storageRepository;
 
   /**
@@ -48,10 +46,10 @@ public class StorageController {
 
   /** List all groceries in the storage model. */
   public void listAllGroceries() {
-    if (storageRepository.listAllGroceries().isEmpty()) {
+    if (storageRepository.getAllGroceries().isEmpty()) {
       System.out.println("No groceries in storage.");
       return;
     }
-    storageRepository.listAllGroceries().forEach(groceryView::displayGrocery);
+    storageRepository.getAllGroceries().forEach(groceryController::displayGrocery);
   }
 }

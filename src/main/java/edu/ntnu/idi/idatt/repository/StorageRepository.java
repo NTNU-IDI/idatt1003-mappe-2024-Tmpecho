@@ -40,7 +40,7 @@ public interface StorageRepository {
    *
    * @return a list of all groceries in the storage
    */
-  List<Grocery> listAllGroceries();
+  List<Grocery> getAllGroceries();
 
   /**
    * Lists all expired groceries in the storage.
