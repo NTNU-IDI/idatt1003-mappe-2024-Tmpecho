@@ -21,7 +21,7 @@ public class GroceryController {
    * @param price the price of the grocery
    * @return the grocery that was added
    */
-  public Grocery addGrocery(
+  public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {
     return new Grocery.Builder(
             name.toUpperCase(), amount, MeasurementUnit.valueOf(unit.toUpperCase()))
@@ -29,21 +29,6 @@ public class GroceryController {
         .price(price)
         .build();
   }
-
-  /**
-   * Remove a grocery from the model.
-   *
-   * @param name the name of the grocery
-   */
-  public void removeGrocery(String name) {}
-
-  /**
-   * Remove a grocery from the model.
-   *
-   * @param name the name of the grocery
-   * @param amount the amount of the grocery
-   */
-  public void removeGrocery(String name, double amount) {}
 
   /**
    * Display a grocery from the model.

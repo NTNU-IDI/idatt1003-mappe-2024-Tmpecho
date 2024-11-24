@@ -29,10 +29,9 @@ public class StorageController {
    * @param expiration_date the expiration date of the grocery
    * @param price the price of the grocery
    */
-  public void addGrocery(
-      String name, double amount, String unit, LocalDate expiration_date, double price) {
+  public void addGrocery(String name, double amount, String unit, LocalDate expiration_date, double price) {
     storageRepository.addGrocery(
-        groceryController.addGrocery(name, amount, unit, expiration_date, price));
+        groceryController.createGrocery(name, amount, unit, expiration_date, price));
   }
 
   /**
@@ -68,8 +67,8 @@ public class StorageController {
   }
 
   public void displayExpiredTotalValue() {
-    double totalExpiredValue = storageRepository.listExpiredGroceries()
-            .stream()
+    double totalExpiredValue =
+        storageRepository.listExpiredGroceries().stream()
             .mapToDouble(groceryController::calculateGroceryValue)
             .sum();
 
