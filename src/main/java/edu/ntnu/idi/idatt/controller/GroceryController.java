@@ -9,8 +9,6 @@ import java.time.LocalDate;
 public class GroceryController {
   private final GroceryView groceryView = new GroceryView();
 
-  public GroceryController() {}
-
   /**
    * Create a grocery object.
    *

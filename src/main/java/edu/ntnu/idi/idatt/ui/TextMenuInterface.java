@@ -55,21 +55,26 @@ public class TextMenuInterface extends UserInterface {
   private void addGrocery() {
     System.out.println("Adding grocery...");
     System.out.print("Enter name: ");
-    String name = scanner.next();
+    final String name = scanner.next();
+
     System.out.print("Enter amount: ");
-    double amount = scanner.nextDouble();
+    final double amount = scanner.nextDouble();
+
     System.out.print("Enter unit: ");
-    String unit = scanner.next();
+    final String unit = scanner.next();
+
     System.out.println("Enter expiration date: ");
     System.out.print("Year: ");
-    int year = scanner.nextInt();
+    final int year = scanner.nextInt();
     System.out.print("Month: ");
-    int month = scanner.nextInt();
+    final int month = scanner.nextInt();
     System.out.print("Day: ");
-    int day = scanner.nextInt();
+    final int day = scanner.nextInt();
+
     System.out.println("Enter price per unit (NOK): ");
     System.out.print("Price: ");
-    double price = scanner.nextDouble();
+    final double price = scanner.nextDouble();
+
     System.out.println();
 
     storageController.addGrocery(name, amount, unit, LocalDate.of(year, month, day), price);
@@ -91,7 +96,7 @@ public class TextMenuInterface extends UserInterface {
     storageController.listAllGroceries();
   }
 
-  /** Lists expired groceries in storage and the total value of these groceries */
+  /** Lists expired groceries in storage and the total value of these groceries. */
   private void listExpiredGroceries() {
     System.out.println("Listing expired groceries...");
 

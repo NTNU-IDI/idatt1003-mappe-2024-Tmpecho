@@ -16,8 +16,6 @@ public abstract class UserInterface {
 
   /** Initializes UI. */
   public void init() {
-    System.out.println("Initializing UI...");
-
     Fridge fridge = new Fridge("Fridge", 100);
 
     fridgeStorageRepository = new InMemoryStorageRepository(fridge);

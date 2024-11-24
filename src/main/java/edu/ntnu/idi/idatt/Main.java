@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt;
 
-import edu.ntnu.idi.idatt.ui.*;
+import edu.ntnu.idi.idatt.ui.TextMenuInterface;
+import edu.ntnu.idi.idatt.ui.UserInterface;
 
 /** Main class that starts the application. */
 public class Main {

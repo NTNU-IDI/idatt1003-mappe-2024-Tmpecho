@@ -67,6 +67,7 @@ public class StorageController {
     System.out.println("Total value: " + storageRepository.calculateTotalValue() + " NOK");
   }
 
+  /** Display the total value of all expired groceries in the storage model. */
   public void displayExpiredTotalValue() {
     double totalExpiredValue =
         storageRepository.listExpiredGroceries().stream()

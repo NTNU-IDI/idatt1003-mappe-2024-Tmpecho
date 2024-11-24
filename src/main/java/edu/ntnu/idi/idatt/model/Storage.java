@@ -34,11 +34,11 @@ public class Storage {
     currentCapacity += grocery.getAmount();
   }
 
-    /**
-     * Remove grocery from storage.
-     *
-     * @param grocery grocery to remove
-     */
+  /**
+   * Remove grocery from storage.
+   *
+   * @param grocery grocery to remove
+   */
   public void removeGrocery(Grocery grocery) {
     removeGrocery(grocery, grocery.getAmount());
   }
