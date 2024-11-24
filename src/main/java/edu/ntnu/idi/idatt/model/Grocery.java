@@ -14,21 +14,31 @@ public class Grocery implements Comparable<Grocery> {
   MeasurementUnit measurementUnit;
   LocalDate expirationDate;
   Double price; // Price per unit in non-specified currency
-  Double preferredStorageTemperature;
 
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
    * name, amount and measurement unit are required.
-   *
-   * @param builder The builder object that contains the values for the Grocery object
    */
-  public Grocery(Builder builder) {
-    this.name = builder.name;
-    this.amount = builder.amount;
-    this.measurementUnit = builder.measurementUnit;
-    this.expirationDate = builder.expirationDate;
-    this.price = builder.price;
-    this.preferredStorageTemperature = builder.preferredStorageTemperature;
+  public Grocery(
+      String name,
+      Double amount,
+      MeasurementUnit measurementUnit,
+      LocalDate expirationDate,
+      Double price) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
+    }
+    if (price < 0) {
+      throw new IllegalArgumentException("Price cannot be negative");
+    }
+    this.name = name;
+    this.amount = amount;
+    this.measurementUnit = measurementUnit;
+    this.expirationDate = expirationDate;
+    this.price = price;
   }
 
   /**
@@ -46,6 +56,9 @@ public class Grocery implements Comparable<Grocery> {
    * @param name The name of the grocery item
    */
   public void setName(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
     this.name = name;
   }
 
@@ -64,6 +77,9 @@ public class Grocery implements Comparable<Grocery> {
    * @param amount The amount of the grocery item
    */
   public void setAmount(Double amount) {
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
+    }
     this.amount = amount;
   }
 
@@ -118,25 +134,10 @@ public class Grocery implements Comparable<Grocery> {
    * @param price The price of the grocery item
    */
   public void setPrice(Double price) {
+    if (price < 0) {
+      throw new IllegalArgumentException("Price cannot be negative");
+    }
     this.price = price;
-  }
-
-  /**
-   * Get the preferred storage temperature of the grocery item.
-   *
-   * @return The preferred storage temperature of the grocery item
-   */
-  public Double getPreferredStorageTemperature() {
-    return preferredStorageTemperature;
-  }
-
-  /**
-   * Set the preferred storage temperature of the grocery item.
-   *
-   * @param preferredStorageTemperature set the preferred storage temperature of the grocery item
-   */
-  public void setPreferredStorageTemperature(Double preferredStorageTemperature) {
-    this.preferredStorageTemperature = preferredStorageTemperature;
   }
 
   /**
@@ -158,75 +159,7 @@ public class Grocery implements Comparable<Grocery> {
         + expirationDate
         + ", price="
         + price
-        + ", prefferedStorageTemperature="
-        + preferredStorageTemperature
         + '}';
-  }
-
-  /** Builder class for the Grocery class. */
-  public static class Builder {
-    protected String name;
-    protected Double amount;
-    protected MeasurementUnit measurementUnit;
-    protected LocalDate expirationDate = null;
-    protected Double price = 0.;
-    protected Double preferredStorageTemperature = null;
-
-    /**
-     * Constructor for the builder class. This constructor only takes the required fields for the
-     * Grocery class.
-     *
-     * @param name The name of the grocery item
-     * @param amount The amount of the grocery item
-     * @param measurementUnit The measurement unit of the grocery item
-     */
-    public Builder(String name, Double amount, MeasurementUnit measurementUnit) {
-      this.name = name;
-      this.amount = amount;
-      this.measurementUnit = measurementUnit;
-    }
-
-    /**
-     * Set the expiration date of the grocery item.
-     *
-     * @param expirationDate The expiration date of the grocery item
-     * @return The builder object
-     */
-    public Builder expirationDate(LocalDate expirationDate) {
-      this.expirationDate = expirationDate;
-      return this;
-    }
-
-    /**
-     * The price of the grocery item.
-     *
-     * @param price The price of the grocery item
-     * @return The builder object
-     */
-    public Builder price(Double price) {
-      this.price = price;
-      return this;
-    }
-
-    /**
-     * The preferred storage temperature of the grocery item.
-     *
-     * @param preferredStorageTemperature The preferred storage temperature of the grocery item
-     * @return The builder object
-     */
-    public Builder preferredStorageTemperature(Double preferredStorageTemperature) {
-      this.preferredStorageTemperature = preferredStorageTemperature;
-      return this;
-    }
-
-    /**
-     * Build the Grocery object.
-     *
-     * @return The Grocery object
-     */
-    public Grocery build() {
-      return new Grocery(this);
-    }
   }
 
   /**

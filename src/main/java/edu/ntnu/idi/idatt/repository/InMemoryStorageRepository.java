@@ -2,9 +2,11 @@ package edu.ntnu.idi.idatt.repository;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Storage;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** A repository for storing groceries in memory. */
 public class InMemoryStorageRepository implements StorageRepository {
@@ -39,12 +41,10 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public Grocery getGrocery(String name) {
-    for (Grocery grocery : groceries) {
-      if (grocery.getName().equals(name)) {
-        return grocery;
-      }
-    }
-    return null;
+    return groceries.stream()
+        .filter(grocery -> grocery.getName().equals(name))
+        .findFirst()
+        .orElse(null);
   }
 
   /**
@@ -93,7 +93,7 @@ public class InMemoryStorageRepository implements StorageRepository {
    * @return a list of all groceries in the repository
    */
   @Override
-  public List<Grocery> listAllGroceries() {
+  public List<Grocery> getAllGroceries() {
     List<Grocery> sortedGroceries = new ArrayList<>(groceries);
     sortedGroceries.sort(Comparator.comparing(Grocery::getName));
     return sortedGroceries;
@@ -106,13 +106,13 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public List<Grocery> listExpiredGroceries() {
-    List<Grocery> expiredGroceries = new ArrayList<>();
-    for (Grocery grocery : groceries) {
-      if (grocery.getExpirationDate() != null
-          && grocery.getExpirationDate().isBefore(java.time.LocalDate.now())) {
-        expiredGroceries.add(grocery);
-      }
-    }
+    List<Grocery> expiredGroceries =
+        groceries.stream()
+            .filter(
+                grocery ->
+                    grocery.getExpirationDate() != null
+                        && grocery.getExpirationDate().isBefore(LocalDate.now()))
+            .collect(Collectors.toList());
     return expiredGroceries;
   }
 
@@ -123,12 +123,11 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public double calculateTotalValue() {
-    double totalValue = 0.0;
-    for (Grocery grocery : groceries) {
-      if (grocery.getPrice() != null) {
-        totalValue += grocery.getPrice() * grocery.getAmount();
-      }
-    }
+    double totalValue =
+        groceries.stream()
+            .filter(grocery -> grocery.getPrice() != null)
+            .mapToDouble(grocery -> grocery.getPrice() * grocery.getAmount())
+            .sum();
     return totalValue;
   }
 }

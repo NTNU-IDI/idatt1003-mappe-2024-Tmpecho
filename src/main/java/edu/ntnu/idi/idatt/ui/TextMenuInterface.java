@@ -14,26 +14,13 @@ public class TextMenuInterface extends UserInterface {
       printMenu();
       choice = readInt();
       switch (choice) {
-        case 1:
-          addGrocery();
-          break;
-        case 2:
-          listGroceries();
-          break;
-        case 3:
-          listStorages();
-          break;
-        case 4:
-          removeGrocery();
-          break;
-        case 5:
-          moveGroceryToStorage();
-          break;
-        case 0:
-          System.out.println("Exiting...");
-          break;
-        default:
-          System.out.println("Invalid choice");
+        case 1 -> addGrocery();
+        case 2 -> removeGrocery();
+        case 3 -> listGroceries();
+        case 4 -> listExpiredGroceries();
+        case 5 -> calculateTotalValue();
+        case 0 -> System.out.println("Exiting...");
+        default -> System.out.println("Invalid choice");
       }
     }
   }
@@ -42,10 +29,10 @@ public class TextMenuInterface extends UserInterface {
   public void printMenu() {
     System.out.println("\nMenu:");
     System.out.println("1. Add grocery");
-    System.out.println("2. List groceries");
-    System.out.println("3. List storages");
-    System.out.println("4. Remove grocery");
-    System.out.println("5. Move grocery to storage");
+    System.out.println("2. Remove grocery");
+    System.out.println("3. List groceries");
+    System.out.println("4. List expired groceries");
+    System.out.println("5. Calculate total value of groceries");
     System.out.println("0. Exit");
   }
 
@@ -68,23 +55,38 @@ public class TextMenuInterface extends UserInterface {
   private void addGrocery() {
     System.out.println("Adding grocery...");
     System.out.print("Enter name: ");
-    String name = scanner.next();
+    final String name = scanner.next();
+
     System.out.print("Enter amount: ");
-    double amount = scanner.nextDouble();
+    final double amount = scanner.nextDouble();
+
     System.out.print("Enter unit: ");
-    String unit = scanner.next();
+    final String unit = scanner.next();
+
     System.out.println("Enter expiration date: ");
     System.out.print("Year: ");
-    int year = scanner.nextInt();
+    final int year = scanner.nextInt();
     System.out.print("Month: ");
-    int month = scanner.nextInt();
+    final int month = scanner.nextInt();
     System.out.print("Day: ");
-    int day = scanner.nextInt();
-    System.out.println("Enter price (NOK): ");
+    final int day = scanner.nextInt();
+
+    System.out.println("Enter price per unit (NOK): ");
     System.out.print("Price: ");
-    double price = scanner.nextDouble();
+    final double price = scanner.nextDouble();
+
     System.out.println();
+
     storageController.addGrocery(name, amount, unit, LocalDate.of(year, month, day), price);
+  }
+
+  /** Removes a grocery from storage. */
+  private void removeGrocery() {
+    System.out.println("Removing grocery...");
+    System.out.print("Enter name: ");
+    String name = scanner.next();
+
+    storageController.removeGrocery(name);
   }
 
   /** Lists groceries in storage. */
@@ -94,18 +96,18 @@ public class TextMenuInterface extends UserInterface {
     storageController.listAllGroceries();
   }
 
-  /** Lists storages. */
-  private void listStorages() {
-    System.out.println("Listing storages...");
+  /** Lists expired groceries in storage and the total value of these groceries. */
+  private void listExpiredGroceries() {
+    System.out.println("Listing expired groceries...");
+
+    storageController.listExpiredGroceries();
+    storageController.displayExpiredTotalValue();
   }
 
-  /** Removes a grocery from storage. */
-  private void removeGrocery() {
-    System.out.println("Removing grocery...");
-  }
+  /** Prints the total value of all groceries in storage. */
+  private void calculateTotalValue() {
+    System.out.println("Calculating total value...");
 
-  /** Moves a grocery to a specific storage. */
-  private void moveGroceryToStorage() {
-    System.out.println("Moving grocery to storage...");
+    storageController.displayTotalValue();
   }
 }

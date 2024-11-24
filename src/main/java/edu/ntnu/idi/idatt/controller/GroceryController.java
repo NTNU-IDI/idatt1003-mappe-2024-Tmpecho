@@ -9,10 +9,8 @@ import java.time.LocalDate;
 public class GroceryController {
   private final GroceryView groceryView = new GroceryView();
 
-  public GroceryController() {}
-
   /**
-   * Add a grocery to the model.
+   * Create a grocery object.
    *
    * @param name the name of the grocery
    * @param amount the amount of the grocery
@@ -21,34 +19,30 @@ public class GroceryController {
    * @param price the price of the grocery
    * @return the grocery that was added
    */
-  public Grocery addGrocery(
+  public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {
-    return new Grocery.Builder(
-            name.toUpperCase(), amount, MeasurementUnit.valueOf(unit.toUpperCase()))
-        .expirationDate(expirationDate)
-        .price(price)
-        .build();
+    return new Grocery(name, amount, MeasurementUnit.fromString(unit), expirationDate, price);
   }
-
-  /**
-   * Remove a grocery from the model.
-   *
-   * @param name the name of the grocery
-   */
-  public void removeGrocery(String name) {}
-
-  /**
-   * Remove a grocery from the model.
-   *
-   * @param name the name of the grocery
-   * @param amount the amount of the grocery
-   */
-  public void removeGrocery(String name, double amount) {}
 
   /**
    * Display a grocery from the model.
    *
-   * @param name the name of the grocery
+   * @param grocery the grocery to display
    */
-  public void displayGrocery(String name) {}
+  public void displayGrocery(Grocery grocery) {
+    groceryView.displayGrocery(grocery);
+  }
+
+  /**
+   * Calculates the total value of a grocery.
+   *
+   * @param grocery The grocery whose value is to be calculated.
+   * @return The total value of the grocery (price * amount).
+   */
+  public double calculateGroceryValue(Grocery grocery) {
+    if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
+      return 0.0; // Default to 0 if price or amount is null
+    }
+    return grocery.getPrice() * grocery.getAmount();
+  }
 }
