@@ -3,164 +3,133 @@ package edu.ntnu.idi.idatt.model;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /** Test class for the Grocery class. */
 class GroceryTest {
   private Grocery milk;
   private Grocery bread;
-  private Grocery soysauce;
+  private Grocery soySauce;
+  private Grocery anotherMilk;
 
   /** Sets up new grocery objects before each test. */
-  @org.junit.jupiter.api.BeforeEach
+  @BeforeEach
   void setUp() {
-    milk = new Grocery("Milk", 1.0, MeasurementUnit.valueOf("LITER"), LocalDate.of(2024, 10, 1), 1.5);
-
-    bread = new Grocery("Bread", 1.0, MeasurementUnit.valueOf("PCS"), LocalDate.of(2024, 10, 1), 1.5);
-
-    soysauce = new Grocery("Soy Sauce", 1.0, MeasurementUnit.valueOf("LITER"), null, 0.0);
+    milk = new Grocery("Milk", 1.0, MeasurementUnit.LITER, LocalDate.of(2024, 10, 1), 1.5);
+    bread = new Grocery("Bread", 2.0, MeasurementUnit.PCS, LocalDate.of(2024, 9, 15), 2.0);
+    soySauce = new Grocery("Soy Sauce", 0.5, MeasurementUnit.LITER, null, 3.0);
+    anotherMilk = new Grocery("Milk", 1.0, MeasurementUnit.LITER, LocalDate.of(2024, 11, 1), 1.5);
   }
 
   /** Tests the getName method. */
-  @org.junit.jupiter.api.Test
+  @Test
   void getName() {
     assertEquals("Milk", milk.getName());
     assertEquals("Bread", bread.getName());
-
-    assertNotEquals("Bread", milk.getName());
-    assertNotEquals("Milk", bread.getName());
   }
 
-  /** Tests the setName method. */
-  @org.junit.jupiter.api.Test
+  /** Tests the setName method with valid and invalid inputs. */
+  @Test
   void setName() {
     milk.setName("Whole Milk");
-    bread.setName("Whole Bread");
-
     assertEquals("Whole Milk", milk.getName());
-    assertEquals("Whole Bread", bread.getName());
 
-    assertNotEquals("Milk", milk.getName());
-    assertNotEquals("Break", bread.getName());
+    assertThrows(IllegalArgumentException.class, () -> milk.setName(null));
   }
 
   /** Tests the getAmount method. */
-  @org.junit.jupiter.api.Test
+  @Test
   void getAmount() {
     assertEquals(1.0, milk.getAmount());
-    assertEquals(1.0, bread.getAmount());
-
-    assertNotEquals(2.0, milk.getAmount());
-    assertNotEquals(2.0, bread.getAmount());
+    assertEquals(2.0, bread.getAmount());
   }
 
-  /** Tests the setAmount method. */
-  @org.junit.jupiter.api.Test
+  /** Tests the setAmount method with valid and invalid inputs. */
+  @Test
   void setAmount() {
-    milk.setAmount(2.0);
-    bread.setAmount(2.0);
+    milk.setAmount(2.5);
+    assertEquals(2.5, milk.getAmount());
 
-    assertEquals(2, milk.getAmount());
-    assertEquals(2, bread.getAmount());
-
-    assertNotEquals(1, milk.getAmount());
-    assertNotEquals(1, bread.getAmount());
+    assertThrows(IllegalArgumentException.class, () -> milk.setAmount(-1.0));
   }
 
   /** Tests the getMeasurementUnit method. */
-  @org.junit.jupiter.api.Test
+  @Test
   void getMeasurementUnit() {
-    assertEquals(MeasurementUnit.valueOf("LITER"), milk.getMeasurementUnit());
-    assertEquals(MeasurementUnit.valueOf("PCS"), bread.getMeasurementUnit());
-
-    assertNotEquals(MeasurementUnit.valueOf("PCS"), milk.getMeasurementUnit());
-    assertNotEquals(MeasurementUnit.valueOf("LITER"), bread.getMeasurementUnit());
+    assertEquals(MeasurementUnit.LITER, milk.getMeasurementUnit());
+    assertEquals(MeasurementUnit.PCS, bread.getMeasurementUnit());
   }
 
-  /** Tests the setMeasurementUnit method. */
-  @org.junit.jupiter.api.Test
+  /** Tests the setMeasurementUnit method with valid and invalid inputs. */
+  @Test
   void setMeasurementUnit() {
-    milk.setMeasurementUnit(MeasurementUnit.valueOf("PCS"));
-    bread.setMeasurementUnit(MeasurementUnit.valueOf("LITER"));
-
-    assertEquals(MeasurementUnit.valueOf("PCS"), milk.getMeasurementUnit());
-    assertEquals(MeasurementUnit.valueOf("LITER"), bread.getMeasurementUnit());
-
-    assertNotEquals(MeasurementUnit.valueOf("LITER"), milk.getMeasurementUnit());
-    assertNotEquals(MeasurementUnit.valueOf("PCS"), bread.getMeasurementUnit());
+    bread.setMeasurementUnit(MeasurementUnit.KILOGRAM);
+    assertEquals(MeasurementUnit.KILOGRAM, bread.getMeasurementUnit());
   }
 
   /** Tests the getExpirationDate method. */
-  @org.junit.jupiter.api.Test
+  @Test
   void getExpirationDate() {
     assertEquals(LocalDate.of(2024, 10, 1), milk.getExpirationDate());
-    assertEquals(LocalDate.of(2024, 10, 1), bread.getExpirationDate());
-    assertNull(soysauce.getExpirationDate());
-
-    assertNotEquals(LocalDate.of(2024, 10, 2), milk.getExpirationDate());
-    assertNotEquals(LocalDate.of(2024, 10, 2), bread.getExpirationDate());
-    assertNotEquals(LocalDate.of(2024, 10, 1), soysauce.getExpirationDate());
+    assertNull(soySauce.getExpirationDate());
   }
 
-  /** Tests the setExpirationDate method. */
-  @org.junit.jupiter.api.Test
+  /** Tests the setExpirationDate method with valid and invalid inputs. */
+  @Test
   void setExpirationDate() {
-    milk.setExpirationDate(LocalDate.of(2024, 10, 2));
-    bread.setExpirationDate(LocalDate.of(2024, 10, 2));
+    milk.setExpirationDate(LocalDate.of(2024, 12, 31));
+    assertEquals(LocalDate.of(2024, 12, 31), milk.getExpirationDate());
 
-    assertEquals(LocalDate.of(2024, 10, 2), milk.getExpirationDate());
-    assertEquals(LocalDate.of(2024, 10, 2), bread.getExpirationDate());
-
-    assertNotEquals(LocalDate.of(2024, 10, 1), milk.getExpirationDate());
-    assertNotEquals(LocalDate.of(2024, 10, 1), bread.getExpirationDate());
+    // Test setting past date (should be allowed unless validation is added)
+    milk.setExpirationDate(LocalDate.of(2020, 1, 1));
+    assertEquals(LocalDate.of(2020, 1, 1), milk.getExpirationDate());
   }
 
   /** Tests the getPrice method. */
-  @org.junit.jupiter.api.Test
+  @Test
   void getPrice() {
     assertEquals(1.5, milk.getPrice());
-    assertEquals(1.5, bread.getPrice());
-    assertEquals(0.0, soysauce.getPrice());
-
-    assertNotEquals(2.5, milk.getPrice());
-    assertNotEquals(2.5, bread.getPrice());
-    assertNotEquals(null, soysauce.getPrice());
+    assertEquals(3.0, soySauce.getPrice());
   }
 
-  /** Tests the setPrice method. */
-  @org.junit.jupiter.api.Test
+  /** Tests the setPrice method with valid and invalid inputs. */
+  @Test
   void setPrice() {
-    milk.setPrice(2.5);
-    bread.setPrice(2.5);
+    milk.setPrice(2.0);
+    assertEquals(2.0, milk.getPrice());
 
-    assertEquals(2.5, milk.getPrice());
-    assertEquals(2.5, bread.getPrice());
-
-    assertNotEquals(1.5, milk.getPrice());
-    assertNotEquals(1.5, bread.getPrice());
+    assertThrows(IllegalArgumentException.class, () -> milk.setPrice(-0.5));
   }
 
-  /** Tests the getPrefferedStorageTemperature method. */
-  @org.junit.jupiter.api.Test
-  void getPrefferedStorageTemperature() {
-    assertEquals(4.0, milk.getPreferredStorageTemperature());
-    assertEquals(4.0, bread.getPreferredStorageTemperature());
-    assertNull(soysauce.getPreferredStorageTemperature());
-
-    assertNotEquals(5.0, milk.getPreferredStorageTemperature());
-    assertNotEquals(5.0, bread.getPreferredStorageTemperature());
-    assertNotEquals(0.0, soysauce.getPreferredStorageTemperature());
+  /** Tests the compareTo method. */
+  @Test
+  void compareToTest() {
+    assertTrue(milk.compareTo(bread) > 0);
+    assertTrue(bread.compareTo(milk) < 0);
+    assertEquals(0, milk.compareTo(anotherMilk));
   }
 
-  /** Tests the setPrefferedStorageTemperature method. */
-  @org.junit.jupiter.api.Test
-  void setPrefferedStorageTemperature() {
-    milk.setPreferredStorageTemperature(5.0);
-    bread.setPreferredStorageTemperature(5.0);
+  /** Tests the toString method. */
+  @Test
+  void toStringTest() {
+    String expected =
+        "Grocery{name='Milk', amount=1.0, measurementUnit=LITER, expirationDate=2024-10-01, price=1.5}";
+    assertEquals(expected, milk.toString());
+  }
 
-    assertEquals(5.0, milk.getPreferredStorageTemperature());
-    assertEquals(5.0, bread.getPreferredStorageTemperature());
+  /** Tests the constructor with various inputs. */
+  @Test
+  void constructorTest() {
+    Grocery newGrocery = new Grocery("Eggs", 12.0, MeasurementUnit.PCS, null, 0.2);
+    assertEquals("Eggs", newGrocery.getName());
+    assertEquals(12.0, newGrocery.getAmount());
+    assertEquals(MeasurementUnit.PCS, newGrocery.getMeasurementUnit());
+    assertNull(newGrocery.getExpirationDate());
+    assertEquals(0.2, newGrocery.getPrice());
 
-    assertNotEquals(4.0, milk.getPreferredStorageTemperature());
-    assertNotEquals(4.0, bread.getPreferredStorageTemperature());
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> new Grocery(null, 1.0, MeasurementUnit.LITER, null, 1.0));
   }
 }

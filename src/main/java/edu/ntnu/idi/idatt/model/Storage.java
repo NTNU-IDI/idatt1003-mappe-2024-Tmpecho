@@ -34,17 +34,33 @@ public class Storage {
     currentCapacity += grocery.getAmount();
   }
 
+    /**
+     * Remove grocery from storage.
+     *
+     * @param grocery grocery to remove
+     */
+  public void removeGrocery(Grocery grocery) {
+    removeGrocery(grocery, grocery.getAmount());
+  }
+
   /**
-   * Remove grocery from storage.
+   * Remove an amount of a grocery from storage.
    *
    * @param grocery grocery to remove
    * @param amount amount to remove
    */
   public void removeGrocery(Grocery grocery, double amount) {
+    if (grocery.getAmount() == null) {
+      throw new IllegalArgumentException("Grocery amount cannot be null");
+    }
     double remainingAmount = grocery.getAmount() - amount;
     if (remainingAmount < 0) {
       throw new IllegalArgumentException("Removing more than available");
     }
+    if (amount <= 0) {
+      throw new IllegalArgumentException("Amount to remove cannot be negative or zero");
+    }
+
     currentCapacity -= amount;
   }
 

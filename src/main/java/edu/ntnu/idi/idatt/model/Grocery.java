@@ -18,10 +18,22 @@ public class Grocery implements Comparable<Grocery> {
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
    * name, amount and measurement unit are required.
-   *
-   * @param builder The builder object that contains the values for the Grocery object
    */
-  public Grocery(String name, Double amount, MeasurementUnit measurementUnit, LocalDate expirationDate, Double price) {
+  public Grocery(
+      String name,
+      Double amount,
+      MeasurementUnit measurementUnit,
+      LocalDate expirationDate,
+      Double price) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
+    }
+    if (price < 0) {
+      throw new IllegalArgumentException("Price cannot be negative");
+    }
     this.name = name;
     this.amount = amount;
     this.measurementUnit = measurementUnit;
@@ -44,6 +56,9 @@ public class Grocery implements Comparable<Grocery> {
    * @param name The name of the grocery item
    */
   public void setName(String name) {
+    if (name == null) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
     this.name = name;
   }
 
@@ -62,6 +77,9 @@ public class Grocery implements Comparable<Grocery> {
    * @param amount The amount of the grocery item
    */
   public void setAmount(Double amount) {
+    if (amount < 0) {
+      throw new IllegalArgumentException("Amount cannot be negative");
+    }
     this.amount = amount;
   }
 
@@ -116,9 +134,11 @@ public class Grocery implements Comparable<Grocery> {
    * @param price The price of the grocery item
    */
   public void setPrice(Double price) {
+    if (price < 0) {
+      throw new IllegalArgumentException("Price cannot be negative");
+    }
     this.price = price;
   }
-
 
   /**
    * Returns a string representation of the grocery item.
