@@ -61,4 +61,9 @@ public class StorageController {
     }
     storageRepository.listExpiredGroceries().forEach(groceryController::displayGrocery);
   }
+
+  /** Display the total value of all groceries in the storage model. */
+  public void displayTotalValue() {
+    System.out.println("Total value: " + storageRepository.calculateTotalValue() + " NOK");
+  }
 }

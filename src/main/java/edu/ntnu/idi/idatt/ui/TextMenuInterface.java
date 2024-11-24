@@ -13,14 +13,15 @@ public class TextMenuInterface extends UserInterface {
     while (choice != 0) {
       printMenu();
       choice = readInt();
-	    switch (choice) {
-		    case 1 -> addGrocery();
-            case 2 -> removeGrocery();
-		    case 3 -> listGroceries();
-            case 4 -> listExpiredGroceries();
-		    case 0 -> System.out.println("Exiting...");
-		    default -> System.out.println("Invalid choice");
-	    }
+      switch (choice) {
+        case 1 -> addGrocery();
+        case 2 -> removeGrocery();
+        case 3 -> listGroceries();
+        case 4 -> listExpiredGroceries();
+        case 5 -> calculateTotalValue();
+        case 0 -> System.out.println("Exiting...");
+        default -> System.out.println("Invalid choice");
+      }
     }
   }
 
@@ -31,6 +32,7 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("2. Remove grocery");
     System.out.println("3. List groceries");
     System.out.println("4. List expired groceries");
+    System.out.println("5. Calculate total value of groceries");
     System.out.println("0. Exit");
   }
 
@@ -69,16 +71,18 @@ public class TextMenuInterface extends UserInterface {
     System.out.print("Price: ");
     double price = scanner.nextDouble();
     System.out.println();
+
     storageController.addGrocery(name, amount, unit, LocalDate.of(year, month, day), price);
   }
 
-    /** Removes a grocery from storage. */
-    private void removeGrocery() {
-        System.out.println("Removing grocery...");
-        System.out.print("Enter name: ");
-        String name = scanner.next();
-        storageController.removeGrocery(name);
-    }
+  /** Removes a grocery from storage. */
+  private void removeGrocery() {
+    System.out.println("Removing grocery...");
+    System.out.print("Enter name: ");
+    String name = scanner.next();
+
+    storageController.removeGrocery(name);
+  }
 
   /** Lists groceries in storage. */
   private void listGroceries() {
@@ -87,8 +91,17 @@ public class TextMenuInterface extends UserInterface {
     storageController.listAllGroceries();
   }
 
+  /** Lists expired groceries in storage. */
   private void listExpiredGroceries() {
     System.out.println("Listing expired groceries...");
+
     storageController.listExpiredGroceries();
+  }
+
+  /** Prints the total value of all groceries in storage. */
+  private void calculateTotalValue() {
+    System.out.println("Calculating total value...");
+
+    storageController.displayTotalValue();
   }
 }
