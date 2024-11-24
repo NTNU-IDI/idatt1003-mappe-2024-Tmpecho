@@ -67,7 +67,7 @@ public class TextMenuInterface extends UserInterface {
     int month = scanner.nextInt();
     System.out.print("Day: ");
     int day = scanner.nextInt();
-    System.out.println("Enter price (NOK): ");
+    System.out.println("Enter price per unit (NOK): ");
     System.out.print("Price: ");
     double price = scanner.nextDouble();
     System.out.println();
