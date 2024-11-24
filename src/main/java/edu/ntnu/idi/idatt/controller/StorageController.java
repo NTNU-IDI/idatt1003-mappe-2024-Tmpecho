@@ -66,4 +66,13 @@ public class StorageController {
   public void displayTotalValue() {
     System.out.println("Total value: " + storageRepository.calculateTotalValue() + " NOK");
   }
+
+  public void displayExpiredTotalValue() {
+    double totalExpiredValue = storageRepository.listExpiredGroceries()
+            .stream()
+            .mapToDouble(groceryController::calculateGroceryValue)
+            .sum();
+
+    System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
+  }
 }

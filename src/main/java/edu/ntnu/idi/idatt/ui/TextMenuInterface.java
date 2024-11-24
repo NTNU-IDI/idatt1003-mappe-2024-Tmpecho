@@ -91,11 +91,12 @@ public class TextMenuInterface extends UserInterface {
     storageController.listAllGroceries();
   }
 
-  /** Lists expired groceries in storage. */
+  /** Lists expired groceries in storage and the total value of these groceries */
   private void listExpiredGroceries() {
     System.out.println("Listing expired groceries...");
 
     storageController.listExpiredGroceries();
+    storageController.displayExpiredTotalValue();
   }
 
   /** Prints the total value of all groceries in storage. */

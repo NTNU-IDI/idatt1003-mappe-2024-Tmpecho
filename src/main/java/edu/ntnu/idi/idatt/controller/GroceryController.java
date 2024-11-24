@@ -53,4 +53,17 @@ public class GroceryController {
   public void displayGrocery(Grocery grocery) {
     groceryView.displayGrocery(grocery);
   }
+
+  /**
+   * Calculates the total value of a grocery.
+   *
+   * @param grocery The grocery whose value is to be calculated.
+   * @return The total value of the grocery (price * amount).
+   */
+  public double calculateGroceryValue(Grocery grocery) {
+    if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
+      return 0.0; // Default to 0 if price or amount is null
+    }
+    return grocery.getPrice() * grocery.getAmount();
+  }
 }
