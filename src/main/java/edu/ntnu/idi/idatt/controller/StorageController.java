@@ -76,4 +76,8 @@ public class StorageController {
 
     System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
   }
+
+  public boolean getGrocery(String name) {
+    return storageRepository.getGrocery(name) != null;
+  }
 }
