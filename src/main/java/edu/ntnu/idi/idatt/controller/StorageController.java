@@ -1,9 +1,7 @@
 package edu.ntnu.idi.idatt.controller;
 
-import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
 import edu.ntnu.idi.idatt.view.GroceryView;
-
 import java.time.LocalDate;
 
 /** Controller class for the storage model. */
@@ -24,29 +22,36 @@ public class StorageController {
     this.storageRepository = storageRepository;
   }
 
-/**
-* Method for adding a grocery to the storage model.
- *
- * @param name the name of the grocery
- * @param amount the amount of the grocery
- * @param unit the unit of the grocery
- * @param expiration_date the expiration date of the grocery
- * @param price the price of the grocery
-*/
+  /**
+   * Method for adding a grocery to the storage model.
+   *
+   * @param name the name of the grocery
+   * @param amount the amount of the grocery
+   * @param unit the unit of the grocery
+   * @param expiration_date the expiration date of the grocery
+   * @param price the price of the grocery
+   */
   public void addGrocery(
       String name, double amount, String unit, LocalDate expiration_date, double price) {
     storageRepository.addGrocery(
         groceryController.addGrocery(name, amount, unit, expiration_date, price));
   }
 
-/**
-*
-*/
+  /**
+   * Remove a grocery from the storage model.
+   *
+   * @param name the name of the grocery
+   */
+  public void removeGrocery(String name) {
+    storageRepository.removeGrocery(name);
+  }
+
+  /** List all groceries in the storage model. */
   public void listAllGroceries() {
     if (storageRepository.listAllGroceries().isEmpty()) {
       System.out.println("No groceries in storage.");
       return;
     }
-	  storageRepository.listAllGroceries().forEach(groceryView::displayGrocery);
+    storageRepository.listAllGroceries().forEach(groceryView::displayGrocery);
   }
 }

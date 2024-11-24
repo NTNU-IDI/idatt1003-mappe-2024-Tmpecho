@@ -14,7 +14,6 @@ public class Grocery implements Comparable<Grocery> {
   MeasurementUnit measurementUnit;
   LocalDate expirationDate;
   Double price; // Price per unit in non-specified currency
-  Double preferredStorageTemperature;
 
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
@@ -28,7 +27,6 @@ public class Grocery implements Comparable<Grocery> {
     this.measurementUnit = builder.measurementUnit;
     this.expirationDate = builder.expirationDate;
     this.price = builder.price;
-    this.preferredStorageTemperature = builder.preferredStorageTemperature;
   }
 
   /**
@@ -121,23 +119,6 @@ public class Grocery implements Comparable<Grocery> {
     this.price = price;
   }
 
-  /**
-   * Get the preferred storage temperature of the grocery item.
-   *
-   * @return The preferred storage temperature of the grocery item
-   */
-  public Double getPreferredStorageTemperature() {
-    return preferredStorageTemperature;
-  }
-
-  /**
-   * Set the preferred storage temperature of the grocery item.
-   *
-   * @param preferredStorageTemperature set the preferred storage temperature of the grocery item
-   */
-  public void setPreferredStorageTemperature(Double preferredStorageTemperature) {
-    this.preferredStorageTemperature = preferredStorageTemperature;
-  }
 
   /**
    * Returns a string representation of the grocery item.
@@ -158,8 +139,6 @@ public class Grocery implements Comparable<Grocery> {
         + expirationDate
         + ", price="
         + price
-        + ", prefferedStorageTemperature="
-        + preferredStorageTemperature
         + '}';
   }
 
@@ -170,7 +149,6 @@ public class Grocery implements Comparable<Grocery> {
     protected MeasurementUnit measurementUnit;
     protected LocalDate expirationDate = null;
     protected Double price = 0.;
-    protected Double preferredStorageTemperature = null;
 
     /**
      * Constructor for the builder class. This constructor only takes the required fields for the
@@ -205,17 +183,6 @@ public class Grocery implements Comparable<Grocery> {
      */
     public Builder price(Double price) {
       this.price = price;
-      return this;
-    }
-
-    /**
-     * The preferred storage temperature of the grocery item.
-     *
-     * @param preferredStorageTemperature The preferred storage temperature of the grocery item
-     * @return The builder object
-     */
-    public Builder preferredStorageTemperature(Double preferredStorageTemperature) {
-      this.preferredStorageTemperature = preferredStorageTemperature;
       return this;
     }
 
