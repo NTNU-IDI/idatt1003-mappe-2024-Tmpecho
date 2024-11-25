@@ -76,4 +76,14 @@ public class StorageController {
 
     System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
   }
+
+  /**
+   * Checks if a grocery is in storage.
+   *
+   * @param name the name of the grocery to get
+   * @return true if the grocery is in storage, false otherwise
+   */
+  public boolean groceryInStorage(String name) {
+    return storageRepository.getGrocery(name) != null;
+  }
 }
