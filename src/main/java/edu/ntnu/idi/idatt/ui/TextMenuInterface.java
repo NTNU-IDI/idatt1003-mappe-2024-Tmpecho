@@ -28,7 +28,7 @@ public class TextMenuInterface extends UserInterface {
   }
 
   /** Prints the menu of choices for the user to perform. */
-  public void printMenu() {
+  private void printMenu() {
     System.out.println("\nMenu:");
     System.out.println("1. Add grocery");
     System.out.println("2. Remove grocery");
