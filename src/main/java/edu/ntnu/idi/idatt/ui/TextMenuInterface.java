@@ -1,18 +1,20 @@
 package edu.ntnu.idi.idatt.ui;
 
+import edu.ntnu.idi.idatt.model.MeasurementUnit;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-/** Text based menu interface for the user. */
+/** Text-based menu interface for the user. */
 public class TextMenuInterface extends UserInterface {
   Scanner scanner = new Scanner(System.in);
 
-  /** Starts the text based menu interface. */
+  /** Starts the text-based menu interface. */
   public void start() {
     int choice = -1;
     while (choice != 0) {
       printMenu();
-      choice = readInt();
+      choice = readInt("Enter choice: ");
       switch (choice) {
         case 1 -> addGrocery();
         case 2 -> removeGrocery();
@@ -26,7 +28,7 @@ public class TextMenuInterface extends UserInterface {
   }
 
   /** Prints the menu of choices for the user to perform. */
-  public void printMenu() {
+  private void printMenu() {
     System.out.println("\nMenu:");
     System.out.println("1. Add grocery");
     System.out.println("2. Remove grocery");
@@ -37,56 +39,140 @@ public class TextMenuInterface extends UserInterface {
   }
 
   /**
-   * Reads an integer from the user.
+   * Reads a name from the user with a prompt.
    *
-   * @return The integer read from the user.
+   * @return the name entered by the user
    */
-  private int readInt() {
-    System.out.print("Enter choice: ");
-    while (!scanner.hasNextInt()) {
-      System.out.println("Invalid input. Please enter a number.");
-      System.out.print("Enter choice: ");
-      scanner.nextLine();
+  private String readName() {
+    while (true) {
+      System.out.print("Enter name: ");
+      String name = scanner.nextLine();
+      if (name == null || name.isEmpty()) {
+        System.out.println("Name cannot be empty. Please enter a name.");
+        continue;
+      }
+      return name;
     }
-    return scanner.nextInt();
+  }
+
+  /**
+   * Reads an integer from the user with a prompt.
+   *
+   * @param prompt the prompt to display to the user
+   * @return the integer entered by the user
+   */
+  private int readInt(String prompt) {
+    while (true) {
+      System.out.print(prompt);
+      try {
+        return Integer.parseInt(scanner.nextLine());
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter an integer.");
+      }
+    }
+  }
+
+  /**
+   * Reads a positive non-zero double from the user with a prompt.
+   *
+   * @param prompt the prompt to display to the user
+   * @return the double entered by the user
+   */
+  private double readPositiveDouble(String prompt) {
+    while (true) {
+      System.out.print(prompt);
+      try {
+        double value = Double.parseDouble(scanner.nextLine());
+        if (value == 0) {
+          System.out.println("Value cannot be zero. Please enter a positive number.");
+          continue;
+        }
+        if (value < 0) {
+          System.out.println("Value cannot be negative. Please enter a positive number.");
+          continue;
+        }
+        return value;
+      } catch (NumberFormatException e) {
+        System.out.println("Invalid input. Please enter a number.");
+      }
+    }
+  }
+
+  /**
+   * Reads a valid measurement unit from the user.
+   *
+   * @return the unit entered by the user
+   */
+  private String readUnit() {
+    while (true) {
+      System.out.print("Enter unit: ");
+      String unit = scanner.nextLine();
+      try {
+        MeasurementUnit.fromString(unit);
+        return unit;
+      } catch (IllegalArgumentException e) {
+        System.out.println(
+            "Invalid unit. Please enter a valid measurement unit (e.g., liter, kg, pcs).");
+      }
+    }
+  }
+
+  /**
+   * Reads a valid date from the user.
+   *
+   * @return the date entered by the user
+   */
+  private LocalDate readDate() {
+    while (true) {
+      try {
+        int year = readInt("Year: ");
+        int month = readInt("Month: ");
+        int day = readInt("Day: ");
+        return LocalDate.of(year, month, day);
+      } catch (DateTimeException e) {
+        System.out.println("Invalid date. Please enter a valid date.");
+      }
+    }
   }
 
   /** Adds a grocery to storage. */
   private void addGrocery() {
     System.out.println("Adding grocery...");
-    System.out.print("Enter name: ");
-    final String name = scanner.next();
+    final String name = readName();
 
-    System.out.print("Enter amount: ");
-    final double amount = scanner.nextDouble();
-
-    System.out.print("Enter unit: ");
-    final String unit = scanner.next();
+    final double amount = readPositiveDouble("Enter amount: ");
+    final String unit = readUnit();
 
     System.out.println("Enter expiration date: ");
-    System.out.print("Year: ");
-    final int year = scanner.nextInt();
-    System.out.print("Month: ");
-    final int month = scanner.nextInt();
-    System.out.print("Day: ");
-    final int day = scanner.nextInt();
+    final LocalDate expirationDate = readDate();
 
-    System.out.println("Enter price per unit (NOK): ");
-    System.out.print("Price: ");
-    final double price = scanner.nextDouble();
+    final double price = readPositiveDouble("Enter price per unit (NOK): ");
 
     System.out.println();
 
-    storageController.addGrocery(name, amount, unit, LocalDate.of(year, month, day), price);
+    try {
+      storageController.addGrocery(name, amount, unit, expirationDate, price);
+      System.out.println("Grocery added successfully.");
+    } catch (Exception e) {
+      System.out.println("Error adding grocery: " + e.getMessage());
+    }
   }
 
   /** Removes a grocery from storage. */
   private void removeGrocery() {
-    System.out.println("Removing grocery...");
-    System.out.print("Enter name: ");
-    String name = scanner.next();
+    System.out.print("Enter name of grocery to remove: ");
+    String name = scanner.nextLine();
 
-    storageController.removeGrocery(name);
+    try {
+      if (storageController.groceryInStorage(name)) {
+        storageController.removeGrocery(name);
+        System.out.println("Grocery removed successfully.");
+      } else {
+        System.out.println("Grocery not found. Please check the name and try again.");
+      }
+    } catch (Exception e) {
+      System.out.println("Error removing grocery: " + e.getMessage());
+    }
   }
 
   /** Lists groceries in storage. */
@@ -106,8 +192,6 @@ public class TextMenuInterface extends UserInterface {
 
   /** Prints the total value of all groceries in storage. */
   private void calculateTotalValue() {
-    System.out.println("Calculating total value...");
-
     storageController.displayTotalValue();
   }
 }
