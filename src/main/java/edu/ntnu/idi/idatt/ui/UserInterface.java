@@ -4,7 +4,12 @@ import edu.ntnu.idi.idatt.controller.GroceryController;
 import edu.ntnu.idi.idatt.controller.RecipeController;
 import edu.ntnu.idi.idatt.controller.StorageController;
 import edu.ntnu.idi.idatt.model.Fridge;
-import edu.ntnu.idi.idatt.repository.*;
+import edu.ntnu.idi.idatt.repository.CookbookRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryCookbookRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryRecipeRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryStorageRepository;
+import edu.ntnu.idi.idatt.repository.RecipeRepository;
+import edu.ntnu.idi.idatt.repository.StorageRepository;
 
 /** Base class for all user interfaces. */
 public abstract class UserInterface {

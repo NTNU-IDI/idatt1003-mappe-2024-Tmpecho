@@ -107,12 +107,12 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public List<Grocery> listExpiredGroceries() {
-	  return groceries.stream()
-	      .filter(
-	          grocery ->
-	              grocery.getExpirationDate() != null
-	                  && grocery.getExpirationDate().isBefore(LocalDate.now()))
-	      .collect(Collectors.toList());
+    return groceries.stream()
+        .filter(
+            grocery ->
+                grocery.getExpirationDate() != null
+                    && grocery.getExpirationDate().isBefore(LocalDate.now()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -122,20 +122,20 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public double calculateTotalValue() {
-	  return groceries.stream()
-	      .filter(grocery -> grocery.getPrice() != null)
-	      .mapToDouble(grocery -> grocery.getPrice() * grocery.getAmount())
-	      .sum();
+    return groceries.stream()
+        .filter(grocery -> grocery.getPrice() != null)
+        .mapToDouble(grocery -> grocery.getPrice() * grocery.getAmount())
+        .sum();
   }
 
-    /**
-     * Get all groceries with their amount.
-     *
-     * @param groceries the groceries to get
-     * @return a map of groceries with their amount
-     */
-    @Override
-    public Map<Grocery, Double> getAllGroceriesWithAmount(List<Grocery> groceries) {
-        return groceries.stream().collect(Collectors.toMap(grocery -> grocery, Grocery::getAmount));
-    }
+  /**
+   * Get all groceries with their amount.
+   *
+   * @param groceries the groceries to get
+   * @return a map of groceries with their amount
+   */
+  @Override
+  public Map<Grocery, Double> getAllGroceriesWithAmount(List<Grocery> groceries) {
+    return groceries.stream().collect(Collectors.toMap(grocery -> grocery, Grocery::getAmount));
+  }
 }

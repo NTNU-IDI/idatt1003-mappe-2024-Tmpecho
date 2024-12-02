@@ -102,6 +102,7 @@ public class RecipeController {
     recipeView.displayAllRecipes(recipes);
   }
 
+  /** Method for displaying all recipes in the cookbook. */
   public void displayCookbookRecipes() {
     List<Recipe> recipes = cookbookRepository.getAllRecipes();
     recipeView.displayAllRecipes(recipes);

@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * Represents a unit of measurement for groceries.
  *
- * <p>Each unit has a standardized name (e.g. LITER) and a set of aliases (e.g. liter, liters).
- * The aliases are used to parse user input and convert it to the corresponding enum value. </p>
+ * <p>Each unit has a standardized name (e.g. LITER) and a set of aliases (e.g. liter, liters). The
+ * aliases are used to parse user input and convert it to the corresponding enum value.
  *
  * <p>The measurement units are:
  *
@@ -17,7 +17,6 @@ import java.util.Map;
  *   <li><code>KILOGRAM</code>
  *   <li><code>PCS</code> (pieces)
  * </ul>
- * </p>
  */
 public enum MeasurementUnit {
   LITER("l", "liter", "liters"),
@@ -29,10 +28,13 @@ public enum MeasurementUnit {
 
   static {
     // Populate lookup map with aliases and enum values
-	  Arrays.stream(MeasurementUnit.values()).forEach(unit -> {
-		  Arrays.stream(unit.aliases).forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
-		  lookupMap.put(unit.name().toLowerCase(), unit);
-	  });
+    Arrays.stream(MeasurementUnit.values())
+        .forEach(
+            unit -> {
+              Arrays.stream(unit.aliases)
+                  .forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
+              lookupMap.put(unit.name().toLowerCase(), unit);
+            });
   }
 
   /**

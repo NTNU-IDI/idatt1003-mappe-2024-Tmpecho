@@ -47,6 +47,11 @@ public class StorageController {
     storageRepository.removeGrocery(name);
   }
 
+  /**
+   * Get all groceries with their amount.
+   *
+   * @return a map of groceries with their amount
+   */
   public Map<Grocery, Double> getAllGroceriesWithAmount() {
     if (storageRepository.getAllGroceries().isEmpty()) {
       System.out.println("No groceries in storage.");

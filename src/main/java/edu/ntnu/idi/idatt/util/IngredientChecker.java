@@ -4,6 +4,7 @@ import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.Map;
 
+/** Utility class for checking if a user has enough ingredients for a recipe. */
 public class IngredientChecker {
   /**
    * Check if the user has enough ingredients for a recipe.
