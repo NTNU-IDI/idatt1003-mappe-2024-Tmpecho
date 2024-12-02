@@ -187,20 +187,21 @@ public class TextMenuInterface extends UserInterface {
     recipeController.displayCookbookRecipes();
   }
 
-    /** Displays a full recipe. */
-    private void displayRecipe() {
-        System.out.print("Enter name of recipe to display: ");
-        String name = scanner.nextLine();
+  /** Displays a full recipe. */
+  private void displayRecipe() {
+    System.out.print("Enter name of recipe to display: ");
+    String name = scanner.nextLine();
 
-        try {
-            List<Recipe> recipes = recipeController.findRecipesByName(name);
-            if (recipes.isEmpty()) {
-                System.out.println("Recipe not found. Please check the name and try again.");
-                return;
-            }
-            Recipe recipe = recipes.get(0);
-            recipeController.displayRecipe(recipe);
-        } catch (Exception e) {
-            System.out.println("Error displaying recipe: " + e.getMessage());
-        }
-    }}
+    try {
+      List<Recipe> recipes = recipeController.findRecipesByName(name);
+      if (recipes.isEmpty()) {
+        System.out.println("Recipe not found. Please check the name and try again.");
+        return;
+      }
+      Recipe recipe = recipes.get(0);
+      recipeController.displayRecipe(recipe);
+    } catch (Exception e) {
+      System.out.println("Error displaying recipe: " + e.getMessage());
+    }
+  }
+}

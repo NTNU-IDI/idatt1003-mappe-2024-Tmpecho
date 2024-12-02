@@ -103,6 +103,11 @@ public class RecipeController {
     RecipeView.displayAllRecipes(recipes);
   }
 
+/**
+* Method for displaying a recipe.
+ *
+ * @param recipe The recipe to display.
+*/
   public void displayRecipe(Recipe recipe) {
     RecipeView.displayRecipe(recipe);
   }
