@@ -14,18 +14,19 @@ public class TextMenuInterface extends UserInterface {
   /** Prints the menu of choices for the user to perform. */
   private static void printMenu() {
     System.out.println("\nMenu:");
-    System.out.println("1. Add grocery");
-    System.out.println("2. Remove grocery");
-    System.out.println("3. List groceries");
-    System.out.println("4. List expired groceries");
-    System.out.println("5. Calculate total value of groceries");
-    System.out.println("6. Add recipe");
-    System.out.println("7. Remove recipe");
-    System.out.println("8. List recipes");
-    System.out.println("9. Save recipe to cookbook");
-    System.out.println("10. Check if recipe can be made");
-    System.out.println("11. List recipes in cookbook");
-    System.out.println("12. Display recipe");
+    System.out.println("1. Display storage details");
+    System.out.println("2. Add grocery");
+    System.out.println("3. Remove grocery");
+    System.out.println("4. List groceries");
+    System.out.println("5. List expired groceries");
+    System.out.println("6. Calculate total value of groceries");
+    System.out.println("7. Add recipe");
+    System.out.println("8. Remove recipe");
+    System.out.println("9. List recipes");
+    System.out.println("10. Save recipe to cookbook");
+    System.out.println("11. Check if recipe can be made");
+    System.out.println("12. List recipes in cookbook");
+    System.out.println("13. Display recipe");
     System.out.println("0. Exit");
   }
 
@@ -36,22 +37,28 @@ public class TextMenuInterface extends UserInterface {
       printMenu();
       choice = TextMenuInputValidator.readInt("Enter choice: ");
       switch (choice) {
-        case 1 -> addGrocery();
-        case 2 -> removeGrocery();
-        case 3 -> listGroceries();
-        case 4 -> listExpiredGroceries();
-        case 5 -> calculateTotalValue();
-        case 6 -> addRecipe();
-        case 7 -> removeRecipe();
-        case 8 -> listRecipes();
-        case 9 -> saveRecipeToCookbook();
-        case 10 -> checkRecipe();
-        case 11 -> listRecipesInCookbook();
-        case 12 -> displayRecipe();
+        case 1 -> displayStorageDetails();
+        case 2 -> addGrocery();
+        case 3 -> removeGrocery();
+        case 4 -> listGroceries();
+        case 5 -> listExpiredGroceries();
+        case 6 -> calculateTotalValue();
+        case 7 -> addRecipe();
+        case 8 -> removeRecipe();
+        case 9 -> listRecipes();
+        case 10 -> saveRecipeToCookbook();
+        case 11 -> checkRecipe();
+        case 12 -> listRecipesInCookbook();
+        case 13 -> displayRecipe();
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
     }
+  }
+
+  /** Displays the storage details. */
+  private void displayStorageDetails() {
+    storageController.displayStorageDetails(fridge);
   }
 
   /** Adds a grocery to storage. */

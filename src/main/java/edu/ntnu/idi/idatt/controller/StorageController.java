@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
+import edu.ntnu.idi.idatt.model.Storage;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
 import edu.ntnu.idi.idatt.view.StorageView;
 import java.time.LocalDate;
@@ -102,5 +103,14 @@ public class StorageController {
    */
   public boolean groceryInStorage(String name) {
     return storageRepository.getGrocery(name) != null;
+  }
+
+  /**
+   * Display storage details.
+   *
+   * @param storage The storage to display details for.
+   */
+  public void displayStorageDetails(Storage storage) {
+    StorageView.displayStorageDetails(storage);
   }
 }
