@@ -10,7 +10,7 @@ public class StorageView {
    *
    * @param groceries the groceries to display
    */
-  public void displayStorage(List<Grocery> groceries) {
+  public static void displayStorage(List<Grocery> groceries) {
     groceries.forEach(System.out::println);
   }
 }

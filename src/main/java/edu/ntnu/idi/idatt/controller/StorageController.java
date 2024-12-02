@@ -2,6 +2,8 @@ package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
+import edu.ntnu.idi.idatt.view.StorageView;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,7 @@ import java.util.Map;
 public class StorageController {
   private final GroceryController groceryController;
   private final StorageRepository storageRepository;
+
 
   /**
    * Constructor for the StorageController class.
@@ -68,7 +71,7 @@ public class StorageController {
       System.out.println("No groceries in storage.");
       return;
     }
-    storageRepository.getAllGroceries().forEach(groceryController::displayGrocery);
+    StorageView.displayStorage(storageRepository.getAllGroceries());
   }
 
   /** List all expired groceries in the storage model. */
@@ -77,7 +80,7 @@ public class StorageController {
       System.out.println("No expired groceries in storage.");
       return;
     }
-    storageRepository.listExpiredGroceries().forEach(groceryController::displayGrocery);
+    StorageView.displayStorage(storageRepository.listExpiredGroceries());
   }
 
   /** Display the total value of all groceries in the storage model. */
@@ -89,7 +92,7 @@ public class StorageController {
   public void displayExpiredTotalValue() {
     double totalExpiredValue =
         storageRepository.listExpiredGroceries().stream()
-            .mapToDouble(groceryController::calculateGroceryValue)
+            .mapToDouble(GroceryController::calculateGroceryValue)
             .sum();
 
     System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
