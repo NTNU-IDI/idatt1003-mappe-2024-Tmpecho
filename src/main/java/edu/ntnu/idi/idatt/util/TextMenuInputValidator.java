@@ -62,7 +62,8 @@ public class TextMenuInputValidator {
         break;
       }
 
-      if (ingredients.stream().anyMatch(entry -> entry.getName().equalsIgnoreCase(name))) {
+      if (ingredients.stream()
+          .anyMatch(ingredient -> ingredient.getName().equalsIgnoreCase(name))) {
         System.out.println("Ingredient already exists. Please enter a different ingredient.");
         continue;
       }
