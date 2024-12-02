@@ -102,4 +102,8 @@ public class RecipeController {
     List<Recipe> recipes = cookbookRepository.getAllRecipes();
     RecipeView.displayAllRecipes(recipes);
   }
+
+  public void displayRecipe(Recipe recipe) {
+    RecipeView.displayRecipe(recipe);
+  }
 }
