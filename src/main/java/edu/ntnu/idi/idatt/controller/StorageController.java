@@ -1,7 +1,10 @@
 package edu.ntnu.idi.idatt.controller;
 
+import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 /** Controller class for the storage model. */
 public class StorageController {
@@ -42,6 +45,16 @@ public class StorageController {
    */
   public void removeGrocery(String name) {
     storageRepository.removeGrocery(name);
+  }
+
+  public Map<Grocery, Double> getAllGroceriesWithAmount() {
+    if (storageRepository.getAllGroceries().isEmpty()) {
+      System.out.println("No groceries in storage.");
+      return Map.of();
+    } else {
+      List<Grocery> groceries = storageRepository.getAllGroceries();
+      return storageRepository.getAllGroceriesWithAmount(groceries);
+    }
   }
 
   /** List all groceries in the storage model. */

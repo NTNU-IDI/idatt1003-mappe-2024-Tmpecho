@@ -3,24 +3,24 @@ package edu.ntnu.idi.idatt.repository;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.List;
 
-/** Interface for a recipe repository. */
-public interface RecipeRepository {
+/** Interface for a cookbook repository. */
+public interface CookbookRepository {
   /**
-   * Add a recipe to the repository.
+   * Add a recipe to the cookbook.
    *
    * @param recipe The recipe to add.
    */
   void addRecipe(Recipe recipe);
 
   /**
-   * Remove a recipe from the repository.
+   * Remove a recipe from the cookbook.
    *
    * @param recipe The recipe to remove.
    */
   void removeRecipe(Recipe recipe);
 
   /**
-   * Get all recipes in the repository.
+   * Get all recipes in the cookbook.
    *
    * @return A list of all recipes.
    */

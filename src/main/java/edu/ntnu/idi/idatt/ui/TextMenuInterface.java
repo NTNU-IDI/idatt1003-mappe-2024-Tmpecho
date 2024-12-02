@@ -1,8 +1,13 @@
 package edu.ntnu.idi.idatt.ui;
 
+import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
+import edu.ntnu.idi.idatt.model.Recipe;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 /** Text-based menu interface for the user. */
@@ -21,6 +26,12 @@ public class TextMenuInterface extends UserInterface {
         case 3 -> listGroceries();
         case 4 -> listExpiredGroceries();
         case 5 -> calculateTotalValue();
+        case 6 -> addRecipe();
+        case 7 -> removeRecipe();
+        case 8 -> listRecipes();
+        case 9 -> saveRecipeToCookbook();
+        case 10 -> checkRecipe();
+        case 11 -> listRecipesInCookbook();
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
@@ -35,6 +46,12 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("3. List groceries");
     System.out.println("4. List expired groceries");
     System.out.println("5. Calculate total value of groceries");
+    System.out.println("6. Add recipe");
+    System.out.println("7. Remove recipe");
+    System.out.println("8. List recipes");
+    System.out.println("9. Save recipe to cookbook");
+    System.out.println("10. Check if recipe can be made");
+    System.out.println("11. List recipes in cookbook");
     System.out.println("0. Exit");
   }
 
@@ -53,6 +70,60 @@ public class TextMenuInterface extends UserInterface {
       }
       return name;
     }
+  }
+
+  /**
+   * Reads a text from the user with a prompt.
+   *
+   * @return the text entered by the user
+   */
+  private String readText(String prompt) {
+    while (true) {
+      System.out.print("Enter " + prompt + ": ");
+      String text = scanner.nextLine();
+      if (text == null || text.isEmpty()) {
+        System.out.println("Text cannot be empty. Please enter a text.");
+        continue;
+      }
+      return text;
+    }
+  }
+
+  /**
+   * Reads ingredients for a recipe from the user.
+   *
+   * @return a list of ingredients with their amounts
+   */
+  private List<Map.Entry<Grocery, Double>> readIngredients() {
+    List<Map.Entry<Grocery, Double>> ingredients = new ArrayList<>();
+
+    System.out.println("Enter ingredients for the recipe (type 'done' when finished):");
+
+    while (true) {
+      String name = readName();
+      if (name.equalsIgnoreCase("done")) {
+        break;
+      }
+
+      if (ingredients.stream().anyMatch(entry -> entry.getKey().getName().equalsIgnoreCase(name))) {
+        System.out.println("Ingredient already exists. Please enter a different ingredient.");
+        continue;
+      }
+
+      double amount = readPositiveDouble("Enter amount for " + name + ": ");
+      String unit = readUnit();
+
+      Grocery ingredient = new Grocery(name, amount, MeasurementUnit.fromString(unit), null, null);
+
+      try {
+        ingredients.add(Map.entry(ingredient, amount));
+        System.out.println("Ingredient '" + name + "' added successfully.");
+      } catch (Exception e) {
+        System.out.println("Error adding ingredient: " + e.getMessage());
+      }
+    }
+
+    return ingredients;
   }
 
   /**
@@ -101,7 +172,7 @@ public class TextMenuInterface extends UserInterface {
   /**
    * Reads a valid measurement unit from the user.
    *
-   * @return the unit entered by the user
+   * @return the unit entered by the user as a string
    */
   private String readUnit() {
     while (true) {
@@ -193,5 +264,80 @@ public class TextMenuInterface extends UserInterface {
   /** Prints the total value of all groceries in storage. */
   private void calculateTotalValue() {
     storageController.displayTotalValue();
+  }
+
+  /** Adds a recipe to the cookbook. */
+  private void addRecipe() {
+    String recipeName = readName();
+    String description = readText("description");
+    String instructions = readText("instructions");
+    List<Map.Entry<Grocery, Double>> ingredients = readIngredients();
+
+    try {
+      recipeController.addRecipe(recipeName, description, instructions, ingredients);
+      System.out.println("Recipe added successfully.");
+    } catch (Exception e) {
+      System.out.println("Error adding recipe: " + e.getMessage());
+    }
+  }
+
+  /** Removes a recipe from the cookbook. */
+  private void removeRecipe() {
+    System.out.print("Enter name of recipe to remove: ");
+    String name = scanner.nextLine();
+
+    try {
+      List<Recipe> recipes = recipeController.getAllRecipes();
+      for (Recipe recipe : recipes) {
+        if (recipe.getName().equalsIgnoreCase(name)) {
+          recipeController.removeRecipe(recipe);
+          System.out.println("Recipe removed successfully.");
+          return;
+        }
+      }
+      System.out.println("Recipe not found. Please check the name and try again.");
+    } catch (Exception e) {
+      System.out.println("Error removing recipe: " + e.getMessage());
+    }
+  }
+
+  /** Lists all recipes in the cookbook. */
+  private void listRecipes() {
+    System.out.println("Listing recipes...");
+
+    recipeController.displayAllRecipes();
+  }
+
+  /** Checks if a recipe can be made with available ingredients. */
+  private void checkRecipe() {
+    System.out.print("Enter name of recipe to check: ");
+    String name = scanner.nextLine();
+
+    try {
+      Recipe recipe = recipeController.findRecipesByName(name).get(0);
+      recipeController.canMakeRecipe(recipe, storageController.getAllGroceriesWithAmount());
+      System.out.println("Recipe not found. Please check the name and try again.");
+    } catch (Exception e) {
+      System.out.println("Error checking recipe: " + e.getMessage());
+    }
+  }
+
+  /** Saves a recipe to the cookbook. */
+  private void saveRecipeToCookbook() {
+    String recipeName = readName();
+
+    try {
+      Recipe recipe = recipeController.findRecipesByName(recipeName).get(0);
+      recipeController.saveRecipeToCookbook(recipe);
+    } catch (IndexOutOfBoundsException e) {
+      System.out.println("Recipe not found.");
+    }
+  }
+
+  /** Lists all recipes in the cookbook. */
+  private void listRecipesInCookbook() {
+    System.out.println("Listing recipes in cookbook...");
+
+    recipeController.displayCookbookRecipes();
   }
 }
