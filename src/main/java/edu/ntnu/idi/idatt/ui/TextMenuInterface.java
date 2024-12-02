@@ -61,8 +61,6 @@ public class TextMenuInterface extends UserInterface {
     final LocalDate expirationDate = TextMenuInputValidator.readDate();
     final double price = TextMenuInputValidator.readPositiveDouble("Enter price per unit (NOK): ");
 
-    System.out.println();
-
     try {
       storageController.addGrocery(name, amount, unit, expirationDate, price);
       System.out.println("Grocery added successfully.");
