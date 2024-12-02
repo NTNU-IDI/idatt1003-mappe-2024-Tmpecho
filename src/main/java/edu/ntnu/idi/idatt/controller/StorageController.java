@@ -58,7 +58,7 @@ public class StorageController {
       return Map.of();
     } else {
       List<Grocery> groceries = storageRepository.getAllGroceries();
-      return storageRepository.getAllGroceriesWithAmount(groceries);
+      return storageRepository.getAllGroceriesWithAmount();
     }
   }
 
