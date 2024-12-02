@@ -45,7 +45,8 @@ public class RecipeView {
    * @param recipe The recipe to check.
    * @param availableIngredients A map of available groceries and their quantities.
    */
-  public static void displayCanMakeRecipe(Recipe recipe, Map<Grocery, Double> availableIngredients) {
+  public static void displayCanMakeRecipe(
+      Recipe recipe, Map<Grocery, Double> availableIngredients) {
     if (IngredientChecker.hasAllIngredients(recipe, availableIngredients)) {
       System.out.println("You can make " + recipe.getName());
     } else {

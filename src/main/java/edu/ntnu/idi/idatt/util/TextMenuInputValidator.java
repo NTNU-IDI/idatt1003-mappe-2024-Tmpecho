@@ -140,8 +140,7 @@ public class TextMenuInputValidator {
         MeasurementUnit.fromString(unit);
         return unit;
       } catch (IllegalArgumentException e) {
-        System.out.println(
-            "Invalid unit. Please enter a valid measurement unit (e.g., liter, kg, pcs).");
+        System.out.println(e.getMessage());
       }
     }
   }
