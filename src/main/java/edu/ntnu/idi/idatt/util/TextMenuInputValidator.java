@@ -68,8 +68,8 @@ public class TextMenuInputValidator {
         continue;
       }
 
-      double amount = readPositiveDouble("Enter amount for " + name + ": ");
       String unit = readUnit();
+      double amount = readPositiveDouble("Enter amount for " + name + ": ");
 
       Grocery ingredient = new Grocery(name, amount, MeasurementUnit.fromString(unit), null, null);
 
@@ -152,7 +152,7 @@ public class TextMenuInputValidator {
    */
   public static LocalDate readDate() {
     while (true) {
-      System.out.print("Enter date (dd-MM-yyyy): ");
+      System.out.print("Enter expiration date (dd-MM-yyyy): ");
       try {
         String date = scanner.nextLine();
         return LocalDate.parse(date, DateUtils.FORMATTER);

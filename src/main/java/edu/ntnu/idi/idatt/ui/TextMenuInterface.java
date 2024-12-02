@@ -56,13 +56,9 @@ public class TextMenuInterface extends UserInterface {
   private void addGrocery() {
     System.out.println("Adding grocery...");
     final String name = TextMenuInputValidator.readName();
-
-    final double amount = TextMenuInputValidator.readPositiveDouble("Enter amount: ");
     final String unit = TextMenuInputValidator.readUnit();
-
-    System.out.println("Enter expiration date: ");
+    final double amount = TextMenuInputValidator.readPositiveDouble("Enter amount: ");
     final LocalDate expirationDate = TextMenuInputValidator.readDate();
-
     final double price = TextMenuInputValidator.readPositiveDouble("Enter price per unit (NOK): ");
 
     System.out.println();
