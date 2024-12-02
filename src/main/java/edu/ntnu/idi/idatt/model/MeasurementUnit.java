@@ -29,10 +29,10 @@ public enum MeasurementUnit {
 
   static {
     // Populate lookup map with aliases and enum values
-    for (MeasurementUnit unit : MeasurementUnit.values()) {
-      Arrays.stream(unit.aliases).forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
-      lookupMap.put(unit.name().toLowerCase(), unit);
-    }
+	  Arrays.stream(MeasurementUnit.values()).forEach(unit -> {
+		  Arrays.stream(unit.aliases).forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
+		  lookupMap.put(unit.name().toLowerCase(), unit);
+	  });
   }
 
   /**
