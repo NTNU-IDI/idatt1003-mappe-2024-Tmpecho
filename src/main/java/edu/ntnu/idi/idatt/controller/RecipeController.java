@@ -6,7 +6,6 @@ import edu.ntnu.idi.idatt.repository.CookbookRepository;
 import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import edu.ntnu.idi.idatt.view.RecipeView;
 import java.util.List;
-import java.util.Map;
 
 /** Controller for managing recipes. */
 public class RecipeController {
@@ -88,7 +87,7 @@ public class RecipeController {
    * @param recipe The recipe to check.
    * @param availableIngredients A map of available ingredients.
    */
-  public void canMakeRecipe(Recipe recipe, Map<Grocery, Double> availableIngredients) {
+  public void canMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     RecipeView.displayCanMakeRecipe(recipe, availableIngredients);
   }
 

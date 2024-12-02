@@ -4,7 +4,6 @@ import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import edu.ntnu.idi.idatt.util.IngredientChecker;
 import java.util.List;
-import java.util.Map;
 
 /** Class representing the view for recipes. */
 public class RecipeView {
@@ -50,8 +49,7 @@ public class RecipeView {
    * @param recipe The recipe to check.
    * @param availableIngredients A map of available groceries and their quantities.
    */
-  public static void displayCanMakeRecipe(
-      Recipe recipe, Map<Grocery, Double> availableIngredients) {
+  public static void displayCanMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     if (IngredientChecker.hasAllIngredients(recipe, availableIngredients)) {
       System.out.println("You can make " + recipe.getName());
     } else {
