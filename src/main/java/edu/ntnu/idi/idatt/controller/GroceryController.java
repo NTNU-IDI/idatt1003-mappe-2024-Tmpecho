@@ -7,8 +7,6 @@ import java.time.LocalDate;
 
 /** Controller class for the grocery model. */
 public class GroceryController {
-  private final GroceryView groceryView = new GroceryView();
-
   /**
    * Create a grocery object.
    *
@@ -30,7 +28,7 @@ public class GroceryController {
    * @param grocery the grocery to display
    */
   public void displayGrocery(Grocery grocery) {
-    groceryView.displayGrocery(grocery);
+    GroceryView.displayGrocery(grocery);
   }
 
   /**
@@ -39,7 +37,7 @@ public class GroceryController {
    * @param grocery The grocery whose value is to be calculated.
    * @return The total value of the grocery (price * amount).
    */
-  public double calculateGroceryValue(Grocery grocery) {
+  public static double calculateGroceryValue(Grocery grocery) {
     if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
       return 0.0; // Default to 0 if price or amount is null
     }

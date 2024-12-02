@@ -9,7 +9,7 @@ public class GroceryView {
    *
    * @param grocery the grocery to display
    */
-  public void displayGrocery(Grocery grocery) {
+  public static void displayGrocery(Grocery grocery) {
     if (grocery == null) {
       System.out.println("Grocery not found");
       return;

@@ -13,7 +13,7 @@ public class RecipeView {
    *
    * @param recipe The recipe to display
    */
-  public void displayRecipe(Recipe recipe) {
+  public static void displayRecipe(Recipe recipe) {
     System.out.println("Recipe: " + recipe.getName());
     System.out.println("Description: " + recipe.getDescription());
     System.out.println("Instructions: " + recipe.getInstructions());
@@ -31,11 +31,11 @@ public class RecipeView {
    *
    * @param recipes The list of recipes to display
    */
-  public void displayAllRecipes(List<Recipe> recipes) {
+  public static void displayAllRecipes(List<Recipe> recipes) {
     if (recipes.isEmpty()) {
       System.out.println("No recipes found.");
     } else {
-      recipes.forEach(this::displayRecipe);
+      recipes.forEach(RecipeView::displayRecipe);
     }
   }
 
@@ -45,7 +45,7 @@ public class RecipeView {
    * @param recipe The recipe to check.
    * @param availableIngredients A map of available groceries and their quantities.
    */
-  public void displayCanMakeRecipe(Recipe recipe, Map<Grocery, Double> availableIngredients) {
+  public static void displayCanMakeRecipe(Recipe recipe, Map<Grocery, Double> availableIngredients) {
     if (IngredientChecker.hasAllIngredients(recipe, availableIngredients)) {
       System.out.println("You can make " + recipe.getName());
     } else {

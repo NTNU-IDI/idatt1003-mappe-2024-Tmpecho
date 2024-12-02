@@ -10,7 +10,6 @@ import java.util.Map;
 
 /** Controller for managing recipes. */
 public class RecipeController {
-  private final RecipeView recipeView = new RecipeView();
   private final RecipeRepository recipeRepository;
   private final CookbookRepository cookbookRepository;
 
@@ -93,18 +92,18 @@ public class RecipeController {
    * @param availableIngredients A map of available ingredients.
    */
   public void canMakeRecipe(Recipe recipe, Map<Grocery, Double> availableIngredients) {
-    recipeView.displayCanMakeRecipe(recipe, availableIngredients);
+    RecipeView.displayCanMakeRecipe(recipe, availableIngredients);
   }
 
   /** Method for displaying all recipes. */
   public void displayAllRecipes() {
     List<Recipe> recipes = getAllRecipes();
-    recipeView.displayAllRecipes(recipes);
+    RecipeView.displayAllRecipes(recipes);
   }
 
   /** Method for displaying all recipes in the cookbook. */
   public void displayCookbookRecipes() {
     List<Recipe> recipes = cookbookRepository.getAllRecipes();
-    recipeView.displayAllRecipes(recipes);
+    RecipeView.displayAllRecipes(recipes);
   }
 }
