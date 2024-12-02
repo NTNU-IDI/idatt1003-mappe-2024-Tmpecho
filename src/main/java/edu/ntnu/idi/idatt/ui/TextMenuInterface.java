@@ -161,7 +161,12 @@ public class TextMenuInterface extends UserInterface {
     String name = scanner.nextLine();
 
     try {
-      Recipe recipe = recipeController.findRecipesByName(name).get(0);
+      List<Recipe> recipes = recipeController.findRecipesByName(name);
+      if (recipes.isEmpty()) {
+        System.out.println("Recipe not found. Please check the name and try again.");
+        return;
+      }
+      Recipe recipe = recipes.get(0);
       recipeController.canMakeRecipe(recipe, storageController.getAllGroceriesWithAmount());
       System.out.println("Recipe not found. Please check the name and try again.");
     } catch (Exception e) {
