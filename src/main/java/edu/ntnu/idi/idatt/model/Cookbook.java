@@ -2,6 +2,7 @@ package edu.ntnu.idi.idatt.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** A class representing a collection of recipes. */
 public class Cookbook {
@@ -46,12 +47,8 @@ public class Cookbook {
    * @return A list of recipes matching the name.
    */
   public List<Recipe> findRecipesByName(String name) {
-    List<Recipe> result = new ArrayList<>();
-    for (Recipe recipe : recipes) {
-      if (recipe.getName().equalsIgnoreCase(name)) {
-        result.add(recipe);
-      }
-    }
-    return result;
+    return recipes.stream()
+        .filter(recipe -> recipe.getName().equalsIgnoreCase(name))
+        .collect(Collectors.toList());
   }
 }
