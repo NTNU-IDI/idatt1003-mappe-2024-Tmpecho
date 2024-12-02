@@ -8,7 +8,7 @@ public class GroceryView {
   /**
    * Displays a grocery as part of a table row.
    *
-   * @param grocery the grocery to display
+   * @param grocery The grocery to display
    */
   public static void displayGroceryAsRow(Grocery grocery) {
     if (grocery == null) {

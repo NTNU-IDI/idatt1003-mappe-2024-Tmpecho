@@ -9,9 +9,9 @@ public class IngredientChecker {
   /**
    * Check if the user has enough ingredients for a recipe.
    *
-   * @param recipe The recipe to check.
-   * @param availableIngredients A list of available groceries.
-   * @return True if all ingredients are available in required quantities, false otherwise.
+   * @param recipe The recipe to check
+   * @param availableIngredients A list of available groceries
+   * @return True if all ingredients are available in required quantities, false otherwise
    */
   public static boolean hasAllIngredients(Recipe recipe, List<Grocery> availableIngredients) {
     for (Grocery ingredient : recipe.getIngredients()) {

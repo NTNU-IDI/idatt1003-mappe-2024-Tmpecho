@@ -10,7 +10,7 @@ public class RecipeView {
   /**
    * Displays a recipe.
    *
-   * @param recipe The recipe name to display.
+   * @param recipe The recipe name to display
    */
   public static void displayRecipeName(Recipe recipe) {
     System.out.println("- " + recipe.getName());
@@ -19,7 +19,7 @@ public class RecipeView {
   /**
    * Displays a recipe in full.
    *
-   * @param recipe The recipe to display.
+   * @param recipe The recipe to display
    */
   public static void displayRecipe(Recipe recipe) {
     System.out.println("Recipe: " + recipe.getName());
@@ -41,7 +41,7 @@ public class RecipeView {
   /**
    * Displays all recipes.
    *
-   * @param recipes The list of recipes to display.
+   * @param recipes The list of recipes to display
    */
   public static void displayAllRecipes(List<Recipe> recipes) {
     if (recipes.isEmpty()) {
@@ -54,8 +54,8 @@ public class RecipeView {
   /**
    * Displays whether a recipe can be made with the available ingredients.
    *
-   * @param recipe The recipe to check.
-   * @param availableIngredients A map of available groceries and their quantities.
+   * @param recipe The recipe to check
+   * @param availableIngredients A map of available groceries and their quantities
    */
   public static void displayCanMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     if (IngredientChecker.hasAllIngredients(recipe, availableIngredients)) {

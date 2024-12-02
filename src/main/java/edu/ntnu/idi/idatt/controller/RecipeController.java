@@ -65,7 +65,7 @@ public class RecipeController {
   /**
    * Method for getting all recipes from the recipe model.
    *
-   * @return A list of all recipes.
+   * @return A list of all recipes
    */
   public List<Recipe> getAllRecipes() {
     return recipeRepository.getAllRecipes();
@@ -74,8 +74,8 @@ public class RecipeController {
   /**
    * Method for finding recipes by name.
    *
-   * @param name The name to search for.
-   * @return A list of matching recipes.
+   * @param name The name to search for
+   * @return A list of matching recipes
    */
   public List<Recipe> findRecipesByName(String name) {
     return recipeRepository.findRecipesByName(name);
@@ -84,8 +84,8 @@ public class RecipeController {
   /**
    * Method for checking if a recipe can be made with available ingredients.
    *
-   * @param recipe The recipe to check.
-   * @param availableIngredients A map of available ingredients.
+   * @param recipe The recipe to check
+   * @param availableIngredients A map of available ingredients
    */
   public void canMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     RecipeView.displayCanMakeRecipe(recipe, availableIngredients);
@@ -106,7 +106,7 @@ public class RecipeController {
   /**
    * Method for displaying a recipe.
    *
-   * @param recipe The recipe to display.
+   * @param recipe The recipe to display
    */
   public void displayRecipe(Recipe recipe) {
     RecipeView.displayRecipe(recipe);

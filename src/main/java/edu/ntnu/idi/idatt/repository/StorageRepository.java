@@ -8,51 +8,51 @@ public interface StorageRepository {
   /**
    * Adds a grocery to the storage.
    *
-   * @param grocery the grocery to add
+   * @param grocery The grocery to add
    */
   void addGrocery(Grocery grocery);
 
   /**
    * Gets a grocery from the storage.
    *
-   * @param name the name of the grocery to get
-   * @return the grocery with the given name
+   * @param name The name of the grocery to get
+   * @return The grocery with the given name
    */
   Grocery getGrocery(String name);
 
   /**
    * Removes a grocery from the storage.
    *
-   * @param name the name of the grocery to remove
+   * @param name The name of the grocery to remove
    */
   void removeGrocery(String name);
 
   /**
    * Removes a specific amount of a grocery from the storage.
    *
-   * @param name the name of the grocery to remove
-   * @param amount the amount to remove
+   * @param name The name of the grocery to remove
+   * @param amount The amount to remove
    */
   void removeGrocery(String name, double amount);
 
   /**
    * Lists all groceries in the storage.
    *
-   * @return a list of all groceries in the storage
+   * @return A list of all groceries in the storage
    */
   List<Grocery> getAllGroceries();
 
   /**
    * Lists all expired groceries in the storage.
    *
-   * @return a list of all expired groceries in the storage
+   * @return A list of all expired groceries in the storage
    */
   List<Grocery> listExpiredGroceries();
 
   /**
    * Calculates the total value of all groceries in the storage.
    *
-   * @return the total value of all groceries in the storage
+   * @return The total value of all groceries in the storage
    */
   double calculateTotalValue();
 }

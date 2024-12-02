@@ -15,10 +15,7 @@ public class Grocery implements Comparable<Grocery> {
   LocalDate expirationDate;
   Double price;
 
-  /**
-   * Constructor for the Grocery class. We use a builder to one have one constructer where only the
-   * name, amount and measurement unit are required.
-   */
+  /** Constructor for the Grocery class. */
   public Grocery(
       String name,
       Double amount,
@@ -143,8 +140,8 @@ public class Grocery implements Comparable<Grocery> {
   /**
    * Compares this grocery object with another grocery object based on the name of the grocery item.
    *
-   * @param grocery the object to be compared
-   * @return a negative integer, zero, or a positive integer as this object is less than, equal to,
+   * @param grocery The object to be compared
+   * @return A negative integer, zero, or a positive integer as this object is less than, equal to,
    *     or greater than the specified object
    */
   @Override

@@ -32,7 +32,7 @@ public class TextMenuInputValidator {
   /**
    * Reads a text from the user with a prompt.
    *
-   * @return the text entered by the user
+   * @return The text entered by the user
    */
   public static String readText(String prompt) {
     while (true) {
@@ -49,7 +49,7 @@ public class TextMenuInputValidator {
   /**
    * Reads ingredients for a recipe from the user.
    *
-   * @return a list of ingredients with their amounts
+   * @return A list of ingredients with their amounts
    */
   public static List<Grocery> readIngredients() {
     List<Grocery> ingredients = new ArrayList<>();
@@ -87,8 +87,8 @@ public class TextMenuInputValidator {
   /**
    * Reads an integer from the user with a prompt.
    *
-   * @param prompt the prompt to display to the user
-   * @return the integer entered by the user
+   * @param prompt The prompt to display to the user
+   * @return The integer entered by the user
    */
   public static int readInt(String prompt) {
     while (true) {
@@ -104,8 +104,8 @@ public class TextMenuInputValidator {
   /**
    * Reads a positive non-zero double from the user with a prompt.
    *
-   * @param prompt the prompt to display to the user
-   * @return the double entered by the user
+   * @param prompt The prompt to display to the user
+   * @return The double entered by the user
    */
   public static double readPositiveDouble(String prompt) {
     while (true) {
@@ -130,7 +130,7 @@ public class TextMenuInputValidator {
   /**
    * Reads a valid measurement unit from the user.
    *
-   * @return the unit entered by the user as a string
+   * @return The unit entered by the user as a string
    */
   public static String readUnit() {
     while (true) {
@@ -148,7 +148,7 @@ public class TextMenuInputValidator {
   /**
    * Reads a valid date from the user.
    *
-   * @return the date entered by the user
+   * @return The date entered by the user
    */
   public static LocalDate readDate() {
     while (true) {
