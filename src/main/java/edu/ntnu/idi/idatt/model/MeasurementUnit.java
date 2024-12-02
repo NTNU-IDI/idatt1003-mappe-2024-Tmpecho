@@ -56,7 +56,8 @@ public enum MeasurementUnit {
   public static MeasurementUnit fromString(String input) {
     MeasurementUnit unit = lookupMap.get(input.toLowerCase());
     if (unit == null) {
-      throw new IllegalArgumentException("Invalid measurement unit: " + input);
+      throw new IllegalArgumentException(
+          "Invalid measurement unit: " + input + ". Valid options are: " + lookupMap.keySet());
     }
     return unit;
   }

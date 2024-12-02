@@ -131,11 +131,10 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Get all groceries with their amount.
    *
-   * @param groceries the groceries to get
    * @return a map of groceries with their amount
    */
   @Override
-  public Map<Grocery, Double> getAllGroceriesWithAmount(List<Grocery> groceries) {
+  public Map<Grocery, Double> getAllGroceriesWithAmount() {
     return groceries.stream().collect(Collectors.toMap(grocery -> grocery, Grocery::getAmount));
   }
 }
