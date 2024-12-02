@@ -7,6 +7,7 @@ import java.util.List;
 public class Cookbook {
   private final List<Recipe> recipes;
 
+  /** Constructor for a cookbook. */
   public Cookbook() {
     this.recipes = new ArrayList<>();
   }

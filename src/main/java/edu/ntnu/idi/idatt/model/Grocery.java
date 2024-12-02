@@ -31,7 +31,7 @@ public class Grocery implements Comparable<Grocery> {
     if (amount < 0) {
       throw new IllegalArgumentException("Amount cannot be negative");
     }
-    if (price < 0) {
+    if (price != null && price < 0) {
       throw new IllegalArgumentException("Price cannot be negative");
     }
     this.name = name;

@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /** A repository for storing groceries in memory. */
@@ -130,4 +131,15 @@ public class InMemoryStorageRepository implements StorageRepository {
             .sum();
     return totalValue;
   }
+
+    /**
+     * Get all groceries with their amount.
+     *
+     * @param groceries the groceries to get
+     * @return a list of groceries with their amount
+     */
+    @Override
+    public Map<Grocery, Double> getAllGroceriesWithAmount(List<Grocery> groceries) {
+        return groceries.stream().collect(Collectors.toMap(grocery -> grocery, Grocery::getAmount));
+    }
 }
