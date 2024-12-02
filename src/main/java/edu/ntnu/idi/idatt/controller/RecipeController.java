@@ -34,10 +34,7 @@ public class RecipeController {
    * @param ingredients A list of ingredients needed to make the recipe.
    */
   public void addRecipe(
-      String name,
-      String description,
-      String instructions,
-      List<Map.Entry<Grocery, Double>> ingredients) {
+      String name, String description, String instructions, List<Grocery> ingredients) {
     Recipe recipe = new Recipe(name, description, instructions, ingredients);
     recipeRepository.addRecipe(recipe);
   }

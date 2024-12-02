@@ -23,7 +23,12 @@ public class RecipeView {
         .forEach(
             ingredient ->
                 System.out.println(
-                    "- " + ingredient.getKey().getName() + ": " + ingredient.getValue()));
+                    "- "
+                        + ingredient.getName()
+                        + ": "
+                        + ingredient.getAmount()
+                        + " "
+                        + ingredient.getMeasurementUnit()));
   }
 
   /**

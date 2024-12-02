@@ -8,6 +8,19 @@ import java.time.LocalDate;
 /** Controller class for the grocery model. */
 public class GroceryController {
   /**
+   * Calculates the total value of a grocery.
+   *
+   * @param grocery The grocery whose value is to be calculated.
+   * @return The total value of the grocery (price * amount).
+   */
+  public static double calculateGroceryValue(Grocery grocery) {
+    if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
+      return 0.0; // Default to 0 if price or amount is null
+    }
+    return grocery.getPrice() * grocery.getAmount();
+  }
+
+  /**
    * Create a grocery object.
    *
    * @param name the name of the grocery
@@ -29,18 +42,5 @@ public class GroceryController {
    */
   public void displayGrocery(Grocery grocery) {
     GroceryView.displayGrocery(grocery);
-  }
-
-  /**
-   * Calculates the total value of a grocery.
-   *
-   * @param grocery The grocery whose value is to be calculated.
-   * @return The total value of the grocery (price * amount).
-   */
-  public static double calculateGroceryValue(Grocery grocery) {
-    if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
-      return 0.0; // Default to 0 if price or amount is null
-    }
-    return grocery.getPrice() * grocery.getAmount();
   }
 }

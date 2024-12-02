@@ -15,10 +15,9 @@ public class IngredientChecker {
    */
   public static boolean hasAllIngredients(
       Recipe recipe, Map<Grocery, Double> availableIngredients) {
-    for (Map.Entry<Grocery, Double> ingredient : recipe.getIngredients()) {
-      Grocery grocery = ingredient.getKey();
-      Double requiredQuantity = ingredient.getValue();
-      Double availableQuantity = availableIngredients.getOrDefault(grocery, 0.0);
+    for (Grocery ingredient : recipe.getIngredients()) {
+      Double requiredQuantity = ingredient.getAmount();
+      Double availableQuantity = availableIngredients.getOrDefault(ingredient, 0.0);
       if (availableQuantity < requiredQuantity) {
         return false;
       }

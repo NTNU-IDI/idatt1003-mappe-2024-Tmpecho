@@ -23,7 +23,6 @@ public enum MeasurementUnit {
   KILOGRAM("kg", "kilogram", "kilograms", "kilos"),
   PCS("pcs", "pieces", "piece", "stk");
 
-  private final String[] aliases;
   private static final Map<String, MeasurementUnit> lookupMap = new HashMap<>();
 
   static {
@@ -36,6 +35,8 @@ public enum MeasurementUnit {
               lookupMap.put(unit.name().toLowerCase(), unit);
             });
   }
+
+  private final String[] aliases;
 
   /**
    * Constructor for MeasurementUnit with aliases.

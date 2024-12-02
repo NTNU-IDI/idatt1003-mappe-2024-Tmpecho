@@ -6,7 +6,6 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /** Class for validating user input in a text-based menu. */
@@ -52,8 +51,8 @@ public class TextMenuInputValidator {
    *
    * @return a list of ingredients with their amounts
    */
-  public static List<Map.Entry<Grocery, Double>> readIngredients() {
-    List<Map.Entry<Grocery, Double>> ingredients = new ArrayList<>();
+  public static List<Grocery> readIngredients() {
+    List<Grocery> ingredients = new ArrayList<>();
 
     System.out.println("Enter ingredients for the recipe (type 'done' when finished):");
 
@@ -63,7 +62,7 @@ public class TextMenuInputValidator {
         break;
       }
 
-      if (ingredients.stream().anyMatch(entry -> entry.getKey().getName().equalsIgnoreCase(name))) {
+      if (ingredients.stream().anyMatch(entry -> entry.getName().equalsIgnoreCase(name))) {
         System.out.println("Ingredient already exists. Please enter a different ingredient.");
         continue;
       }
@@ -74,7 +73,7 @@ public class TextMenuInputValidator {
       Grocery ingredient = new Grocery(name, amount, MeasurementUnit.fromString(unit), null, null);
 
       try {
-        ingredients.add(Map.entry(ingredient, amount));
+        ingredients.add(ingredient);
         System.out.println("Ingredient '" + name + "' added successfully.");
       } catch (Exception e) {
         System.out.println("Error adding ingredient: " + e.getMessage());

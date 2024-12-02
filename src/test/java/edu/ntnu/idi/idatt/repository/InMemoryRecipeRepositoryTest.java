@@ -92,6 +92,6 @@ class InMemoryRecipeRepositoryTest {
         name,
         "Delicious " + name,
         "Mix ingredients and cook.",
-        List.of(Map.entry(flour, 1.0), Map.entry(milk, 0.5), Map.entry(egg, 2.0)));
+        List.of(flour, milk, egg));
   }
 }
