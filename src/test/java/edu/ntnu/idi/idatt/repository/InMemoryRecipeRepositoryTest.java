@@ -6,7 +6,6 @@ import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

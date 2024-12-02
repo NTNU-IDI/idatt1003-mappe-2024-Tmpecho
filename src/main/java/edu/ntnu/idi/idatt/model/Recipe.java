@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idatt.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /** A class representing a recipe. */
