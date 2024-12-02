@@ -3,12 +3,8 @@ package edu.ntnu.idi.idatt.ui;
 import edu.ntnu.idi.idatt.controller.GroceryController;
 import edu.ntnu.idi.idatt.controller.RecipeController;
 import edu.ntnu.idi.idatt.controller.StorageController;
-import edu.ntnu.idi.idatt.model.Cookbook;
 import edu.ntnu.idi.idatt.model.Fridge;
-import edu.ntnu.idi.idatt.repository.InMemoryRecipeRepository;
-import edu.ntnu.idi.idatt.repository.InMemoryStorageRepository;
-import edu.ntnu.idi.idatt.repository.RecipeRepository;
-import edu.ntnu.idi.idatt.repository.StorageRepository;
+import edu.ntnu.idi.idatt.repository.*;
 
 /** Base class for all user interfaces. */
 public abstract class UserInterface {
@@ -18,17 +14,17 @@ public abstract class UserInterface {
   GroceryController groceryController;
   StorageController storageController;
   Fridge fridge;
-  Cookbook cookbook;
+  CookbookRepository cookbookRepository;
 
   /** Initializes UI. */
   public void init() {
     fridge = new Fridge("Fridge", 100);
-    cookbook = new Cookbook();
+    cookbookRepository = new InMemoryCookbookRepository();
 
     fridgeStorageRepository = new InMemoryStorageRepository(fridge);
     recipeRepository = new InMemoryRecipeRepository();
 
-    recipeController = new RecipeController(recipeRepository, cookbook);
+    recipeController = new RecipeController(recipeRepository, cookbookRepository);
     groceryController = new GroceryController();
     storageController = new StorageController(groceryController, fridgeStorageRepository);
   }

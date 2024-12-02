@@ -338,6 +338,6 @@ public class TextMenuInterface extends UserInterface {
   private void listRecipesInCookbook() {
     System.out.println("Listing recipes in cookbook...");
 
-    recipeController.displayRecipesInCookbook();
+    recipeController.displayCookbookRecipes();
   }
 }

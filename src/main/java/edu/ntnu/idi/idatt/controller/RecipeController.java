@@ -1,8 +1,8 @@
 package edu.ntnu.idi.idatt.controller;
 
-import edu.ntnu.idi.idatt.model.Cookbook;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
+import edu.ntnu.idi.idatt.repository.CookbookRepository;
 import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import edu.ntnu.idi.idatt.view.RecipeView;
 import java.util.List;
@@ -12,17 +12,18 @@ import java.util.Map;
 public class RecipeController {
   private final RecipeView recipeView = new RecipeView();
   private final RecipeRepository recipeRepository;
-  private final Cookbook cookbook;
+  private final CookbookRepository cookbookRepository;
 
   /**
    * Constructor for the RecipeController class.
    *
    * @param recipeRepository repository for the recipe model.
-   * @param cookbook cookbook for the recipe model.
+   * @param cookbookRepository repository for the cookbook model.
    */
-  public RecipeController(RecipeRepository recipeRepository, Cookbook cookbook) {
+  public RecipeController(
+      RecipeRepository recipeRepository, CookbookRepository cookbookRepository) {
     this.recipeRepository = recipeRepository;
-    this.cookbook = cookbook;
+    this.cookbookRepository = cookbookRepository;
   }
 
   /**
@@ -58,12 +59,12 @@ public class RecipeController {
    * @param recipe The recipe to save.
    */
   public void saveRecipeToCookbook(Recipe recipe) {
-    if (!cookbook.getRecipes().contains(recipe)) {
-      cookbook.addRecipe(recipe);
-      System.out.println("Recipe added to cookbook.");
-    } else {
+    if (cookbookRepository.getAllRecipes().contains(recipe)) {
       System.out.println("Recipe is already in the cookbook.");
+      return;
     }
+    cookbookRepository.addRecipe(recipe);
+    System.out.println("Recipe added to the cookbook.");
   }
 
   /**
@@ -101,8 +102,8 @@ public class RecipeController {
     recipeView.displayAllRecipes(recipes);
   }
 
-  public void displayRecipesInCookbook() {
-    List<Recipe> recipes = cookbook.getRecipes();
+  public void displayCookbookRecipes() {
+    List<Recipe> recipes = cookbookRepository.getAllRecipes();
     recipeView.displayAllRecipes(recipes);
   }
 }

@@ -2,10 +2,11 @@ package edu.ntnu.idi.idatt.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import edu.ntnu.idi.idatt.model.Cookbook;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
 import edu.ntnu.idi.idatt.model.Recipe;
+import edu.ntnu.idi.idatt.repository.CookbookRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryCookbookRepository;
 import edu.ntnu.idi.idatt.repository.InMemoryRecipeRepository;
 import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import java.util.List;
@@ -17,14 +18,14 @@ import org.junit.jupiter.api.Test;
 class RecipeControllerTest {
   private RecipeController recipeController;
   private RecipeRepository recipeRepository;
-  private Cookbook cookbook;
+  private CookbookRepository cookbookRepository;
 
   /** Sets up the test environment before each test. */
   @BeforeEach
   void setUp() {
     recipeRepository = new InMemoryRecipeRepository();
-    cookbook = new Cookbook();
-    recipeController = new RecipeController(recipeRepository, cookbook);
+    cookbookRepository = new InMemoryCookbookRepository();
+    recipeController = new RecipeController(recipeRepository, cookbookRepository);
   }
 
   /** Tests adding a recipe to the repository. */
@@ -98,11 +99,11 @@ class RecipeControllerTest {
         recipe.getInstructions(),
         recipe.getIngredients());
 
-    assertEquals(0, cookbook.getRecipes().size());
+    assertEquals(0, cookbookRepository.getAllRecipes().size());
 
     recipeController.saveRecipeToCookbook(recipe);
 
-    List<Recipe> cookbookRecipes = cookbook.getRecipes();
+    List<Recipe> cookbookRecipes = cookbookRepository.getAllRecipes();
 
     assertEquals(1, cookbookRecipes.size());
     assertEquals("Pancakes", cookbookRecipes.get(0).getName());
@@ -122,7 +123,7 @@ class RecipeControllerTest {
 
     assertDoesNotThrow(() -> recipeController.saveRecipeToCookbook(recipe));
 
-    List<Recipe> cookbookRecipes = cookbook.getRecipes();
+    List<Recipe> cookbookRecipes = cookbookRepository.getAllRecipes();
 
     assertEquals(1, cookbookRecipes.size());
   }
@@ -146,7 +147,7 @@ class RecipeControllerTest {
     recipeController.saveRecipeToCookbook(recipe1);
     recipeController.saveRecipeToCookbook(recipe2);
 
-    List<Recipe> cookbookRecipes = cookbook.getRecipes();
+    List<Recipe> cookbookRecipes = cookbookRepository.getAllRecipes();
 
     assertEquals(2, cookbookRecipes.size());
   }
