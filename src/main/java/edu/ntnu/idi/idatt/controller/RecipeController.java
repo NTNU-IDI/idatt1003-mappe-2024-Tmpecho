@@ -40,7 +40,6 @@ public class RecipeController {
       List<Map.Entry<Grocery, Double>> ingredients) {
     Recipe recipe = new Recipe(name, description, instructions, ingredients);
     recipeRepository.addRecipe(recipe);
-    recipeView.displayRecipe(recipe);
   }
 
   /**

@@ -102,6 +102,12 @@ public class TextMenuInterface extends UserInterface {
       if (name.equalsIgnoreCase("done")) {
         break;
       }
+
+      if (ingredients.stream().anyMatch(entry -> entry.getKey().getName().equalsIgnoreCase(name))) {
+        System.out.println("Ingredient already exists. Please enter a different ingredient.");
+        continue;
+      }
+
       double amount = readPositiveDouble("Enter amount for " + name + ": ");
       String unit = readUnit();
 

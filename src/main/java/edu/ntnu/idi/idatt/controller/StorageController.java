@@ -50,7 +50,7 @@ public class StorageController {
   public Map<Grocery, Double> getAllGroceriesWithAmount() {
     if (storageRepository.getAllGroceries().isEmpty()) {
       System.out.println("No groceries in storage.");
-      return null;
+      return Map.of();
     } else {
       List<Grocery> groceries = storageRepository.getAllGroceries();
       return storageRepository.getAllGroceriesWithAmount(groceries);

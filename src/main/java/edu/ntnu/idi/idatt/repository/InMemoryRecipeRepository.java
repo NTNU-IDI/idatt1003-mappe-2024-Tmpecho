@@ -16,6 +16,9 @@ public class InMemoryRecipeRepository implements RecipeRepository {
    */
   @Override
   public void addRecipe(Recipe recipe) {
+    if (recipes.stream().anyMatch(r -> r.getName().equalsIgnoreCase(recipe.getName()))) {
+      throw new IllegalArgumentException("Recipe with this name already exists.");
+    }
     recipes.add(recipe);
   }
 

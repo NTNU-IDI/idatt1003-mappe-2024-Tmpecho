@@ -17,12 +17,13 @@ public abstract class UserInterface {
   RecipeController recipeController;
   GroceryController groceryController;
   StorageController storageController;
+  Fridge fridge;
   Cookbook cookbook;
 
   /** Initializes UI. */
   public void init() {
-    Fridge fridge = new Fridge("Fridge", 100);
-    Cookbook cookbook = new Cookbook();
+    fridge = new Fridge("Fridge", 100);
+    cookbook = new Cookbook();
 
     fridgeStorageRepository = new InMemoryStorageRepository(fridge);
     recipeRepository = new InMemoryRecipeRepository();
