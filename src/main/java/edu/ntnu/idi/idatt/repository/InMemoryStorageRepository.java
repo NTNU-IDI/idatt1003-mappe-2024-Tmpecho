@@ -131,7 +131,6 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Get all groceries with their amount.
    *
-   * @param groceries the groceries to get
    * @return a map of groceries with their amount
    */
   @Override

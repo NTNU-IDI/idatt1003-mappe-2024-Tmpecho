@@ -60,7 +60,6 @@ public interface StorageRepository {
   /**
    * Gets all groceries with their amount.
    *
-   * @param groceries the groceries to get
    * @return a map of groceries with their amount
    */
   Map<Grocery, Double> getAllGroceriesWithAmount();
