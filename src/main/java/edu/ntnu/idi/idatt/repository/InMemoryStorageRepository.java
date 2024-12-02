@@ -16,7 +16,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Creates a new instance of the repository.
    *
-   * @param storage the storage to use
+   * @param storage The storage to use
    */
   public InMemoryStorageRepository(Storage storage) {
     this.storage = storage;
@@ -25,7 +25,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Adds a grocery to the repository.
    *
-   * @param grocery the grocery to add
+   * @param grocery The grocery to add
    */
   @Override
   public void addGrocery(Grocery grocery) {
@@ -36,8 +36,8 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Get a grocery by name.
    *
-   * @param name the name of the grocery to get
-   * @return the grocery with the given name, or null if no such grocery exists
+   * @param name The name of the grocery to get
+   * @return The grocery with the given name, or null if no such grocery exists
    */
   @Override
   public Grocery getGrocery(String name) {
@@ -50,7 +50,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Remove a grocery by name.
    *
-   * @param name the name of the grocery to remove
+   * @param name The name of the grocery to remove
    */
   @Override
   public void removeGrocery(String name) {
@@ -64,8 +64,8 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Remove a certain amount of a grocery by name.
    *
-   * @param name the name of the grocery to remove
-   * @param amount the amount to remove
+   * @param name The name of the grocery to remove
+   * @param amount The amount to remove
    */
   @Override
   public void removeGrocery(String name, double amount) {
@@ -90,7 +90,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * List all groceries in the repository.
    *
-   * @return a list of all groceries in the repository
+   * @return A list of all groceries in the repository
    */
   @Override
   public List<Grocery> getAllGroceries() {
@@ -102,7 +102,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * List all expired groceries in the repository.
    *
-   * @return a list of all expired groceries in the repository
+   * @return A list of all expired groceries in the repository
    */
   @Override
   public List<Grocery> listExpiredGroceries() {
@@ -117,7 +117,7 @@ public class InMemoryStorageRepository implements StorageRepository {
   /**
    * Calculate the total value of all groceries in the repository.
    *
-   * @return the total value of all groceries in the repository
+   * @return The total value of all groceries in the repository
    */
   @Override
   public double calculateTotalValue() {

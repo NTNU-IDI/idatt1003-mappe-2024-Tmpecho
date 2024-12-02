@@ -9,7 +9,7 @@ public class StorageView {
   /**
    * Display storage details.
    *
-   * @param storage The storage to display.
+   * @param storage The storage to display
    */
   public static void displayStorageDetails(Storage storage) {
     System.out.println("Storage details:");

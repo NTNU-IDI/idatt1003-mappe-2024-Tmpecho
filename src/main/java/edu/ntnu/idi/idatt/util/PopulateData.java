@@ -13,7 +13,7 @@ public class PopulateData {
   /**
    * Populates the repositories with initial data.
    *
-   * @param fridgeStorageRepository The storage repository for groceries.
+   * @param fridgeStorageRepository The storage repository for groceries
    * @param recipeRepository The recipe repository
    */
   public void populateRepositories(

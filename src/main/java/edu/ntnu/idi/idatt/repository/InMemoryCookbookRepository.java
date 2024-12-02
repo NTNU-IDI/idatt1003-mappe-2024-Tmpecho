@@ -12,7 +12,7 @@ public class InMemoryCookbookRepository implements CookbookRepository {
   /**
    * Add a recipe to the list.
    *
-   * @param recipe The recipe to add.
+   * @param recipe The recipe to add
    */
   @Override
   public void addRecipe(Recipe recipe) {
@@ -25,7 +25,7 @@ public class InMemoryCookbookRepository implements CookbookRepository {
   /**
    * Remove a recipe from the list.
    *
-   * @param recipe The recipe to remove.
+   * @param recipe The recipe to remove
    */
   @Override
   public void removeRecipe(Recipe recipe) {
@@ -35,7 +35,7 @@ public class InMemoryCookbookRepository implements CookbookRepository {
   /**
    * Get all recipes in the list.
    *
-   * @return A list of all recipes.
+   * @return A list of all recipes
    */
   @Override
   public List<Recipe> getAllRecipes() {
@@ -46,7 +46,7 @@ public class InMemoryCookbookRepository implements CookbookRepository {
    * Find recipes by name.
    *
    * @param name The name to search for.
-   * @return A list of matching recipes.
+   * @return A list of matching recipes
    */
   @Override
   public List<Recipe> findRecipesByName(String name) {

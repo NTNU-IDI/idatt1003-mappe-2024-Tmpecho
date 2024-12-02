@@ -9,8 +9,8 @@ public class GroceryController {
   /**
    * Calculates the total value of a grocery.
    *
-   * @param grocery The grocery whose value is to be calculated.
-   * @return The total value of the grocery (price * amount).
+   * @param grocery The grocery whose value is to be calculated
+   * @return The total value of the grocery (price * amount)
    */
   public static double calculateGroceryValue(Grocery grocery) {
     if (grocery == null || grocery.getPrice() == null || grocery.getAmount() == null) {
@@ -22,12 +22,12 @@ public class GroceryController {
   /**
    * Create a grocery object.
    *
-   * @param name the name of the grocery
-   * @param amount the amount of the grocery
-   * @param unit the unit of the grocery
-   * @param expirationDate the expiration date of the grocery
-   * @param price the price of the grocery
-   * @return the grocery that was added
+   * @param name The name of the grocery
+   * @param amount The amount of the grocery
+   * @param unit The unit of the grocery
+   * @param expirationDate The expiration date of the grocery
+   * @param price The price of the grocery
+   * @return The grocery that was added
    */
   public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {

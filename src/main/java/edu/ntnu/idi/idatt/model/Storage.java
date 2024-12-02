@@ -11,8 +11,8 @@ public class Storage {
   /**
    * Constructor for Storage.
    *
-   * @param name name of storage
-   * @param capacity capacity of storage
+   * @param name The name of the storage
+   * @param capacity The capacity of the storage
    */
   public Storage(String name, double capacity, double minTemperature, double maxTemperature) {
     this.name = name;
@@ -25,7 +25,7 @@ public class Storage {
   /**
    * Add grocery to storage.
    *
-   * @param grocery grocery to add
+   * @param grocery The grocery to add
    */
   public void addGrocery(Grocery grocery) {
     if (currentCapacity + grocery.getAmount() > capacity) {
@@ -37,7 +37,7 @@ public class Storage {
   /**
    * Remove grocery from storage.
    *
-   * @param grocery grocery to remove
+   * @param grocery The grocery to remove
    */
   public void removeGrocery(Grocery grocery) {
     removeGrocery(grocery, grocery.getAmount());
@@ -46,8 +46,8 @@ public class Storage {
   /**
    * Remove an amount of a grocery from storage.
    *
-   * @param grocery grocery to remove
-   * @param amount amount to remove
+   * @param grocery The grocery to remove
+   * @param amount The amount to remove
    */
   public void removeGrocery(Grocery grocery, double amount) {
     if (grocery.getAmount() == null) {
@@ -67,7 +67,7 @@ public class Storage {
   /**
    * Get the capacity of the storage.
    *
-   * @return capacity of the storage
+   * @return The capacity of the storage
    */
   public double getCapacity() {
     return capacity;
@@ -76,7 +76,7 @@ public class Storage {
   /**
    * Get the current capacity of the storage.
    *
-   * @return current capacity of the storage
+   * @return The current capacity of the storage
    */
   public double getCurrentCapacity() {
     return currentCapacity;
@@ -85,31 +85,9 @@ public class Storage {
   /**
    * Get the name of the storage.
    *
-   * @return name of the storage
+   * @return The name of the storage
    */
   public String getName() {
     return name;
-  }
-
-  /**
-   * Get string representation of storage.
-   *
-   * @return string representation of storage
-   */
-  @Override
-  public String toString() {
-    return "Storage{"
-        + "name='"
-        + name
-        + '\''
-        + ", capacity="
-        + capacity
-        + ", currentCapacity="
-        + currentCapacity
-        + ", minTemperature="
-        + minTemperature
-        + ", maxTemperature="
-        + maxTemperature
-        + '}';
   }
 }
