@@ -95,11 +95,14 @@ public class RecipeController {
     recipeView.displayCanMakeRecipe(recipe, availableIngredients);
   }
 
-  /**
-   * Method for displaying all recipes.
-   */
+  /** Method for displaying all recipes. */
   public void displayAllRecipes() {
     List<Recipe> recipes = getAllRecipes();
+    recipeView.displayAllRecipes(recipes);
+  }
+
+  public void displayRecipesInCookbook() {
+    List<Recipe> recipes = cookbook.getRecipes();
     recipeView.displayAllRecipes(recipes);
   }
 }

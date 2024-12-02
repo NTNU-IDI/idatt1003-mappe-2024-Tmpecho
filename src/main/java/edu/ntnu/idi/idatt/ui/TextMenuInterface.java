@@ -31,6 +31,7 @@ public class TextMenuInterface extends UserInterface {
         case 8 -> listRecipes();
         case 9 -> saveRecipeToCookbook();
         case 10 -> checkRecipe();
+        case 11 -> listRecipesInCookbook();
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
@@ -50,6 +51,7 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("8. List recipes");
     System.out.println("9. Save recipe to cookbook");
     System.out.println("10. Check if recipe can be made");
+    System.out.println("11. List recipes in cookbook");
     System.out.println("0. Exit");
   }
 
@@ -330,5 +332,12 @@ public class TextMenuInterface extends UserInterface {
     } catch (IndexOutOfBoundsException e) {
       System.out.println("Recipe not found.");
     }
+  }
+
+  /** Lists all recipes in the cookbook. */
+  private void listRecipesInCookbook() {
+    System.out.println("Listing recipes in cookbook...");
+
+    recipeController.displayRecipesInCookbook();
   }
 }
