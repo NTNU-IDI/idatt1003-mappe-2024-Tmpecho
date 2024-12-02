@@ -10,7 +10,16 @@ public class RecipeView {
   /**
    * Displays a recipe.
    *
-   * @param recipe The recipe to display
+   * @param recipe The recipe name to display.
+   */
+  public static void displayRecipeName(Recipe recipe) {
+    System.out.println("- " + recipe.getName());
+  }
+
+  /**
+   * Displays a recipe in full.
+   *
+   * @param recipe The recipe to display.
    */
   public static void displayRecipe(Recipe recipe) {
     System.out.println("Recipe: " + recipe.getName());
@@ -22,9 +31,8 @@ public class RecipeView {
         .forEach(
             ingredient ->
                 System.out.println(
-                    "- "
-                        + ingredient.getName()
-                        + ": "
+                    ingredient.getName()
+                        + " "
                         + ingredient.getAmount()
                         + " "
                         + ingredient.getMeasurementUnit()));
@@ -33,13 +41,13 @@ public class RecipeView {
   /**
    * Displays all recipes.
    *
-   * @param recipes The list of recipes to display
+   * @param recipes The list of recipes to display.
    */
   public static void displayAllRecipes(List<Recipe> recipes) {
     if (recipes.isEmpty()) {
       System.out.println("No recipes found.");
     } else {
-      recipes.forEach(RecipeView::displayRecipe);
+      recipes.forEach(RecipeView::displayRecipeName);
     }
   }
 

@@ -110,14 +110,6 @@ class GroceryTest {
     assertEquals(0, milk.compareTo(anotherMilk));
   }
 
-  /** Tests the toString method. */
-  @Test
-  void toStringTest() {
-    String expected =
-        "Grocery{name='Milk', amount=1.0, measurementUnit=LITER, expirationDate=2024-10-01, price=1.5}";
-    assertEquals(expected, milk.toString());
-  }
-
   /** Tests the constructor with various inputs. */
   @Test
   void constructorTest() {

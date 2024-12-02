@@ -2,7 +2,6 @@ package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
-import edu.ntnu.idi.idatt.view.GroceryView;
 import java.time.LocalDate;
 
 /** Controller class for the grocery model. */
@@ -33,14 +32,5 @@ public class GroceryController {
   public Grocery createGrocery(
       String name, double amount, String unit, LocalDate expirationDate, Double price) {
     return new Grocery(name, amount, MeasurementUnit.fromString(unit), expirationDate, price);
-  }
-
-  /**
-   * Display a grocery from the model.
-   *
-   * @param grocery the grocery to display
-   */
-  public void displayGrocery(Grocery grocery) {
-    GroceryView.displayGrocery(grocery);
   }
 }
