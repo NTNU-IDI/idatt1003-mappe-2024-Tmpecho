@@ -1,6 +1,7 @@
 package edu.ntnu.idi.idatt.view;
 
 import edu.ntnu.idi.idatt.model.Grocery;
+import edu.ntnu.idi.idatt.util.DateUtils;
 
 /** Class representing the view for groceries. */
 public class GroceryView {
@@ -20,7 +21,7 @@ public class GroceryView {
         grocery.getName(),
         grocery.getAmount(),
         grocery.getMeasurementUnit(),
-        grocery.getExpirationDate(),
+        grocery.getExpirationDate().format(DateUtils.FORMATTER),
         grocery.getPrice());
   }
 }

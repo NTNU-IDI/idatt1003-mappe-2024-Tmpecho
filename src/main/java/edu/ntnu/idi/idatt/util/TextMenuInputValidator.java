@@ -2,8 +2,8 @@ package edu.ntnu.idi.idatt.util;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
-import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -152,13 +152,12 @@ public class TextMenuInputValidator {
    */
   public static LocalDate readDate() {
     while (true) {
+      System.out.print("Enter date (dd-MM-yyyy): ");
       try {
-        int year = readInt("Year: ");
-        int month = readInt("Month: ");
-        int day = readInt("Day: ");
-        return LocalDate.of(year, month, day);
-      } catch (DateTimeException e) {
-        System.out.println("Invalid date. Please enter a valid date.");
+        String date = scanner.nextLine();
+        return LocalDate.parse(date, DateUtils.FORMATTER);
+      } catch (DateTimeParseException e) {
+        System.out.println("Invalid date. Please enter a valid date in the format dd-MM-yyyy.");
       }
     }
   }
