@@ -1,7 +1,6 @@
 package edu.ntnu.idi.idatt.model;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /** A class representing a recipe. */
@@ -9,7 +8,7 @@ public class Recipe {
   String name;
   String description;
   String instructions;
-  List<Map.Entry<Grocery, Double>> ingredients;
+  List<Grocery> ingredients;
 
   /**
    * Constructor for a recipe.
@@ -19,11 +18,7 @@ public class Recipe {
    * @param instructions The instructions for how to make the recipe.
    * @param ingredients A list of ingredients needed to make the recipe.
    */
-  public Recipe(
-      String name,
-      String description,
-      String instructions,
-      List<Map.Entry<Grocery, Double>> ingredients) {
+  public Recipe(String name, String description, String instructions, List<Grocery> ingredients) {
     this.name = name;
     this.description = description;
     this.instructions = instructions;
@@ -89,7 +84,7 @@ public class Recipe {
    *
    * @return The ingredients needed to make the recipe.
    */
-  public List<Map.Entry<Grocery, Double>> getIngredients() {
+  public List<Grocery> getIngredients() {
     return ingredients;
   }
 
@@ -98,7 +93,7 @@ public class Recipe {
    *
    * @param ingredients The ingredients needed to make the recipe.
    */
-  public void setIngredients(List<Map.Entry<Grocery, Double>> ingredients) {
+  public void setIngredients(List<Grocery> ingredients) {
     this.ingredients = ingredients;
   }
 

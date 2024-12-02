@@ -6,7 +6,6 @@ import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.List;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -92,6 +91,6 @@ class InMemoryRecipeRepositoryTest {
         name,
         "Delicious " + name,
         "Mix ingredients and cook.",
-        List.of(Map.entry(flour, 1.0), Map.entry(milk, 0.5), Map.entry(egg, 2.0)));
+        List.of(flour, milk, egg));
   }
 }

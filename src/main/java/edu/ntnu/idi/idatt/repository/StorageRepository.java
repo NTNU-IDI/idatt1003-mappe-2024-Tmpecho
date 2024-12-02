@@ -2,7 +2,6 @@ package edu.ntnu.idi.idatt.repository;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import java.util.List;
-import java.util.Map;
 
 /** Interface for the storage repository. */
 public interface StorageRepository {
@@ -56,11 +55,4 @@ public interface StorageRepository {
    * @return the total value of all groceries in the storage
    */
   double calculateTotalValue();
-
-  /**
-   * Gets all groceries with their amount.
-   *
-   * @return a map of groceries with their amount
-   */
-  Map<Grocery, Double> getAllGroceriesWithAmount();
 }

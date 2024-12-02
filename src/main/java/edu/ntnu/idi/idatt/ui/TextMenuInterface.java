@@ -5,12 +5,28 @@ import edu.ntnu.idi.idatt.model.Recipe;
 import edu.ntnu.idi.idatt.util.TextMenuInputValidator;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 /** Text-based menu interface for the user. */
 public class TextMenuInterface extends UserInterface {
   Scanner scanner = new Scanner(System.in);
+
+  /** Prints the menu of choices for the user to perform. */
+  private static void printMenu() {
+    System.out.println("\nMenu:");
+    System.out.println("1. Add grocery");
+    System.out.println("2. Remove grocery");
+    System.out.println("3. List groceries");
+    System.out.println("4. List expired groceries");
+    System.out.println("5. Calculate total value of groceries");
+    System.out.println("6. Add recipe");
+    System.out.println("7. Remove recipe");
+    System.out.println("8. List recipes");
+    System.out.println("9. Save recipe to cookbook");
+    System.out.println("10. Check if recipe can be made");
+    System.out.println("11. List recipes in cookbook");
+    System.out.println("0. Exit");
+  }
 
   /** Starts the text-based menu interface. */
   public void start() {
@@ -34,23 +50,6 @@ public class TextMenuInterface extends UserInterface {
         default -> System.out.println("Invalid choice");
       }
     }
-  }
-
-  /** Prints the menu of choices for the user to perform. */
-  private static void printMenu() {
-    System.out.println("\nMenu:");
-    System.out.println("1. Add grocery");
-    System.out.println("2. Remove grocery");
-    System.out.println("3. List groceries");
-    System.out.println("4. List expired groceries");
-    System.out.println("5. Calculate total value of groceries");
-    System.out.println("6. Add recipe");
-    System.out.println("7. Remove recipe");
-    System.out.println("8. List recipes");
-    System.out.println("9. Save recipe to cookbook");
-    System.out.println("10. Check if recipe can be made");
-    System.out.println("11. List recipes in cookbook");
-    System.out.println("0. Exit");
   }
 
   /** Adds a grocery to storage. */
@@ -118,7 +117,7 @@ public class TextMenuInterface extends UserInterface {
     String recipeName = TextMenuInputValidator.readName();
     String description = TextMenuInputValidator.readText("description");
     String instructions = TextMenuInputValidator.readText("instructions");
-    List<Map.Entry<Grocery, Double>> ingredients = TextMenuInputValidator.readIngredients();
+    List<Grocery> ingredients = TextMenuInputValidator.readIngredients();
 
     try {
       recipeController.addRecipe(recipeName, description, instructions, ingredients);
