@@ -10,6 +10,7 @@ import edu.ntnu.idi.idatt.repository.InMemoryRecipeRepository;
 import edu.ntnu.idi.idatt.repository.InMemoryStorageRepository;
 import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
+import edu.ntnu.idi.idatt.util.PopulateData;
 
 /** Base class for all user interfaces. */
 public abstract class UserInterface {
@@ -32,6 +33,9 @@ public abstract class UserInterface {
     recipeController = new RecipeController(recipeRepository, cookbookRepository);
     groceryController = new GroceryController();
     storageController = new StorageController(groceryController, fridgeStorageRepository);
+
+    PopulateData populateData = new PopulateData();
+    populateData.populateRepositories(fridgeStorageRepository, recipeRepository);
   }
 
   /** Main program loop. Must be implemented by subclasses. */
