@@ -2,7 +2,7 @@ package edu.ntnu.idi.idatt.view;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
-import edu.ntnu.idi.idatt.util.IngredientChecker;
+import edu.ntnu.idi.idatt.service.IngredientService;
 import java.util.List;
 
 /** Class representing the view for recipes. */
@@ -58,10 +58,23 @@ public class RecipeView {
    * @param availableIngredients A map of available groceries and their quantities.
    */
   public static void displayCanMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
-    if (IngredientChecker.hasAllIngredients(recipe, availableIngredients)) {
+    if (IngredientService.hasAllIngredients(recipe, availableIngredients)) {
       System.out.println("You can make " + recipe.getName());
     } else {
       System.out.println("You can't make " + recipe.getName());
+    }
+  }
+
+  /**
+   * Displays a suggested recipe name based on available ingredients.
+   *
+   * @param suggestedRecipe The suggested recipe to display.
+   */
+  public static void displaySuggestedRecipe(Recipe suggestedRecipe) {
+    if (suggestedRecipe == null) {
+      System.out.println("No recipe can be made with the available ingredients.");
+    } else {
+      System.out.println("Suggested recipe: " + suggestedRecipe.getName());
     }
   }
 }
