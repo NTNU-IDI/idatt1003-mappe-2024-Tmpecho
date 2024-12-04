@@ -61,7 +61,15 @@ public class TextMenuInterface extends UserInterface {
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
+
+      pressEnterToContinue();
     }
+  }
+
+  /** Waits for the user to press {@code enter} before continuing. */
+  private void pressEnterToContinue() {
+    System.out.println("\nPress enter to continue...");
+    scanner.nextLine();
   }
 
   /** Displays the storage details. */
