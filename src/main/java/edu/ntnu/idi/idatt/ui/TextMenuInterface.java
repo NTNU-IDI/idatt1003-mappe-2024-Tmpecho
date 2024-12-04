@@ -33,6 +33,7 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("11. Check if recipe can be made");
     System.out.println("12. List recipes in cookbook");
     System.out.println("13. Display recipe");
+    System.out.println("14. Suggest recipe");
     System.out.println("0. Exit");
   }
 
@@ -56,6 +57,7 @@ public class TextMenuInterface extends UserInterface {
         case 11 -> checkRecipe();
         case 12 -> listRecipesInCookbook();
         case 13 -> displayRecipe();
+        case 14 -> suggestRecipe();
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
@@ -175,7 +177,7 @@ public class TextMenuInterface extends UserInterface {
         return;
       }
       Recipe recipe = recipes.get(0);
-      recipeController.canMakeRecipe(recipe, storageController.getAllGroceriesWithAmount());
+      recipeController.canMakeRecipe(recipe, storageController.getAllGroceries());
     } catch (Exception e) {
       System.out.println("Error checking recipe: " + e.getMessage());
     }
@@ -215,6 +217,23 @@ public class TextMenuInterface extends UserInterface {
       recipeController.displayRecipe(recipe);
     } catch (Exception e) {
       System.out.println("Error displaying recipe: " + e.getMessage());
+    }
+  }
+
+  private void suggestRecipe() {
+    System.out.println("Suggesting recipe...");
+
+    Recipe recipe = recipeController.suggestRecipe(storageController.getAllGroceries());
+
+    recipeController.displaySuggestedRecipe(recipe);
+
+    if (recipe != null) {
+      System.out.println("Do you wish to display the suggested recipe? (y/n)");
+
+      String choice = scanner.nextLine();
+      if (choice.equalsIgnoreCase("y")) {
+        recipeController.displayRecipe(recipe);
+      }
     }
   }
 }

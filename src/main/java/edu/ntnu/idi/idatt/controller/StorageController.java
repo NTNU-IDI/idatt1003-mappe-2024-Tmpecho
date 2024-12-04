@@ -57,7 +57,7 @@ public class StorageController {
    *
    * @return A list of groceries with their amount
    */
-  public List<Grocery> getAllGroceriesWithAmount() {
+  public List<Grocery> getAllGroceries() {
     if (storageRepository.getAllGroceries().isEmpty()) {
       return List.of();
     } else {

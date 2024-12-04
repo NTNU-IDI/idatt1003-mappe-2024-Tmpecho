@@ -4,6 +4,7 @@ import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import edu.ntnu.idi.idatt.repository.CookbookRepository;
 import edu.ntnu.idi.idatt.repository.RecipeRepository;
+import edu.ntnu.idi.idatt.service.RecipeSuggestionService;
 import edu.ntnu.idi.idatt.view.RecipeView;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class RecipeController {
   private final RecipeRepository recipeRepository;
   private final CookbookRepository cookbookRepository;
+  private final RecipeSuggestionService recipeSuggestionService;
 
   /**
    * Constructor for the RecipeController class.
@@ -26,6 +28,7 @@ public class RecipeController {
       RecipeRepository recipeRepository, CookbookRepository cookbookRepository) {
     this.recipeRepository = recipeRepository;
     this.cookbookRepository = cookbookRepository;
+    this.recipeSuggestionService = new RecipeSuggestionService();
   }
 
   /**
@@ -114,5 +117,26 @@ public class RecipeController {
    */
   public void displayRecipe(Recipe recipe) {
     RecipeView.displayRecipe(recipe);
+  }
+
+  /**
+   * Returns a suggested recipe based on available ingredients.
+   *
+   * @param allGroceries A list of all groceries.
+   * @return The suggested recipe.
+   */
+  public Recipe suggestRecipe(List<Grocery> allGroceries) {
+    List<Recipe> recipes = recipeRepository.getAllRecipes();
+
+    return recipeSuggestionService.suggestRecipe(recipes, allGroceries);
+  }
+
+  /**
+   * Displays a suggested recipe name.
+   *
+   * @param recipe The suggested recipe to display.
+   */
+  public void displaySuggestedRecipe(Recipe recipe) {
+    RecipeView.displaySuggestedRecipe(recipe);
   }
 }
