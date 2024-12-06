@@ -58,7 +58,8 @@ public class RecipeController {
    * Method for saving a recipe to the cookbook.
    *
    * @param recipe The recipe to save.
-   * @return {@code true} if the recipe was saved, {@code false} if the recipe was already in the cookbook.
+   * @return {@code true} if the recipe was saved, {@code false} if the recipe was already in the
+   *     cookbook.
    */
   public boolean saveRecipeToCookbook(Recipe recipe) {
     if (cookbookRepository.getAllRecipes().contains(recipe)) {

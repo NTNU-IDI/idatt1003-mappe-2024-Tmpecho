@@ -193,6 +193,15 @@ public class TextMenuInterface extends UserInterface {
       }
       Recipe recipe = recipes.get(0);
       recipeController.canMakeRecipe(recipe, storageController.getAllGroceries());
+
+      if (recipe != null) {
+        System.out.println("Do you wish to display the suggested recipe? (y/n)");
+
+        String choice = scanner.nextLine();
+        if (choice.equalsIgnoreCase("y")) {
+          recipeController.displayRecipe(recipe);
+        }
+      }
     } catch (Exception e) {
       System.out.println("Error checking recipe: " + e.getMessage());
     }
