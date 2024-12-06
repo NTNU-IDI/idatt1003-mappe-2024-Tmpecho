@@ -61,14 +61,15 @@ public class TextMenuInterface extends UserInterface {
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
-
-      pressEnterToContinue();
+      if (choice != 0) {
+        pressEnterToContinue();
+      }
     }
   }
 
   /** Waits for the user to press {@code enter} before continuing. */
   private void pressEnterToContinue() {
-    System.out.println("\nPress enter to continue...");
+    System.out.print("\nPress enter to continue...");
     scanner.nextLine();
   }
 
@@ -115,14 +116,20 @@ public class TextMenuInterface extends UserInterface {
   private void listGroceries() {
     System.out.println("Listing groceries...");
 
-    storageController.listAllGroceries();
+    boolean success = storageController.listAllGroceries();
+    if (!success) {
+      System.out.println("No groceries found.");
+    }
   }
 
   /** Lists expired groceries in storage and the total value of these groceries. */
   private void listExpiredGroceries() {
     System.out.println("Listing expired groceries...");
 
-    storageController.listExpiredGroceries();
+    boolean success = storageController.listExpiredGroceries();
+    if (!success) {
+      System.out.println("No expired groceries found.");
+    }
     storageController.displayExpiredTotalValue();
   }
 
@@ -197,7 +204,12 @@ public class TextMenuInterface extends UserInterface {
 
     try {
       Recipe recipe = recipeController.findRecipesByName(recipeName).get(0);
-      recipeController.saveRecipeToCookbook(recipe);
+      boolean success = recipeController.saveRecipeToCookbook(recipe);
+      if (success) {
+        System.out.println("Recipe saved to cookbook successfully.");
+      } else {
+        System.out.println("Recipe already exists in cookbook.");
+      }
     } catch (IndexOutOfBoundsException e) {
       System.out.println("Recipe not found.");
     }

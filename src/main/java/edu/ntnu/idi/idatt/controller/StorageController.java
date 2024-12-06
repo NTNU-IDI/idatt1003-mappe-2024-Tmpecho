@@ -66,27 +66,36 @@ public class StorageController {
     }
   }
 
-  /** List all groceries in the storage model. */
-  public void listAllGroceries() {
+  /**
+   * List all groceries in the storage model.
+   *
+   * @return {@code true} if there are groceries in the storage model, {@code false} otherwise.
+   */
+  public boolean listAllGroceries() {
     if (storageRepository.getAllGroceries().isEmpty()) {
-      System.out.println("No groceries in storage.");
-      return;
+      return false;
     }
     StorageView.displayStorage(storageRepository.getAllGroceries());
+    return true;
   }
 
-  /** List all expired groceries in the storage model. */
-  public void listExpiredGroceries() {
+  /**
+   * List all expired groceries in the storage model.
+   *
+   * @return {@code true} if there are expired groceries in the storage model, {@code false}
+   *     otherwise.
+   */
+  public boolean listExpiredGroceries() {
     if (storageRepository.listExpiredGroceries().isEmpty()) {
-      System.out.println("No expired groceries in storage.");
-      return;
+      return false;
     }
     StorageView.displayStorage(storageRepository.listExpiredGroceries());
+    return true;
   }
 
   /** Display the total value of all groceries in the storage model. */
   public void displayTotalValue() {
-    System.out.println("Total value: " + storageRepository.calculateTotalValue() + " NOK");
+    StorageView.displayTotalValue(storageRepository.calculateTotalValue());
   }
 
   /** Display the total value of all expired groceries in the storage model. */
@@ -96,7 +105,7 @@ public class StorageController {
             .mapToDouble(GroceryController::calculateGroceryValue)
             .sum();
 
-    System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
+    StorageView.displayExpiredValue(totalExpiredValue);
   }
 
   /**
