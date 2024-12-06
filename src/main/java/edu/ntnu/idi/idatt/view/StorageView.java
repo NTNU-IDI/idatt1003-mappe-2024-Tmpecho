@@ -35,4 +35,22 @@ public class StorageView {
 
     groceries.forEach(GroceryView::displayGroceryAsRow);
   }
+
+  /**
+   * Displays the total value of all groceries in the storage.
+   *
+   * @param totalValue The total value of all groceries in the storage.
+   */
+  public static void displayTotalValue(double totalValue) {
+    System.out.println("Total value: " + totalValue + " NOK");
+  }
+
+  /**
+   * Displays the total value of all expired groceries in the storage.
+   *
+   * @param totalExpiredValue The total value of all expired groceries in the storage.
+   */
+  public static void displayExpiredValue(double totalExpiredValue) {
+    System.out.println("Total value of expired groceries: " + totalExpiredValue + " NOK");
+  }
 }
