@@ -18,16 +18,17 @@ public class TextMenuInterface extends UserInterface {
     System.out.println("2. Add grocery");
     System.out.println("3. Remove grocery");
     System.out.println("4. List groceries");
-    System.out.println("5. List expired groceries");
-    System.out.println("6. Calculate total value of groceries");
-    System.out.println("7. Add recipe");
-    System.out.println("8. Remove recipe");
-    System.out.println("9. List recipes");
-    System.out.println("10. Save recipe to cookbook");
-    System.out.println("11. Check if recipe can be made");
-    System.out.println("12. List recipes in cookbook");
-    System.out.println("13. Display recipe");
-    System.out.println("14. Suggest recipe");
+    System.out.println("5. Check if grocery is in storage");
+    System.out.println("6. List expired groceries");
+    System.out.println("7. Calculate total value of groceries");
+    System.out.println("8. Add recipe");
+    System.out.println("9. Remove recipe");
+    System.out.println("10. List recipes");
+    System.out.println("11. Save recipe to cookbook");
+    System.out.println("12. Check if recipe can be made");
+    System.out.println("13. List recipes in cookbook");
+    System.out.println("14. Display recipe");
+    System.out.println("15. Suggest recipe");
     System.out.println("0. Exit");
   }
 
@@ -42,16 +43,17 @@ public class TextMenuInterface extends UserInterface {
         case 2 -> addGrocery();
         case 3 -> removeGrocery();
         case 4 -> listGroceries();
-        case 5 -> listExpiredGroceries();
-        case 6 -> calculateTotalValue();
-        case 7 -> addRecipe();
-        case 8 -> removeRecipe();
-        case 9 -> listRecipes();
-        case 10 -> saveRecipeToCookbook();
-        case 11 -> checkRecipe();
-        case 12 -> listRecipesInCookbook();
-        case 13 -> displayRecipe();
-        case 14 -> suggestRecipe();
+        case 5 -> checkForGrocery();
+        case 6 -> listExpiredGroceries();
+        case 7 -> calculateTotalValue();
+        case 8 -> addRecipe();
+        case 9 -> removeRecipe();
+        case 10 -> listRecipes();
+        case 11 -> saveRecipeToCookbook();
+        case 12 -> checkRecipe();
+        case 13 -> listRecipesInCookbook();
+        case 14 -> displayRecipe();
+        case 15 -> suggestRecipe();
         case 0 -> System.out.println("Exiting...");
         default -> System.out.println("Invalid choice");
       }
@@ -113,6 +115,22 @@ public class TextMenuInterface extends UserInterface {
     boolean success = storageController.listAllGroceries();
     if (!success) {
       System.out.println("No groceries found.");
+    }
+  }
+
+  /** Checks if a grocery is in storage. */
+  private void checkForGrocery() {
+    System.out.print("Enter name of grocery to check: ");
+    String name = scanner.nextLine();
+
+    try {
+      if (storageController.groceryInStorage(name)) {
+        System.out.println("Grocery found in storage.");
+      } else {
+        System.out.println("Grocery not found in storage.");
+      }
+    } catch (Exception e) {
+      System.out.println("Error checking grocery: " + e.getMessage());
     }
   }
 
