@@ -4,25 +4,38 @@ import edu.ntnu.idi.idatt.controller.GroceryController;
 import edu.ntnu.idi.idatt.controller.RecipeController;
 import edu.ntnu.idi.idatt.controller.StorageController;
 import edu.ntnu.idi.idatt.model.Fridge;
+import edu.ntnu.idi.idatt.repository.CookbookRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryCookbookRepository;
+import edu.ntnu.idi.idatt.repository.InMemoryRecipeRepository;
 import edu.ntnu.idi.idatt.repository.InMemoryStorageRepository;
+import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import edu.ntnu.idi.idatt.repository.StorageRepository;
+import edu.ntnu.idi.idatt.util.PopulateData;
 
 /** Base class for all user interfaces. */
 public abstract class UserInterface {
   StorageRepository fridgeStorageRepository;
+  RecipeRepository recipeRepository;
   RecipeController recipeController;
   GroceryController groceryController;
   StorageController storageController;
+  Fridge fridge;
+  CookbookRepository cookbookRepository;
 
   /** Initializes UI. */
   public void init() {
-    Fridge fridge = new Fridge("Fridge", 100);
+    fridge = new Fridge("Fridge", 100);
+    cookbookRepository = new InMemoryCookbookRepository();
 
     fridgeStorageRepository = new InMemoryStorageRepository(fridge);
+    recipeRepository = new InMemoryRecipeRepository();
 
-    recipeController = new RecipeController();
+    recipeController = new RecipeController(recipeRepository, cookbookRepository);
     groceryController = new GroceryController();
     storageController = new StorageController(groceryController, fridgeStorageRepository);
+
+    PopulateData populateData = new PopulateData();
+    populateData.populateRepositories(fridgeStorageRepository, recipeRepository);
   }
 
   /** Main program loop. Must be implemented by subclasses. */

@@ -13,7 +13,7 @@ public class Grocery implements Comparable<Grocery> {
   Double amount;
   MeasurementUnit measurementUnit;
   LocalDate expirationDate;
-  Double price; // Price per unit in non-specified currency
+  Double price;
 
   /**
    * Constructor for the Grocery class. We use a builder to one have one constructer where only the
@@ -31,7 +31,7 @@ public class Grocery implements Comparable<Grocery> {
     if (amount < 0) {
       throw new IllegalArgumentException("Amount cannot be negative");
     }
-    if (price < 0) {
+    if (price != null && price < 0) {
       throw new IllegalArgumentException("Price cannot be negative");
     }
     this.name = name;
@@ -138,28 +138,6 @@ public class Grocery implements Comparable<Grocery> {
       throw new IllegalArgumentException("Price cannot be negative");
     }
     this.price = price;
-  }
-
-  /**
-   * Returns a string representation of the grocery item.
-   *
-   * @return A string representation of the grocery item
-   */
-  @Override
-  public String toString() {
-    return "Grocery{"
-        + "name='"
-        + name
-        + '\''
-        + ", amount="
-        + amount
-        + ", measurementUnit="
-        + measurementUnit
-        + ", expirationDate="
-        + expirationDate
-        + ", price="
-        + price
-        + '}';
   }
 
   /**

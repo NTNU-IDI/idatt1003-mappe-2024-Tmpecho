@@ -106,14 +106,12 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public List<Grocery> listExpiredGroceries() {
-    List<Grocery> expiredGroceries =
-        groceries.stream()
-            .filter(
-                grocery ->
-                    grocery.getExpirationDate() != null
-                        && grocery.getExpirationDate().isBefore(LocalDate.now()))
-            .collect(Collectors.toList());
-    return expiredGroceries;
+    return groceries.stream()
+        .filter(
+            grocery ->
+                grocery.getExpirationDate() != null
+                    && grocery.getExpirationDate().isBefore(LocalDate.now()))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -123,11 +121,9 @@ public class InMemoryStorageRepository implements StorageRepository {
    */
   @Override
   public double calculateTotalValue() {
-    double totalValue =
-        groceries.stream()
-            .filter(grocery -> grocery.getPrice() != null)
-            .mapToDouble(grocery -> grocery.getPrice() * grocery.getAmount())
-            .sum();
-    return totalValue;
+    return groceries.stream()
+        .filter(grocery -> grocery.getPrice() != null)
+        .mapToDouble(grocery -> grocery.getPrice() * grocery.getAmount())
+        .sum();
   }
 }

@@ -7,8 +7,8 @@ import java.util.Map;
 /**
  * Represents a unit of measurement for groceries.
  *
- * <p>Each unit has a standardized name (e.g. LITER) and a set of aliases (e.g. liter, liters).
- * The aliases are used to parse user input and convert it to the corresponding enum value. </p>
+ * <p>Each unit has a standardized name (e.g. LITER) and a set of aliases (e.g. liter, liters). The
+ * aliases are used to parse user input and convert it to the corresponding enum value.
  *
  * <p>The measurement units are:
  *
@@ -17,23 +17,26 @@ import java.util.Map;
  *   <li><code>KILOGRAM</code>
  *   <li><code>PCS</code> (pieces)
  * </ul>
- * </p>
  */
 public enum MeasurementUnit {
   LITER("l", "liter", "liters"),
   KILOGRAM("kg", "kilogram", "kilograms", "kilos"),
   PCS("pcs", "pieces", "piece", "stk");
 
-  private final String[] aliases;
   private static final Map<String, MeasurementUnit> lookupMap = new HashMap<>();
 
   static {
     // Populate lookup map with aliases and enum values
-    for (MeasurementUnit unit : MeasurementUnit.values()) {
-      Arrays.stream(unit.aliases).forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
-      lookupMap.put(unit.name().toLowerCase(), unit);
-    }
+    Arrays.stream(MeasurementUnit.values())
+        .forEach(
+            unit -> {
+              Arrays.stream(unit.aliases)
+                  .forEach(alias -> lookupMap.put(alias.toLowerCase(), unit));
+              lookupMap.put(unit.name().toLowerCase(), unit);
+            });
   }
+
+  private final String[] aliases;
 
   /**
    * Constructor for MeasurementUnit with aliases.
@@ -54,7 +57,8 @@ public enum MeasurementUnit {
   public static MeasurementUnit fromString(String input) {
     MeasurementUnit unit = lookupMap.get(input.toLowerCase());
     if (unit == null) {
-      throw new IllegalArgumentException("Invalid measurement unit: " + input);
+      throw new IllegalArgumentException(
+          "Invalid measurement unit: " + input + ". Valid options are: " + lookupMap.keySet());
     }
     return unit;
   }

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 /** Test class for the StorageController class. */
 class StorageControllerTest {
   private StorageController storageController;
-  private GroceryController groceryController;
   private StorageRepository storageRepository;
   private Storage storage;
 
@@ -20,7 +19,7 @@ class StorageControllerTest {
   @BeforeEach
   void setUp() {
     storage = new Storage("Pantry", 100, -10, 30);
-    groceryController = new GroceryController();
+    GroceryController groceryController = new GroceryController();
     storageRepository = new InMemoryStorageRepository(storage);
     storageController = new StorageController(groceryController, storageRepository);
   }
@@ -84,7 +83,7 @@ class StorageControllerTest {
     double expectedExpiredValue = 10.0 * 1.5;
     double actualExpiredValue =
         storageRepository.listExpiredGroceries().stream()
-            .mapToDouble(groceryController::calculateGroceryValue)
+            .mapToDouble(GroceryController::calculateGroceryValue)
             .sum();
 
     assertEquals(expectedExpiredValue, actualExpiredValue);
