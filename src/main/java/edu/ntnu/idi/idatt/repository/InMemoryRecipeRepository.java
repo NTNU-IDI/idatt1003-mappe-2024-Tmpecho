@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** An in-memory implementation using standard List of the RecipeRepository. */
+/** An in-memory implementation using an ArrayList of the {@link RecipeRepository}. */
 public class InMemoryRecipeRepository implements RecipeRepository {
   private final List<Recipe> recipes = new ArrayList<>();
 
   /**
    * Add a recipe to the list.
    *
-   * @param recipe The recipe to add.
+   * @param recipe The recipe to add
    */
   @Override
   public void addRecipe(Recipe recipe) {
@@ -25,7 +25,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
   /**
    * Remove a recipe from the list.
    *
-   * @param recipe The recipe to remove.
+   * @param recipe The recipe to remove
    */
   @Override
   public void removeRecipe(Recipe recipe) {
@@ -35,7 +35,7 @@ public class InMemoryRecipeRepository implements RecipeRepository {
   /**
    * Get all recipes in the list.
    *
-   * @return A list of all recipes.
+   * @return A list of all recipes
    */
   @Override
   public List<Recipe> getAllRecipes() {
@@ -45,8 +45,8 @@ public class InMemoryRecipeRepository implements RecipeRepository {
   /**
    * Find recipes by name.
    *
-   * @param name The name to search for.
-   * @return A list of matching recipes.
+   * @param name The name to search for
+   * @return A list of matching recipes
    */
   @Override
   public List<Recipe> findRecipesByName(String name) {

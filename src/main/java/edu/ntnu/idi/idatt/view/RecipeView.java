@@ -1,16 +1,27 @@
 package edu.ntnu.idi.idatt.view;
 
+import edu.ntnu.idi.idatt.controller.RecipeController;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import edu.ntnu.idi.idatt.service.IngredientService;
 import java.util.List;
 
-/** Class representing the view for recipes. */
+/**
+ * Class representing the view for recipes.
+ *
+ * <p>Contains methods for displaying recipes in different ways. This class is used by the {@link
+ * RecipeController} to display recipes to the user.
+ *
+ * @see Recipe
+ * @see RecipeController
+ * @see Grocery
+ * @see GroceryView
+ */
 public class RecipeView {
   /**
    * Displays a recipe.
    *
-   * @param recipe The recipe name to display.
+   * @param recipe The recipe name to display
    */
   public static void displayRecipeName(Recipe recipe) {
     System.out.println("- " + recipe.getName());
@@ -19,7 +30,7 @@ public class RecipeView {
   /**
    * Displays a recipe in full.
    *
-   * @param recipe The recipe to display.
+   * @param recipe The recipe to display
    */
   public static void displayRecipe(Recipe recipe) {
     System.out.println("Recipe: " + recipe.getName());
@@ -41,7 +52,7 @@ public class RecipeView {
   /**
    * Displays all recipes.
    *
-   * @param recipes The list of recipes to display.
+   * @param recipes The list of recipes to display
    */
   public static void displayAllRecipes(List<Recipe> recipes) {
     if (recipes.isEmpty()) {
@@ -54,8 +65,8 @@ public class RecipeView {
   /**
    * Displays whether a recipe can be made with the available ingredients.
    *
-   * @param recipe The recipe to check.
-   * @param availableIngredients A map of available groceries and their quantities.
+   * @param recipe The recipe to check
+   * @param availableIngredients A map of available groceries and their quantities
    */
   public static void displayCanMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     if (IngredientService.hasAllIngredients(recipe, availableIngredients)) {
