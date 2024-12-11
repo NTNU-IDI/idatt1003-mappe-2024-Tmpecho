@@ -9,17 +9,16 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test class for the InMemoryRecipeRepository class. */
+/** Tests the InMemoryRecipeRepository for managing recipes. */
 class InMemoryRecipeRepositoryTest {
   private InMemoryRecipeRepository recipeRepository;
 
-  /** Sets up a new recipe repository before each test. */
   @BeforeEach
   void setUp() {
     recipeRepository = new InMemoryRecipeRepository();
   }
 
-  /** Tests adding a recipe to the repository. */
+  /** Tests that a recipe can be added. */
   @Test
   void addRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
@@ -31,7 +30,7 @@ class InMemoryRecipeRepositoryTest {
     assertEquals(recipe, recipes.get(0));
   }
 
-  /** Tests adding a duplicate recipe to the repository. */
+  /** Tests that adding a duplicate recipe throws an exception. */
   @Test
   void addDuplicateRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
@@ -40,16 +39,26 @@ class InMemoryRecipeRepositoryTest {
     assertThrows(IllegalArgumentException.class, () -> recipeRepository.addRecipe(recipe));
   }
 
-  /** Tests removing a recipe from the repository. */
+  /** Tests that a recipe can be removed. */
   @Test
   void removeRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
     recipeRepository.addRecipe(recipe);
-    recipeRepository.removeRecipe(recipe);
 
+    recipeRepository.removeRecipe(recipe);
     List<Recipe> recipes = recipeRepository.getAllRecipes();
 
     assertTrue(recipes.isEmpty());
+  }
+
+  /** Tests that removing a non-existent recipe does nothing. */
+  @Test
+  void removeNonExistentRecipeTest() {
+    Recipe recipe = createSampleRecipe("Pancakes");
+
+    recipeRepository.removeRecipe(recipe);
+
+    assertTrue(recipeRepository.getAllRecipes().isEmpty());
   }
 
   /** Tests finding recipes by name. */
@@ -81,16 +90,12 @@ class InMemoryRecipeRepositoryTest {
     assertTrue(allRecipes.contains(waffles));
   }
 
-  /** Helper method to create a sample recipe. */
   private Recipe createSampleRecipe(String name) {
     Grocery flour = new Grocery("Flour", 1.0, MeasurementUnit.KILOGRAM, null, 15.0);
     Grocery milk = new Grocery("Milk", 0.5, MeasurementUnit.LITER, null, 20.0);
     Grocery egg = new Grocery("Egg", 2.0, MeasurementUnit.PCS, null, 3.0);
 
     return new Recipe(
-        name,
-        "Delicious " + name,
-        "Mix ingredients and cook.",
-        List.of(flour, milk, egg));
+        name, "Delicious " + name, "Mix ingredients and cook.", List.of(flour, milk, egg));
   }
 }

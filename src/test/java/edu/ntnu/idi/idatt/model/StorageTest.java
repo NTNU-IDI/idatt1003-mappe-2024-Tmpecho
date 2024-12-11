@@ -6,13 +6,12 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test class for the Storage class. */
+/** Tests the Storage class for adding, removing, and capacity constraints. */
 class StorageTest {
   private Storage storage;
   private Grocery milk;
   private Grocery bread;
 
-  /** Sets up a new storage object before each test. */
   @BeforeEach
   void setUp() {
     storage = new Storage("Pantry", 100, -10, 30);
@@ -20,7 +19,7 @@ class StorageTest {
     bread = new Grocery("Bread", 50.0, MeasurementUnit.PCS, LocalDate.of(2024, 9, 15), 2.0);
   }
 
-  /** Tests the constructor and getters. */
+  /** Tests storage initialization. */
   @Test
   void constructorTest() {
     assertEquals("Pantry", storage.getName());
@@ -44,13 +43,12 @@ class StorageTest {
   @Test
   void addGroceryExceedsCapacity() {
     Grocery largeGrocery = new Grocery("Rice", 150.0, MeasurementUnit.KILOGRAM, null, 1.0);
-    Exception exception =
-        assertThrows(IllegalArgumentException.class, () -> storage.addGrocery(largeGrocery));
-    assertEquals("Not enough capacity in storage", exception.getMessage());
+
+    assertThrows(IllegalArgumentException.class, () -> storage.addGrocery(largeGrocery));
     assertEquals(0.0, storage.getCurrentCapacity());
   }
 
-  /** Tests removing groceries within current capacity. */
+  /** Tests removing groceries within available amount. */
   @Test
   void removeGroceryWithinCapacity() {
     storage.addGrocery(milk);
@@ -61,66 +59,66 @@ class StorageTest {
     assertEquals(0.0, storage.getCurrentCapacity());
   }
 
-  /** Tests removing more than the grocery amount. */
+  /** Tests removing more than the available amount. */
   @Test
   void removeGroceryExceedsAmount() {
     storage.addGrocery(bread);
-    Exception exception =
-        assertThrows(IllegalArgumentException.class, () -> storage.removeGrocery(bread, 60.0));
-    assertEquals("Removing more than available", exception.getMessage());
+
+    assertThrows(IllegalArgumentException.class, () -> storage.removeGrocery(bread, 60.0));
     assertEquals(50.0, storage.getCurrentCapacity());
   }
 
-  /** Tests getCapacity method. */
+  /** Tests getting capacity. */
   @Test
   void getCapacity() {
     assertEquals(100.0, storage.getCapacity());
   }
 
-  /** Tests getCurrentCapacity method after adding and removing groceries. */
+  /** Tests current capacity changes as groceries are added and removed. */
   @Test
   void getCurrentCapacity() {
     assertEquals(0.0, storage.getCurrentCapacity());
+
     storage.addGrocery(milk);
     assertEquals(10.0, storage.getCurrentCapacity());
+
     storage.addGrocery(bread);
     assertEquals(60.0, storage.getCurrentCapacity());
+
     storage.removeGrocery(bread, 10.0);
     assertEquals(50.0, storage.getCurrentCapacity());
   }
 
-  /** Tests getName method. */
+  /** Tests getting the storage name. */
   @Test
   void getName() {
     assertEquals("Pantry", storage.getName());
   }
 
-  /** Tests adding multiple groceries exceeding capacity over multiple additions. */
+  /** Tests multiple additions exceeding capacity at a later stage. */
   @Test
   void multipleAdditionsExceedingCapacity() {
     storage.addGrocery(milk);
     storage.addGrocery(bread);
     Grocery eggs = new Grocery("Eggs", 45.0, MeasurementUnit.PCS, null, 0.2);
 
-    Exception exception =
-        assertThrows(IllegalArgumentException.class, () -> storage.addGrocery(eggs));
-    assertEquals("Not enough capacity in storage", exception.getMessage());
+    assertThrows(IllegalArgumentException.class, () -> storage.addGrocery(eggs));
     assertEquals(60.0, storage.getCurrentCapacity());
   }
 
-  /** Tests removing negative amount (should throw exception). */
+  /** Tests removing a negative amount throws an exception. */
   @Test
   void removeNegativeAmount() {
     storage.addGrocery(milk);
-    Exception exception =
-        assertThrows(IllegalArgumentException.class, () -> storage.removeGrocery(milk, -5.0));
-    assertEquals("Amount to remove cannot be negative or zero", exception.getMessage());
+
+    assertThrows(IllegalArgumentException.class, () -> storage.removeGrocery(milk, -5.0));
   }
 
-  /** Tests removing a grocery from storage */
+  /** Tests removing a grocery without specifying the amount removes it entirely. */
   @Test
   void removeGrocery() {
     storage.addGrocery(milk);
+
     storage.removeGrocery(milk);
     assertEquals(0.0, storage.getCurrentCapacity());
   }

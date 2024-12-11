@@ -13,13 +13,12 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test class for the RecipeController class. */
+/** Tests the RecipeController for adding, removing, and suggesting recipes. */
 class RecipeControllerTest {
   private RecipeController recipeController;
   private RecipeRepository recipeRepository;
   private CookbookRepository cookbookRepository;
 
-  /** Sets up the test environment before each test. */
   @BeforeEach
   void setUp() {
     recipeRepository = new InMemoryRecipeRepository();
@@ -27,11 +26,10 @@ class RecipeControllerTest {
     recipeController = new RecipeController(recipeRepository, cookbookRepository);
   }
 
-  /** Tests adding a recipe to the repository. */
+  /** Tests adding a new recipe. */
   @Test
   void addRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
-
     recipeController.addRecipe(
         recipe.getName(),
         recipe.getDescription(),
@@ -39,16 +37,14 @@ class RecipeControllerTest {
         recipe.getIngredients());
 
     List<Recipe> recipes = recipeRepository.getAllRecipes();
-
     assertEquals(1, recipes.size());
     assertEquals("Pancakes", recipes.get(0).getName());
   }
 
-  /** Tests adding a duplicate recipe to the repository. */
+  /** Tests that adding a duplicate recipe throws an exception. */
   @Test
   void addDuplicateRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
-
     recipeController.addRecipe(
         recipe.getName(),
         recipe.getDescription(),
@@ -65,54 +61,55 @@ class RecipeControllerTest {
                 recipe.getIngredients()));
   }
 
-  /** Tests removing a recipe from the repository. */
+  /** Tests removing an existing recipe. */
   @Test
   void removeRecipeTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
-
-    assertEquals(0, recipeRepository.getAllRecipes().size());
-
     recipeController.addRecipe(
         recipe.getName(),
         recipe.getDescription(),
         recipe.getInstructions(),
         recipe.getIngredients());
 
-    assertEquals(1, recipeRepository.getAllRecipes().size());
+    recipeController.removeRecipe(recipe);
+
+    List<Recipe> recipes = recipeRepository.getAllRecipes();
+    assertEquals(0, recipes.size());
+  }
+
+  /** Tests removing a non-existent recipe has no effect. */
+  @Test
+  void removeNonExistentRecipeTest() {
+    Recipe recipe = createSampleRecipe("NonExistent");
 
     recipeController.removeRecipe(recipe);
 
     List<Recipe> recipes = recipeRepository.getAllRecipes();
-
-    assertEquals(0, recipes.size());
+    assertTrue(recipes.isEmpty());
   }
 
   /** Tests saving a recipe to the cookbook. */
   @Test
   void saveRecipeToCookbookTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
-
     recipeController.addRecipe(
         recipe.getName(),
         recipe.getDescription(),
         recipe.getInstructions(),
         recipe.getIngredients());
 
-    assertEquals(0, cookbookRepository.getAllRecipes().size());
-
-    recipeController.saveRecipeToCookbook(recipe);
-
+    boolean saved = recipeController.saveRecipeToCookbook(recipe);
     List<Recipe> cookbookRecipes = cookbookRepository.getAllRecipes();
 
+    assertTrue(saved);
     assertEquals(1, cookbookRecipes.size());
     assertEquals("Pancakes", cookbookRecipes.get(0).getName());
   }
 
-  /** Tests saving a duplicate recipe to the cookbook. */
+  /** Tests that saving a duplicate recipe to the cookbook returns false. */
   @Test
   void saveDuplicateRecipeToCookbookTest() {
     Recipe recipe = createSampleRecipe("Pancakes");
-
     recipeController.addRecipe(
         recipe.getName(),
         recipe.getDescription(),
@@ -120,19 +117,18 @@ class RecipeControllerTest {
         recipe.getIngredients());
     recipeController.saveRecipeToCookbook(recipe);
 
-    assertDoesNotThrow(() -> recipeController.saveRecipeToCookbook(recipe));
-
+    boolean savedAgain = recipeController.saveRecipeToCookbook(recipe);
     List<Recipe> cookbookRecipes = cookbookRepository.getAllRecipes();
 
+    assertFalse(savedAgain);
     assertEquals(1, cookbookRecipes.size());
   }
 
-  /** Tests displaying recipes from the cookbook. */
+  /** Tests displaying recipes in the cookbook. */
   @Test
   void displayRecipesInCookbookTest() {
     Recipe recipe1 = createSampleRecipe("Pancakes");
     Recipe recipe2 = createSampleRecipe("Waffles");
-
     recipeController.addRecipe(
         recipe1.getName(),
         recipe1.getDescription(),
@@ -151,7 +147,65 @@ class RecipeControllerTest {
     assertEquals(2, cookbookRecipes.size());
   }
 
-  /** Helper method to create a sample recipe. */
+  /** Tests checking if a recipe can be made with the available ingredients. */
+  @Test
+  void canMakeRecipeTest() {
+    Recipe recipe = createSampleRecipe("Pancakes");
+    recipeController.addRecipe(
+        recipe.getName(),
+        recipe.getDescription(),
+        recipe.getInstructions(),
+        recipe.getIngredients());
+
+    List<Grocery> availableGroceries =
+        List.of(
+            new Grocery("Flour", 1.0, MeasurementUnit.KILOGRAM, null, null),
+            new Grocery("Milk", 0.5, MeasurementUnit.LITER, null, null),
+            new Grocery("Egg", 3.0, MeasurementUnit.PCS, null, null));
+
+    assertDoesNotThrow(() -> recipeController.canMakeRecipe(recipe, availableGroceries));
+  }
+
+  /** Tests suggesting a recipe based on available ingredients. */
+  @Test
+  void suggestRecipeTest() {
+    Recipe recipe = createSampleRecipe("Pancakes");
+    recipeController.addRecipe(
+        recipe.getName(),
+        recipe.getDescription(),
+        recipe.getInstructions(),
+        recipe.getIngredients());
+
+    List<Grocery> availableGroceries =
+        List.of(
+            new Grocery("flour", 1.0, MeasurementUnit.KILOGRAM, null, null),
+            new Grocery("milk", 1.0, MeasurementUnit.LITER, null, null),
+            new Grocery("egg", 3.0, MeasurementUnit.PCS, null, null));
+
+    Recipe suggested = recipeController.suggestRecipe(availableGroceries);
+
+    assertNotNull(suggested, "Suggested recipe should not be null");
+    assertEquals("Pancakes", suggested.getName());
+  }
+
+  /** Tests suggesting a recipe when no match is found. */
+  @Test
+  void suggestRecipeNoMatchTest() {
+    Recipe recipe = createSampleRecipe("Pancakes");
+    recipeController.addRecipe(
+        recipe.getName(),
+        recipe.getDescription(),
+        recipe.getInstructions(),
+        recipe.getIngredients());
+
+    List<Grocery> availableGroceries =
+        List.of(new Grocery("Tomato", 2.0, MeasurementUnit.PCS, null, null));
+
+    Recipe suggested = recipeController.suggestRecipe(availableGroceries);
+
+    assertNull(suggested);
+  }
+
   private Recipe createSampleRecipe(String name) {
     Grocery flour = new Grocery("Flour", 1.0, MeasurementUnit.KILOGRAM, null, 15.0);
     Grocery milk = new Grocery("Milk", 0.5, MeasurementUnit.LITER, null, 20.0);
