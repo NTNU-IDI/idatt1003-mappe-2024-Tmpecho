@@ -6,7 +6,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/** Service class for suggesting recipes based on available groceries. */
+/**
+ * Service class for suggesting recipes based on available groceries.
+ *
+ * @see Recipe
+ */
 public class RecipeSuggestionService {
   /**
    * Suggest a recipe based on available groceries. Finds the recipe with the most matching

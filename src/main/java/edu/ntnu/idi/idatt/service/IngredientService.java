@@ -1,18 +1,18 @@
-package edu.ntnu.idi.idatt.util;
+package edu.ntnu.idi.idatt.service;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.List;
 
 /**
- * Utility class for checking if a user has enough ingredients for a recipe.
+ * Service class for checking if a user has enough ingredients for a recipe.
  *
  * <p>Contains a method for checking if the user has enough ingredients for a recipe.
  *
  * @see Recipe
  * @see Grocery
  */
-public class IngredientChecker {
+public class IngredientService {
   /**
    * Check if the user has enough ingredients for a recipe.
    *
