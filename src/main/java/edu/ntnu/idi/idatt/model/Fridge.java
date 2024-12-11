@@ -1,6 +1,12 @@
 package edu.ntnu.idi.idatt.model;
 
-/** A class representing a fridge storage. */
+/**
+ * A class representing a fridge storage.
+ *
+ * <p>Extends {@link Storage} and ignores temperature.
+ *
+ * @see Storage
+ */
 public class Fridge extends Storage {
   /**
    * Creates an instance of a fridge storage.

@@ -8,7 +8,12 @@ import edu.ntnu.idi.idatt.repository.StorageRepository;
 import java.time.LocalDate;
 import java.util.List;
 
-/** Utility class to populate repositories with initial data. */
+/**
+ * Utility class to populate repositories with initial data.
+ *
+ * <p>This is meant to be used for testing purposes to have some initial data to work with. This is
+ * not meant to be used in real production.
+ */
 public class PopulateData {
   /**
    * Populates the repositories with initial data.

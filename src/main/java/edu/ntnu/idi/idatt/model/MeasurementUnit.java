@@ -13,9 +13,9 @@ import java.util.Map;
  * <p>The measurement units are:
  *
  * <ul>
- *   <li><code>LITER</code>
- *   <li><code>KILOGRAM</code>
- *   <li><code>PCS</code> (pieces)
+ *   <li>{@code LITER}
+ *   <li>{@code KILOGRAM}
+ *   <li>{@code PCS} (pieces)
  * </ul>
  */
 public enum MeasurementUnit {
@@ -39,7 +39,7 @@ public enum MeasurementUnit {
   private final String[] aliases;
 
   /**
-   * Constructor for MeasurementUnit with aliases.
+   * Constructor for {@code MeasurementUnit} with aliases.
    *
    * @param aliases Alternate names for the unit
    */
@@ -48,7 +48,7 @@ public enum MeasurementUnit {
   }
 
   /**
-   * Finds a MeasurementUnit by its alias or enum name.
+   * Finds a {@code MeasurementUnit} by its alias or enum name.
    *
    * @param input The input string
    * @return The corresponding MeasurementUnit

@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Represents a grocery item.
  *
  * <p>Each grocery item has a name, amount, measurement unit, expiration date, price, and preferred
- * storage temperature. Only the name amount, and measurmentUnit are required.
+ * storage temperature. Only the name amount, and {@code measurmentUnit} are required.
  */
 public class Grocery implements Comparable<Grocery> {
   String name;

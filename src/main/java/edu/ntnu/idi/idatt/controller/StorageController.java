@@ -7,7 +7,11 @@ import edu.ntnu.idi.idatt.view.StorageView;
 import java.time.LocalDate;
 import java.util.List;
 
-/** Controller class for the storage model. */
+/**
+ * Controller class for the storage model.
+ *
+ * <p>Speaks with {@link GroceryController} and {@link StorageRepository} to manage storage.
+ */
 public class StorageController {
   private final GroceryController groceryController;
   private final StorageRepository storageRepository;

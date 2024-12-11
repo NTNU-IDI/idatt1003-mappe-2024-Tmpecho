@@ -3,7 +3,16 @@ package edu.ntnu.idi.idatt.repository;
 import edu.ntnu.idi.idatt.model.Recipe;
 import java.util.List;
 
-/** Interface for a cookbook repository. */
+/**
+ * Interface for a cookbook repository.
+ *
+ * <p>Manages recipes in a cookbook. This interface works as a single interface to support different
+ * storage solutions.
+ *
+ * @see Recipe
+ * @see RecipeRepository
+ * @see InMemoryCookbookRepository
+ */
 public interface CookbookRepository {
   /**
    * Add a recipe to the cookbook.

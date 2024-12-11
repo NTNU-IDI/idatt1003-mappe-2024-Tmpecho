@@ -2,9 +2,14 @@ package edu.ntnu.idi.idatt.controller;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
+import edu.ntnu.idi.idatt.view.GroceryView;
 import java.time.LocalDate;
 
-/** Controller class for the grocery model. */
+/**
+ * Controller class for the grocery model.
+ *
+ * <p>Speaks with {@link Grocery} and {@link GroceryView} to manage groceries.
+ */
 public class GroceryController {
   /**
    * Calculates the total value of a grocery.

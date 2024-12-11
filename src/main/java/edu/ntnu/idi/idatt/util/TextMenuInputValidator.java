@@ -2,13 +2,20 @@ package edu.ntnu.idi.idatt.util;
 
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.MeasurementUnit;
+import edu.ntnu.idi.idatt.ui.TextMenuInterface;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/** Class for validating user input in a text-based menu. */
+/**
+ * Class for validating user input in a text-based menu.
+ *
+ * <p>Contains methods for reading and validating user input for a text-based menu.
+ *
+ * @see TextMenuInterface
+ */
 public class TextMenuInputValidator {
   static Scanner scanner = new Scanner(System.in);
 
