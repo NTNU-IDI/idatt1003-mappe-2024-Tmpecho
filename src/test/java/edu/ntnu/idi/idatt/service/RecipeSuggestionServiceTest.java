@@ -9,16 +9,14 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test class for the RecipeSuggestionService. */
+/** Tests the RecipeSuggestionService for suggesting the best matching recipe. */
 class RecipeSuggestionServiceTest {
-
   private RecipeSuggestionService suggestionService;
   private List<Grocery> availableGroceries;
 
   @BeforeEach
   void setUp() {
     suggestionService = new RecipeSuggestionService();
-
     availableGroceries =
         List.of(
             new Grocery("flour", 2.0, MeasurementUnit.KILOGRAM, null, 15.0),
@@ -27,7 +25,7 @@ class RecipeSuggestionServiceTest {
             new Grocery("butter", 0.5, MeasurementUnit.KILOGRAM, null, 50.0));
   }
 
-  /** Tests suggesting a recipe with a perfect match. */
+  /** Tests suggesting a recipe that perfectly matches available ingredients. */
   @Test
   void suggestRecipePerfectMatchTest() {
     Recipe recipe =
@@ -41,6 +39,7 @@ class RecipeSuggestionServiceTest {
                 new Grocery("egg", 2.0, MeasurementUnit.PCS, null, null)));
 
     Recipe result = suggestionService.suggestRecipe(List.of(recipe), availableGroceries);
+
     assertEquals(recipe, result);
   }
 
@@ -68,10 +67,11 @@ class RecipeSuggestionServiceTest {
                 new Grocery("cheese", 0.5, MeasurementUnit.KILOGRAM, null, null)));
 
     Recipe result = suggestionService.suggestRecipe(List.of(recipe1, recipe2), availableGroceries);
+
     assertEquals(recipe1, result);
   }
 
-  /** Tests suggesting no recipe when no match is found. */
+  /** Tests that no recipe is suggested when none match. */
   @Test
   void suggestRecipeNoMatchTest() {
     Recipe recipe =
@@ -84,10 +84,11 @@ class RecipeSuggestionServiceTest {
                 new Grocery("tomato", 0.5, MeasurementUnit.KILOGRAM, null, null)));
 
     Recipe result = suggestionService.suggestRecipe(List.of(recipe), availableGroceries);
+
     assertNull(result);
   }
 
-  /** Tests suggesting a recipe when two recipes have the same match score. */
+  /** Tests tie-breaking when two recipes have the same match score. */
   @Test
   void suggestRecipeTieBreakTest() {
     Recipe recipe1 =
@@ -109,7 +110,31 @@ class RecipeSuggestionServiceTest {
                 new Grocery("egg", 2.0, MeasurementUnit.PCS, null, null)));
 
     Recipe result = suggestionService.suggestRecipe(List.of(recipe1, recipe2), availableGroceries);
-    assertTrue(
-        result == recipe1 || result == recipe2); // Either recipe1 or recipe2 should be returned
+
+    assertTrue(result == recipe1 || result == recipe2);
+  }
+
+  /** Tests suggesting a recipe when there are no recipes. */
+  @Test
+  void suggestRecipeEmptyRecipesListTest() {
+    Recipe result = suggestionService.suggestRecipe(List.of(), availableGroceries);
+
+    assertNull(result);
+  }
+
+  /** Tests suggesting a recipe when groceries are null. */
+  @Test
+  void suggestRecipeWithNullIngredientsTest() {
+    Recipe recipe =
+        new Recipe(
+            "Milk Only",
+            "Just milk",
+            "Drink it.",
+            List.of(new Grocery("milk", 1.0, MeasurementUnit.LITER, null, null)));
+
+    List<Grocery> noGroceries = List.of();
+
+    assertDoesNotThrow(() -> suggestionService.suggestRecipe(List.of(recipe), noGroceries));
+    assertNull(suggestionService.suggestRecipe(List.of(recipe), noGroceries));
   }
 }
