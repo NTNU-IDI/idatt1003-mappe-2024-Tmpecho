@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** An in-memory implementation using standard List of the CookbookRepository. */
+/** An in-memory implementation using an ArrayList of the {@link CookbookRepository}. */
 public class InMemoryCookbookRepository implements CookbookRepository {
   private final List<Recipe> recipes = new ArrayList<>();
 

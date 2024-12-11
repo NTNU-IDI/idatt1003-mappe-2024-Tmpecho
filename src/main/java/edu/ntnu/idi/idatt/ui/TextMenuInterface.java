@@ -7,7 +7,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
-/** Text-based menu interface for the user. */
+/**
+ * Text-based menu interface for the user.
+ *
+ * <p>Provides a text-based menu for the user to interact with the application.
+ *
+ * @see UserInterface
+ */
 public class TextMenuInterface extends UserInterface {
   Scanner scanner = new Scanner(System.in);
 

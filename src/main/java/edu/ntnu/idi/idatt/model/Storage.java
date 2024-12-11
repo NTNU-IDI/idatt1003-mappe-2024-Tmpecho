@@ -1,6 +1,17 @@
 package edu.ntnu.idi.idatt.model;
 
-/** Class representing a storage unit for groceries. */
+/**
+ * Class representing a storage unit for groceries.
+ *
+ * <p>The storage represents a physical storage unit for groceries. It has a name, a capacity, a
+ * current capacity, a minimum temperature and a maximum temperature. The class works as a base
+ * class for other storage types, such as fridge and freezer.
+ *
+ * <p>The class is used in the {@link edu.ntnu.idi.idatt.repository.StorageRepository} to store
+ * groceries.
+ *
+ * @see Fridge
+ */
 public class Storage {
   public double minTemperature;
   public double maxTemperature;

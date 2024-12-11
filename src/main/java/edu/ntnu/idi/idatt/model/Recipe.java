@@ -98,7 +98,8 @@ public class Recipe {
   }
 
   /**
-   * Checks if two Recipe objects are equal based on their name, description, and ingredients.
+   * Checks if two {@code Recipe} objects are equal based on their name, description, and
+   * ingredients.
    *
    * @param o The other object to compare
    * @return True if the recipes are equal, false otherwise
@@ -119,7 +120,7 @@ public class Recipe {
   }
 
   /**
-   * Generates a hash code for the Recipe object based on its attributes.
+   * Generates a hash code for the {@code Recipe} object based on its attributes.
    *
    * @return The hash code
    */

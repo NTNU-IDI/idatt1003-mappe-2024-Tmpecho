@@ -3,7 +3,16 @@ package edu.ntnu.idi.idatt.repository;
 import edu.ntnu.idi.idatt.model.Grocery;
 import java.util.List;
 
-/** Interface for the storage repository. */
+/**
+ * Interface for the storage repository.
+ *
+ * <p>Manages groceries in a storage. This interface works as a single interface to support
+ * different storage solutions.
+ *
+ * @see Grocery
+ * @see InMemoryStorageRepository
+ * @see edu.ntnu.idi.idatt.model.Storage
+ */
 public interface StorageRepository {
   /**
    * Adds a grocery to the storage.

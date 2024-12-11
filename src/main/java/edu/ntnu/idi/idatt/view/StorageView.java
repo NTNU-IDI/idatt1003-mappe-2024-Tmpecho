@@ -1,10 +1,21 @@
 package edu.ntnu.idi.idatt.view;
 
+import edu.ntnu.idi.idatt.controller.StorageController;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Storage;
 import java.util.List;
 
-/** Class representing the view for storage. */
+/**
+ * Class representing the view for storage.
+ *
+ * <p>Contains methods for displaying storage in different ways. This class is used by the {@link
+ * StorageController} to display storage to the user.
+ *
+ * @see Storage
+ * @see StorageController
+ * @see Grocery
+ * @see GroceryView
+ */
 public class StorageView {
   /**
    * Display storage details.

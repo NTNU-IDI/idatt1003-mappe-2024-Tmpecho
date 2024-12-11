@@ -1,11 +1,22 @@
 package edu.ntnu.idi.idatt.view;
 
+import edu.ntnu.idi.idatt.controller.RecipeController;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.model.Recipe;
 import edu.ntnu.idi.idatt.util.IngredientChecker;
 import java.util.List;
 
-/** Class representing the view for recipes. */
+/**
+ * Class representing the view for recipes.
+ *
+ * <p>Contains methods for displaying recipes in different ways. This class is used by the {@link
+ * RecipeController} to display recipes to the user.
+ *
+ * @see Recipe
+ * @see RecipeController
+ * @see Grocery
+ * @see GroceryView
+ */
 public class RecipeView {
   /**
    * Displays a recipe.

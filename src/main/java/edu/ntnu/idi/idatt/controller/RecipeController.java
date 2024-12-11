@@ -7,7 +7,11 @@ import edu.ntnu.idi.idatt.repository.RecipeRepository;
 import edu.ntnu.idi.idatt.view.RecipeView;
 import java.util.List;
 
-/** Controller for managing recipes. */
+/**
+ * Controller for managing recipes.
+ *
+ * <p>Speaks with {@link RecipeRepository} and {@link CookbookRepository} to manage recipes.
+ */
 public class RecipeController {
   private final RecipeRepository recipeRepository;
   private final CookbookRepository cookbookRepository;

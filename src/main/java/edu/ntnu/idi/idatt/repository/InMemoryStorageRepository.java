@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/** A repository for storing groceries in memory. */
+/** An in-memory implementation using an ArrayList of the {@link StorageRepository}. */
 public class InMemoryStorageRepository implements StorageRepository {
   private final Storage storage;
   private final List<Grocery> groceries = new ArrayList<>();
