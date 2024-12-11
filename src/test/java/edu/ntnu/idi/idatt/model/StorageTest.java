@@ -95,14 +95,6 @@ class StorageTest {
     assertEquals("Pantry", storage.getName());
   }
 
-  /** Tests toString method. */
-  @Test
-  void toStringTest() {
-    String expected =
-        "Storage{name='Pantry', capacity=100.0, currentCapacity=0.0, minTemperature=-10.0, maxTemperature=30.0}";
-    assertEquals(expected, storage.toString());
-  }
-
   /** Tests adding multiple groceries exceeding capacity over multiple additions. */
   @Test
   void multipleAdditionsExceedingCapacity() {

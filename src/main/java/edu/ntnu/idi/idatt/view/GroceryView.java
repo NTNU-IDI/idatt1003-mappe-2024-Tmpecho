@@ -1,14 +1,24 @@
 package edu.ntnu.idi.idatt.view;
 
+import edu.ntnu.idi.idatt.controller.GroceryController;
 import edu.ntnu.idi.idatt.model.Grocery;
 import edu.ntnu.idi.idatt.util.DateUtils;
 
-/** Class representing the view for groceries. */
+/**
+ * Class representing the view for groceries.
+ *
+ * <p>Contains methods for displaying groceries in different ways. This class is used by the {@link
+ * GroceryController} to display groceries to the user.
+ *
+ * @see Grocery
+ * @see GroceryController
+ * @see StorageView
+ */
 public class GroceryView {
   /**
    * Displays a grocery as part of a table row.
    *
-   * @param grocery the grocery to display
+   * @param grocery The grocery to display
    */
   public static void displayGroceryAsRow(Grocery grocery) {
     if (grocery == null) {

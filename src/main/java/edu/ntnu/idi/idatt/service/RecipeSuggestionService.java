@@ -6,11 +6,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/** Service class for suggesting recipes based on available groceries. */
+/**
+ * Service class for suggesting recipes based on available groceries.
+ *
+ * @see Recipe
+ */
 public class RecipeSuggestionService {
   /**
-   * Suggest a recipe based on available groceries. Finds the recipe with the most matching
-   * ingredients. If no recipe has any overlap, returns {@code null}.
+   * Suggest a recipe based on available groceries. Finds the recipe that matches the most
+   * ingredients in storage.
+   *
+   * <p>The method returns the recipe that can be made with the most available ingredients by
+   * comparing the ingredients in the recipe with the available groceries. If no recipe can be made,
+   * the method returns {@code null}.
    *
    * @param recipes The list of recipes to evaluate.
    * @param availableGroceries The groceries available in storage.

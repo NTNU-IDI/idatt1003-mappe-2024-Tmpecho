@@ -158,9 +158,6 @@ class RecipeControllerTest {
     Grocery egg = new Grocery("Egg", 2.0, MeasurementUnit.PCS, null, 3.0);
 
     return new Recipe(
-        name,
-        "Delicious " + name,
-        "Mix ingredients and cook.",
-        List.of(flour, milk, egg));
+        name, "Delicious " + name, "Mix ingredients and cook.", List.of(flour, milk, egg));
   }
 }

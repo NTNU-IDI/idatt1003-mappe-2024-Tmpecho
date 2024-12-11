@@ -7,7 +7,11 @@ import edu.ntnu.idi.idatt.view.StorageView;
 import java.time.LocalDate;
 import java.util.List;
 
-/** Controller class for the storage model. */
+/**
+ * Controller class for the storage model.
+ *
+ * <p>Speaks with {@link GroceryController} and {@link StorageRepository} to manage storage.
+ */
 public class StorageController {
   private final GroceryController groceryController;
   private final StorageRepository storageRepository;
@@ -15,8 +19,8 @@ public class StorageController {
   /**
    * Constructor for the StorageController class.
    *
-   * @param groceryController controller for the grocery model
-   * @param storageRepository repository for the storage model
+   * @param groceryController Controller for the grocery model
+   * @param storageRepository Repository for the storage model
    */
   public StorageController(
       GroceryController groceryController, StorageRepository storageRepository) {
@@ -27,11 +31,11 @@ public class StorageController {
   /**
    * Method for adding a grocery to the storage model.
    *
-   * @param name the name of the grocery
-   * @param amount the amount of the grocery
-   * @param unit the unit of the grocery
-   * @param expirationDate the expiration date of the grocery
-   * @param price the price of the grocery
+   * @param name The name of the grocery
+   * @param amount The amount of the grocery
+   * @param unit The unit of the grocery
+   * @param expirationDate The expiration date of the grocery
+   * @param price The price of the grocery
    */
   public void addGrocery(
       String name, double amount, String unit, LocalDate expirationDate, double price) {
@@ -42,7 +46,7 @@ public class StorageController {
   /**
    * Remove a grocery from the storage model.
    *
-   * @param name the name of the grocery
+   * @param name The name of the grocery
    */
   public void removeGrocery(String name) {
     storageRepository.removeGrocery(name);
@@ -51,7 +55,7 @@ public class StorageController {
   /**
    * Get all groceries with their amount.
    *
-   * @return a list of groceries with their amount
+   * @return A list of groceries with their amount
    */
   public List<Grocery> getAllGroceries() {
     if (storageRepository.getAllGroceries().isEmpty()) {
@@ -107,8 +111,8 @@ public class StorageController {
   /**
    * Checks if a grocery is in storage.
    *
-   * @param name the name of the grocery to get
-   * @return true if the grocery is in storage, false otherwise
+   * @param name The name of the grocery to get
+   * @return True if the grocery is in storage, false otherwise
    */
   public boolean groceryInStorage(String name) {
     return storageRepository.getGrocery(name) != null;
@@ -117,7 +121,7 @@ public class StorageController {
   /**
    * Display storage details.
    *
-   * @param storage The storage to display details for.
+   * @param storage The storage to display details for
    */
   public void displayStorageDetails(Storage storage) {
     StorageView.displayStorageDetails(storage);

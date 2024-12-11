@@ -8,7 +8,11 @@ import edu.ntnu.idi.idatt.service.RecipeSuggestionService;
 import edu.ntnu.idi.idatt.view.RecipeView;
 import java.util.List;
 
-/** Controller for managing recipes. */
+/**
+ * Controller for managing recipes.
+ *
+ * <p>Speaks with {@link RecipeRepository} and {@link CookbookRepository} to manage recipes.
+ */
 public class RecipeController {
   private final RecipeRepository recipeRepository;
   private final CookbookRepository cookbookRepository;
@@ -68,7 +72,7 @@ public class RecipeController {
   /**
    * Method for getting all recipes from the recipe model.
    *
-   * @return A list of all recipes.
+   * @return A list of all recipes
    */
   public List<Recipe> getAllRecipes() {
     return recipeRepository.getAllRecipes();
@@ -77,8 +81,8 @@ public class RecipeController {
   /**
    * Method for finding recipes by name.
    *
-   * @param name The name to search for.
-   * @return A list of matching recipes.
+   * @param name The name to search for
+   * @return A list of matching recipes
    */
   public List<Recipe> findRecipesByName(String name) {
     return recipeRepository.findRecipesByName(name);
@@ -87,8 +91,8 @@ public class RecipeController {
   /**
    * Method for checking if a recipe can be made with available ingredients.
    *
-   * @param recipe The recipe to check.
-   * @param availableIngredients A map of available ingredients.
+   * @param recipe The recipe to check
+   * @param availableIngredients A map of available ingredients
    */
   public void canMakeRecipe(Recipe recipe, List<Grocery> availableIngredients) {
     RecipeView.displayCanMakeRecipe(recipe, availableIngredients);
@@ -109,7 +113,7 @@ public class RecipeController {
   /**
    * Method for displaying a recipe.
    *
-   * @param recipe The recipe to display.
+   * @param recipe The recipe to display
    */
   public void displayRecipe(Recipe recipe) {
     RecipeView.displayRecipe(recipe);
