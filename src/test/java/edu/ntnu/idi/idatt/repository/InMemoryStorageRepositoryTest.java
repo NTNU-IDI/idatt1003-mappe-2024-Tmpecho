@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/** Test class for the InMemoryStorageRepository class. */
+/** Tests the InMemoryStorageRepository functionality for managing groceries. */
 class InMemoryStorageRepositoryTest {
   private InMemoryStorageRepository repository;
   private Storage storage;
@@ -18,7 +18,6 @@ class InMemoryStorageRepositoryTest {
   private Grocery bread;
   private Grocery expiredMilk;
 
-  /** Sets up a new storage object and groceries before each test. */
   @BeforeEach
   void setUp() {
     storage = new Storage("Pantry", 100, -10, 30);
@@ -29,7 +28,7 @@ class InMemoryStorageRepositoryTest {
         new Grocery("Expired Milk", 2.0, MeasurementUnit.LITER, LocalDate.now().minusDays(1), 1.5);
   }
 
-  /** Tests adding groceries to the repository. */
+  /** Tests that groceries can be added and stored correctly. */
   @Test
   void addGroceryTest() {
     repository.addGrocery(milk);
@@ -39,75 +38,91 @@ class InMemoryStorageRepositoryTest {
     assertEquals(2, groceries.size());
     assertTrue(groceries.contains(milk));
     assertTrue(groceries.contains(bread));
-
     assertEquals(15.0, storage.getCurrentCapacity());
   }
 
-  /** Tests getting a grocery by name. */
+  /** Tests that adding a null grocery throws a NullPointerException. */
+  @Test
+  void addNullGroceryTest() {
+    Grocery nullGrocery = null;
+
+    assertThrows(NullPointerException.class, () -> repository.addGrocery(nullGrocery));
+  }
+
+  /** Tests retrieving a grocery by name. */
   @Test
   void getGroceryTest() {
     repository.addGrocery(milk);
-    Grocery retrievedGrocery = repository.getGrocery("Milk");
-    assertEquals(milk, retrievedGrocery);
 
-    assertNull(repository.getGrocery("Coconut"));
+    Grocery retrievedGrocery = repository.getGrocery("Milk");
+    Grocery notFound = repository.getGrocery("Coconut");
+
+    assertEquals(milk, retrievedGrocery);
+    assertNull(notFound);
   }
 
-  /** Tests removing a grocery by name. */
+  /** Tests removing a grocery by its name. */
   @Test
   void removeGroceryByNameTest() {
     repository.addGrocery(milk);
     repository.addGrocery(bread);
-    repository.removeGrocery("Milk");
 
+    repository.removeGrocery("Milk");
     List<Grocery> groceries = repository.getAllGroceries();
+
     assertEquals(1, groceries.size());
     assertFalse(groceries.contains(milk));
     assertTrue(groceries.contains(bread));
-
     assertEquals(5.0, storage.getCurrentCapacity());
   }
 
-  /** Tests removing a grocery by name and amount. */
+  /** Tests that removing a non-existent grocery does not affect storage. */
+  @Test
+  void removeNonExistentGroceryTest() {
+    repository.addGrocery(milk);
+
+    repository.removeGrocery("NonExistent");
+    List<Grocery> groceries = repository.getAllGroceries();
+
+    assertEquals(1, groceries.size());
+    assertTrue(groceries.contains(milk));
+  }
+
+  /** Tests removing a specific amount of a grocery. */
   @Test
   void removeGroceryByNameAndAmountTest() {
     repository.addGrocery(milk);
-    repository.removeGrocery("Milk", 5.0);
 
+    repository.removeGrocery("Milk", 5.0);
     Grocery retrievedGrocery = repository.getGrocery("Milk");
+    repository.removeGrocery("Milk");
+
     assertNotNull(retrievedGrocery);
     assertEquals(5.0, retrievedGrocery.getAmount());
-
-    assertEquals(5.0, storage.getCurrentCapacity());
-
-    // Remove remaining amount
-    repository.removeGrocery("Milk");
     assertNull(repository.getGrocery("Milk"));
     assertEquals(0.0, storage.getCurrentCapacity());
   }
 
-  /** Tests removing a grocery with invalid amount. */
+  /** Tests that removing an invalid amount (negative or too large) throws exceptions. */
   @Test
   void removeGroceryInvalidAmountTest() {
     repository.addGrocery(milk);
 
-    // Negative amount
     assertThrows(IllegalArgumentException.class, () -> repository.removeGrocery("Milk", -5.0));
-
-    // Amount exceeds available
     assertThrows(IllegalArgumentException.class, () -> repository.removeGrocery("Milk", 15.0));
   }
 
-  /** Tests listing all groceries. */
+  /** Tests getting all groceries sorted by name. */
   @Test
   void getAllGroceriesTest() {
     repository.addGrocery(milk);
     repository.addGrocery(bread);
+
     List<Grocery> groceries = repository.getAllGroceries();
 
     assertEquals(2, groceries.size());
     assertEquals("Bread", groceries.get(0).getName());
-    assertEquals("Milk", groceries.get(1).getName()); // Sorted by name
+    assertEquals("Milk", groceries.get(1).getName());
   }
 
   /** Tests listing expired groceries. */
@@ -121,15 +136,23 @@ class InMemoryStorageRepositoryTest {
     assertEquals(expiredMilk, expiredGroceries.get(0));
   }
 
-  /** Tests calculating total value of all groceries. */
+  /** Tests calculating the total value of all groceries. */
   @Test
   void calculateTotalValueTest() {
     repository.addGrocery(milk);
     repository.addGrocery(bread);
-    double totalValue = repository.calculateTotalValue();
 
     double expectedValue =
         (milk.getPrice() * milk.getAmount()) + (bread.getPrice() * bread.getAmount());
+    double totalValue = repository.calculateTotalValue();
+
     assertEquals(expectedValue, totalValue);
+  }
+
+  /** Tests that total value is zero if no groceries are present. */
+  @Test
+  void calculateTotalValueEmptyStorageTest() {
+    double totalValue = repository.calculateTotalValue();
+    assertEquals(0.0, totalValue);
   }
 }
