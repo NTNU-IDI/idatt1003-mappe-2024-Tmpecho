@@ -42,8 +42,8 @@ public abstract class UserInterface {
     groceryController = new GroceryController();
     storageController = new StorageController(groceryController, fridgeStorageRepository);
 
-    //    PopulateData populateData = new PopulateData();
-    //    populateData.populateRepositories(fridgeStorageRepository, recipeRepository);
+    PopulateData populateData = new PopulateData();
+    populateData.populateRepositories(fridgeStorageRepository, recipeRepository);
   }
 
   /** Main program loop. Must be implemented by subclasses. */
